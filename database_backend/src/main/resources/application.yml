@@ -1,0 +1,7 @@
+server:
+  shutdown: graceful
+  port: 8088
+
+spring:
+  application:
+    name: database-backend
