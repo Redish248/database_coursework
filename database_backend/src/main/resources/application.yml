@@ -5,3 +5,19 @@ server:
 spring:
   application:
     name: database-backend
+  datasource:
+    url: jdbc:postgresql://localhost:5432/hunger_games
+    username: mag_db
+    password: mag_db
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        jdbc:
+          lob:
+            non_contextual_creation: true
+  sql:
+    init:
+      mode: always
