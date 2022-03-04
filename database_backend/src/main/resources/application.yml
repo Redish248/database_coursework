@@ -6,7 +6,7 @@ spring:
   application:
     name: database-backend
   datasource:
-    url: jdbc:postgresql://localhost:5432/hunger_games
+    url: jdbc:postgresql://localhost:5432/database_coursework
     username: mag_db
     password: mag_db
     driver-class-name: org.postgresql.Driver

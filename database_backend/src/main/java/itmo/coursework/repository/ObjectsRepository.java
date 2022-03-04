@@ -4,6 +4,15 @@ import itmo.coursework.entity.Objects;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
-public interface ObjectsRepository extends CrudRepository<Objects, Integer> {
+public interface ObjectsRepository extends CrudRepository<Objects, Long> {
+    Objects findObjectsByUid(long uid);
+
+    List<Objects> findObjectsByName(String name);
+
+    List<Objects> findObjectsByPriceGreaterThan(int price);
+
+    List<Objects> findObjectsByPriceLessThan(int price);
 }
