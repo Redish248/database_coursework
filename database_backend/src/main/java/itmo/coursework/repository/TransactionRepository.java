@@ -13,7 +13,8 @@ public interface TransactionRepository extends CrudRepository<TransactionsBudget
 
     List<TransactionsBudget> findTransactionsBudgetsByTransactionOwner(String owner);
 
-    List<TransactionsBudget> findTransactionsBudgetsByPurposeRegex(String purpose);
+    //TODO: change to regex
+    List<TransactionsBudget> findTransactionsBudgetsByPurpose(String purpose);
 
     List<TransactionsBudget> findTransactionsBudgetsByDate(Timestamp timestamp);
 

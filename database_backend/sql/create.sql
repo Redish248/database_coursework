@@ -75,6 +75,6 @@ CREATE TABLE users (
    gender varchar(10),
    nick varchar(50) UNIQUE NOT NULL,
    email varchar(50) UNIQUE NOT NULL,
-   password varchar(50) NOT NULL,
+   password text NOT NULL,
    user_type bigint NOT NULL REFERENCES user_type
 );

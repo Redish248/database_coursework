@@ -1,0 +1,11 @@
+drop table animal_type;
+drop table feed_types;
+drop table objects;
+drop table position;
+drop table user_type;
+drop table users;
+drop table transactions_budget;
+drop table staff;
+drop table objects_availability;
+drop table feed_availability;
+drop table animal_statistics;

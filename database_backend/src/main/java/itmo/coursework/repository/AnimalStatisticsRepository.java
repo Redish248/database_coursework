@@ -9,7 +9,7 @@ import java.util.List;
 
 @Repository
 public interface AnimalStatisticsRepository extends CrudRepository<AnimalStatistics, Long> {
-    AnimalStatisticsRepository findAnimalStatisticsByUid(long uid);
+    AnimalStatistics findAnimalStatisticsByUid(long uid);
 
     List<AnimalStatistics> findAnimalStatisticsByAnimal(AnimalType animal);
 
