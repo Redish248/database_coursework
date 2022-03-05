@@ -3,7 +3,6 @@ package itmo.coursework.controller;
 import itmo.coursework.entity.Users;
 import itmo.coursework.service.UserService;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -30,7 +29,7 @@ public class RegistrationController {
         user.setEmail(email);
         user.setGender(gender);
         //TODO: add user type and birthday
-        user.setUserType(userService.findUserTypeByUid(1));
+        user.setUserType(userService.getUserTypeByUid(1));
         //user.setDateOfBirth();
         user.setNick(nick);
         user.setPassword(BCrypt.hashpw(password, BCrypt.gensalt()));

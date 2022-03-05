@@ -1,5 +1,6 @@
 package itmo.coursework.config.security;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.servlet.ServletListenerRegistrationBean;
 import org.springframework.context.annotation.Bean;
@@ -28,20 +29,13 @@ import java.util.Arrays;
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(securedEnabled = true)
 @Order(1000)
+@RequiredArgsConstructor
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
+    private final AuthEntryPoint authEntryPoint;
 
-    @Autowired
-    private AuthEntryPoint authEntryPoint;
+    private final DataSource dataSource;
 
-    //@Autowired
-    //private BCryptPasswordEncoder bCryptPasswordEncoder;
-
-    @Autowired
-    DataSource dataSource;
-
-    @Autowired
-    AuthSuccessHandler authSuccessHandler;
-
+    private final AuthSuccessHandler authSuccessHandler;
 
     private final SimpleUrlAuthenticationFailureHandler failureHandler = new SimpleUrlAuthenticationFailureHandler();
 

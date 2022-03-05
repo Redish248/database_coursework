@@ -8,6 +8,8 @@ import itmo.coursework.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
@@ -15,8 +17,28 @@ public class UserServiceImpl implements UserService {
     private final UserTypeRepository userTypeRepository;
 
     @Override
+    public Users getUsersByUid(long uid) {
+        return userRepository.findUsersByUid(uid);
+    }
+
+    @Override
+    public Users getUsersByNickAndPassword(String nick, String password) {
+        return userRepository.findUsersByNickAndPassword(nick, password);
+    }
+
+    @Override
     public Users getUserByNick(String nick) {
         return userRepository.findUsersByNick(nick);
+    }
+
+    @Override
+    public Users getUsersByEmail(String email) {
+        return userRepository.findUsersByEmail(email);
+    }
+
+    @Override
+    public List<Users> getUsersByUserType(UserType userType) {
+        return userRepository.findUsersByUserType(userType);
     }
 
     @Override
@@ -25,8 +47,13 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserType findUserTypeByUid(long uid) {
+    public UserType getUserTypeByUid(long uid) {
         return userTypeRepository.findUserTypeByUid(uid);
+    }
+
+    @Override
+    public List<UserType> getUserTypesByName(String name) {
+        return userTypeRepository.findUserTypesByName(name);
     }
 
 
