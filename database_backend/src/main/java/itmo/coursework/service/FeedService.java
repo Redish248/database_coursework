@@ -1,20 +1,22 @@
 package itmo.coursework.service;
 
-import itmo.coursework.entity.FeedAvailability;
-import itmo.coursework.entity.FeedTypes;
+import itmo.coursework.entity.Feed;
 
 import java.util.List;
 
 public interface FeedService {
-    FeedTypes getFeedTypesByUid(long uid);
 
-    List<FeedTypes> getFeedTypesByName(String name);
+    List<Feed> getAllFeeds();
 
-    FeedAvailability getFeedAvailabilityByUid(long uid);
+    Feed getFeedByUid(long uid);
 
-    List<FeedAvailability> getFeedAvailabilitiesByFeedType(FeedTypes feedType);
+    List<Feed> getFeedByName(String name);
 
-    List<FeedAvailability> getFeedAvailabilitiesByAmountGreaterThan(int amount);
+    List<Feed> getFeedsByAmountGreaterThan(int amount);
 
-    List<FeedAvailability> getFeedAvailabilitiesByAmountLessThan(int amount);
+    List<Feed> getFeedsByAmountLessThan(int amount);
+
+    List<Feed> findFeedsByPriceGreaterThan(int price);
+
+    List<Feed> findFeedsByPriceLessThan(int price);
 }

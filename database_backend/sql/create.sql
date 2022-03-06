@@ -1,39 +1,23 @@
-CREATE TABLE animal_type (
-     uid serial PRIMARY KEY,
-     name varchar(50) NOT NULL,
-     description text
-);
-
-CREATE TABLE animal_statistics (
+CREATE TABLE animals (
    uid serial PRIMARY KEY,
-   animal bigint REFERENCES animal_type,
+   name varchar(50) NOT NULL,
    amount integer CHECK (amount >= 0) default 0
 );
 
-CREATE TABLE feed_types (
+CREATE TABLE feed (
     uid serial PRIMARY KEY,
     name varchar(50) NOT NULL,
     description text,
-    price integer CHECK (price >= 0)
-);
-
-CREATE TABLE feed_availability (
-   uid serial PRIMARY KEY,
-   feed_type bigint REFERENCES feed_types,
-   amount integer CHECK (amount >= 0) default 0
+    price integer CHECK (price >= 0),
+    amount integer CHECK (amount >= 0) default 0
 );
 
 CREATE TABLE objects (
      uid serial PRIMARY KEY,
      name varchar(50) NOT NULL,
      description text,
-     price integer CHECK (price >= 0)
-);
-
-CREATE TABLE objects_availability (
-  uid serial PRIMARY KEY,
-  object_type bigint REFERENCES feed_types,
-  amount integer CHECK (amount >= 0) default 0
+     price integer CHECK (price >= 0),
+     amount integer CHECK (amount >= 0) default 0
 );
 
 CREATE TABLE position (
