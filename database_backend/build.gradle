@@ -8,7 +8,10 @@ plugins {
     id 'java'
     id 'io.spring.dependency-management' version "1.0.11.RELEASE"
     id 'org.springframework.boot' version "2.6.3"
+    id 'com.diffplug.spotless' version '5.0.0'
 }
+
+apply from: 'gradle/spotless.gradle'
 
 group 'itmo.coursework'
 version '1.0-SNAPSHOT'
@@ -41,6 +44,15 @@ dependencies {
 
     testImplementation "org.junit.jupiter:junit-jupiter-api:${junitVersion}"
     testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:${junitVersion}"
+}
+
+bootJar {
+    mainClass = 'itmo.coursework.DatabaseApplication'
+    launchScript()
+}
+
+jar {
+    enabled = false
 }
 
 java {

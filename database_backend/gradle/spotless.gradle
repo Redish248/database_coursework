@@ -1,0 +1,22 @@
+spotless {
+    java {
+        target fileTree(projectDir) {
+            include '/*.java'
+            exclude '/build/**'
+        }
+        removeUnusedImports()
+        trimTrailingWhitespace()
+        indentWithSpaces()
+        endWithNewline()
+    }
+   // kotlin {
+   //     target '**/*.kt'
+    //    ktlint()
+    //    trimTrailingWhitespace()
+   //     indentWithSpaces()
+   //     endWithNewline()
+    //    removeUnusedImports()
+   // }
+}
+
+tasks.build.dependsOn spotlessApply, bootJar
