@@ -1,9 +1,7 @@
 package itmo.coursework.impl;
 
-import itmo.coursework.entity.FeedAvailability;
-import itmo.coursework.entity.FeedTypes;
-import itmo.coursework.repository.FeedAvailabilityRepository;
-import itmo.coursework.repository.FeedTypesRepository;
+import itmo.coursework.entity.Feed;
+import itmo.coursework.repository.FeedRepository;
 import itmo.coursework.service.FeedService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -13,36 +11,40 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 public class FeedServiceImpl implements FeedService {
-    private final FeedAvailabilityRepository feedAvailabilityRepository;
-    private final FeedTypesRepository feedTypesRepository;
+    private final FeedRepository feedRepository;
 
     @Override
-    public FeedTypes getFeedTypesByUid(long uid) {
-        return feedTypesRepository.findFeedTypesByUid(uid);
+    public List<Feed> getAllFeeds() {
+        return (List<Feed>) feedRepository.findAll();
     }
 
     @Override
-    public List<FeedTypes> getFeedTypesByName(String name) {
-        return feedTypesRepository.findFeedTypesByName(name);
+    public Feed getFeedByUid(long uid) {
+        return feedRepository.findFeedByUid(uid);
     }
 
     @Override
-    public FeedAvailability getFeedAvailabilityByUid(long uid) {
-        return feedAvailabilityRepository.findFeedAvailabilityByUid(uid);
+    public List<Feed> getFeedByName(String name) {
+        return feedRepository.findFeedsByName(name);
     }
 
     @Override
-    public List<FeedAvailability> getFeedAvailabilitiesByFeedType(FeedTypes feedType) {
-        return feedAvailabilityRepository.findFeedAvailabilitiesByFeedType(feedType);
+    public List<Feed> getFeedsByAmountGreaterThan(int amount) {
+        return feedRepository.findFeedsByAmountGreaterThan(amount);
     }
 
     @Override
-    public List<FeedAvailability> getFeedAvailabilitiesByAmountGreaterThan(int amount) {
-        return feedAvailabilityRepository.findFeedAvailabilitiesByAmountGreaterThan(amount);
+    public List<Feed> getFeedsByAmountLessThan(int amount) {
+        return feedRepository.findFeedsByAmountLessThan(amount);
     }
 
     @Override
-    public List<FeedAvailability> getFeedAvailabilitiesByAmountLessThan(int amount) {
-        return feedAvailabilityRepository.findFeedAvailabilitiesByAmountLessThan(amount);
+    public List<Feed> findFeedsByPriceGreaterThan(int price) {
+        return feedRepository.findFeedsByPriceGreaterThan(price);
+    }
+
+    @Override
+    public List<Feed> findFeedsByPriceLessThan(int price) {
+        return feedRepository.findFeedsByPriceLessThan(price);
     }
 }

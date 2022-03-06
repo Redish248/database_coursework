@@ -8,25 +8,32 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Data
-@Table(name = "animal_statistics", schema = "public", catalog = "database_coursework")
-public class AnimalStatistics {
+@Table(name = "feed", schema = "public", catalog = "database_coursework")
+public class Feed {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "uid")
     private long uid;
 
-    @ManyToOne
-    @JoinColumn(name = "animal", referencedColumnName = "uid")
-    private AnimalType animal;
+    @NotNull
+    @Column(name = "name")
+    private String name;
+
+    @Basic
+    @Column(name = "description")
+    private String description;
 
     @Min(0)
+    @Column(name = "price")
+    private Integer price;
+
+    @Basic
     @Column(name = "amount")
     private Integer amount;
 }

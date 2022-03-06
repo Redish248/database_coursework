@@ -1,21 +1,16 @@
 package itmo.coursework.service;
 
-import itmo.coursework.entity.AnimalStatistics;
-import itmo.coursework.entity.AnimalType;
+import itmo.coursework.entity.Animals;
 
 import java.util.List;
 
 public interface AnimalService {
 
-    AnimalType getAnimalTypeByUid(long uid);
+    Animals getAnimalByUid(long uid);
 
-    AnimalType getAnimalTypeByName(String name);
+    Animals getAnimalByName(String name);
 
-    AnimalStatistics getAnimalStatisticsByUid(long uid);
+    List<Animals> getAnimalsByAmountGreaterThan(int amount);
 
-    List<AnimalStatistics> getAnimalStatisticsByAnimal(AnimalType animal);
-
-    List<AnimalStatistics> getAnimalStatisticsByAmountGreaterThan(int amount);
-
-    List<AnimalStatistics> getAnimalStatisticsByAmountLessThan(int amount);
+    List<Animals> getAnimalsByAmountLessThan(int amount);
 }

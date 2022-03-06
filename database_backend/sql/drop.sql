@@ -1,11 +1,10 @@
+drop table animals cascade;
+drop table feed cascade;
 drop table users;
 drop table user_type;
 drop table transactions_budget;
 drop table staff;
 drop table position;
-drop table objects_availability;
 drop table objects;
-drop table feed_availability;
-drop table feed_types;
-drop table animal_statistics;
-drop table animal_type;
+drop table feed;
+drop table animals
