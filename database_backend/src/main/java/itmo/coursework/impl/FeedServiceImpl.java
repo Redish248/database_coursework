@@ -1,12 +1,14 @@
 package itmo.coursework.impl;
 
 import itmo.coursework.entity.Feed;
+import itmo.coursework.exception.FeedNotFoundException;
 import itmo.coursework.repository.FeedRepository;
 import itmo.coursework.service.FeedService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -19,32 +21,45 @@ public class FeedServiceImpl implements FeedService {
     }
 
     @Override
-    public Feed getFeedByUid(long uid) {
-        return feedRepository.findFeedByUid(uid);
-    }
-
-    @Override
     public List<Feed> getFeedByName(String name) {
         return feedRepository.findFeedsByName(name);
     }
 
     @Override
-    public List<Feed> getFeedsByAmountGreaterThan(int amount) {
-        return feedRepository.findFeedsByAmountGreaterThan(amount);
+    public Feed createFeed(String feed_type, String description, int price, int amount) {
+        Feed feed = new Feed();
+        feed.setName(feed_type);
+        feed.setDescription(description);
+        feed.setPrice(price);
+        feed.setAmount(amount);
+        return feedRepository.save(feed);
     }
 
     @Override
-    public List<Feed> getFeedsByAmountLessThan(int amount) {
-        return feedRepository.findFeedsByAmountLessThan(amount);
+    public void deleteFeed(long uid) {
+        Feed feed = feedRepository.findFeedByUid(uid);
+        Optional.ofNullable(feed).ifPresentOrElse(
+                feedRepository::delete,
+                () -> {
+                    throw new FeedNotFoundException(String.format("Feed with uid %d does not exist", uid));
+                }
+        );
     }
 
     @Override
-    public List<Feed> findFeedsByPriceGreaterThan(int price) {
-        return feedRepository.findFeedsByPriceGreaterThan(price);
-    }
-
-    @Override
-    public List<Feed> findFeedsByPriceLessThan(int price) {
-        return feedRepository.findFeedsByPriceLessThan(price);
+    public void updateFeed(long uid, String name, String description, int price, int amount) {
+        Feed oldFeed = feedRepository.findFeedByUid(uid);
+        Optional.ofNullable(oldFeed).ifPresentOrElse(
+                optOldFeed -> {
+                    optOldFeed.setName(name);
+                    optOldFeed.setDescription(description);
+                    optOldFeed.setPrice(price);
+                    optOldFeed.setAmount(amount);
+                    feedRepository.save(optOldFeed);
+                },
+                () -> {
+                    throw new FeedNotFoundException(String.format("Feed with uid %d does not exist", uid));
+                }
+        );
     }
 }

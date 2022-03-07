@@ -8,15 +8,11 @@ public interface FeedService {
 
     List<Feed> getAllFeeds();
 
-    Feed getFeedByUid(long uid);
-
     List<Feed> getFeedByName(String name);
 
-    List<Feed> getFeedsByAmountGreaterThan(int amount);
+    Feed createFeed(String feed_type, String description, int price, int amount);
 
-    List<Feed> getFeedsByAmountLessThan(int amount);
+    void deleteFeed(long uid);
 
-    List<Feed> findFeedsByPriceGreaterThan(int price);
-
-    List<Feed> findFeedsByPriceLessThan(int price);
+    void updateFeed(long uid, String name, String description, int price, int amount);
 }

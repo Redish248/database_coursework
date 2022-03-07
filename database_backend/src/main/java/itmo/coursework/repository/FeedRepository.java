@@ -12,12 +12,4 @@ public interface FeedRepository extends CrudRepository<Feed, Long> {
 
     //TODO: may be regex
     List<Feed> findFeedsByName(String name);
-
-    List<Feed> findFeedsByAmountGreaterThan(int amount);
-
-    List<Feed> findFeedsByAmountLessThan(int amount);
-
-    List<Feed> findFeedsByPriceGreaterThan(int price);
-
-    List<Feed> findFeedsByPriceLessThan(int price);
 }
