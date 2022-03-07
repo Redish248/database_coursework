@@ -1,5 +1,3 @@
-drop table animals cascade;
-drop table feed cascade;
 drop table users;
 drop table user_type;
 drop table transactions_budget;

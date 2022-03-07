@@ -42,6 +42,8 @@ dependencies {
     annotationProcessor "org.projectlombok:lombok:${lombokVersion}"
 
     testImplementation "org.springframework.boot:spring-boot-starter-test"
+    testImplementation("org.jetbrains.kotlin:kotlin-test-junit")
+    testImplementation("io.mockk:mockk:1.12.0")
 
     testImplementation "org.junit.jupiter:junit-jupiter-api:${junitVersion}"
     testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:${junitVersion}"

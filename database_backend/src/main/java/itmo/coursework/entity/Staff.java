@@ -14,7 +14,6 @@ import javax.persistence.Table;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import java.sql.Date;
-import java.util.Objects;
 
 @Entity
 @Data
