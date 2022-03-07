@@ -22,4 +22,6 @@ public interface StaffRepository extends CrudRepository<Staff, Long> {
     List<Staff> findStaffBySalaryGreaterThan(int salary);
 
     List<Staff> findStaffBySalaryLessThan(int salary);
+
+    List<Staff> findAllByExperienceGreaterThan(int minExperience);
 }

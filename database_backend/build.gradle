@@ -41,9 +41,13 @@ dependencies {
     compileOnly "org.projectlombok:lombok:${lombokVersion}"
     annotationProcessor "org.projectlombok:lombok:${lombokVersion}"
 
+    // liquibase
+    implementation("org.liquibase:liquibase-core")
+
+    // test
     testImplementation "org.springframework.boot:spring-boot-starter-test"
     testImplementation("org.jetbrains.kotlin:kotlin-test-junit")
-    testImplementation("io.mockk:mockk:1.12.0")
+    testImplementation('io.mockk:mockk:1.12.2')
 
     testImplementation "org.junit.jupiter:junit-jupiter-api:${junitVersion}"
     testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:${junitVersion}"

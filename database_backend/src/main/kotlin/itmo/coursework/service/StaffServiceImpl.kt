@@ -36,4 +36,7 @@ class StaffServiceImpl(
 
     override fun getStaffBySalaryLessThan(maxSalary: Int): MutableList<Staff> =
         staffRepository.findStaffBySalaryLessThan(maxSalary)
+
+    override fun getExperiencedStaff(minExperience: Int): MutableList<Staff> =
+        staffRepository.findAllByExperienceGreaterThan(minExperience)
 }

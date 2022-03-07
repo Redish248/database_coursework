@@ -23,4 +23,6 @@ public interface StaffService {
     List<Staff> getStaffBySalaryGreaterThan(int salary);
 
     List<Staff> getStaffBySalaryLessThan(int salary);
+
+    List<Staff> getExperiencedStaff(int minExperience);
 }

@@ -52,4 +52,7 @@ public class Staff {
     @Min(0)
     @Column(name = "salary")
     private Integer salary;
+
+    @Column
+    private Integer experience;
 }
