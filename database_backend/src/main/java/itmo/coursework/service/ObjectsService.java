@@ -5,15 +5,17 @@ import itmo.coursework.entity.Objects;
 import java.util.List;
 
 public interface ObjectsService {
+
+    List<Objects> getAllObjects();
+
     Objects findObjectsByUid(long uid);
 
     List<Objects> findObjectsByName(String name);
 
-    List<Objects> findObjectsByPriceGreaterThan(int price);
+    Objects createObject(String name, String description, int price, int amount);
 
-    List<Objects> findObjectsByPriceLessThan(int price);
+    void deleteObject(long uid);
 
-    List<Objects> findObjectsByAmountGreaterThan(int amount);
+    void updateObject(long uid, String name, String description, int price, int amount);
 
-    List<Objects> findObjectsByAmountLessThan(int amount);
 }

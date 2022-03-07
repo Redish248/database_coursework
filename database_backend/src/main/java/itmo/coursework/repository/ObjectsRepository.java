@@ -11,12 +11,4 @@ public interface ObjectsRepository extends CrudRepository<Objects, Long> {
     Objects findObjectsByUid(long uid);
 
     List<Objects> findObjectsByName(String name);
-
-    List<Objects> findObjectsByPriceGreaterThan(int price);
-
-    List<Objects> findObjectsByPriceLessThan(int price);
-
-    List<Objects> findObjectsByAmountGreaterThan(int amount);
-
-    List<Objects> findObjectsByAmountLessThan(int amount);
 }
