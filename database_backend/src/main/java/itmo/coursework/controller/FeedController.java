@@ -25,44 +25,28 @@ public class FeedController {
         return ResponseEntity.status(HttpStatus.OK).body(feedAvailabilityList);
     }
 
-    @GetMapping( "/getAllFeed/paging")
-    public @ResponseBody ResponseEntity getAllFeedByPages(int startIndex, int endIndex) {
-        List<Feed> feedAvailabilityList = feedService.getAllFeeds();
-        if (endIndex > feedAvailabilityList.size()) {
-            endIndex = feedAvailabilityList.size();
-        }
-        feedAvailabilityList = feedAvailabilityList.subList(startIndex, endIndex);
-        return ResponseEntity.status(HttpStatus.OK).body(feedAvailabilityList);
-    }
-
     @PostMapping( "/createFeed")
-    public @ResponseBody ResponseEntity createFeed(String feed_type) {
-
-        return ResponseEntity.status(HttpStatus.OK).body("created");
+    public @ResponseBody ResponseEntity createFeed(String feed_type, String description, int price, int amount) {
+        Feed feed = feedService.createFeed(feed_type, description, price, amount);
+        return ResponseEntity.status(HttpStatus.CREATED).body(feed);
     }
 
     @PostMapping( "/deleteFeed")
-    public @ResponseBody ResponseEntity deleteFeed(int uid) {
-
+    public @ResponseBody ResponseEntity deleteFeed(long uid) {
+        feedService.deleteFeed(uid);
         return ResponseEntity.status(HttpStatus.OK).body("deleted");
     }
 
-    @PostMapping( "/increaseFeed")
-    public @ResponseBody ResponseEntity increaseFeed(int uid) {
-
-        return ResponseEntity.status(HttpStatus.OK).body("increased");
+    @PostMapping( "/updateFeed")
+    public @ResponseBody ResponseEntity updateFeed(long uid, String name, String description, int price, int amount) {
+        feedService.updateFeed(uid, name, description, price, amount);
+        return ResponseEntity.status(HttpStatus.OK).body("updated");
     }
 
-    @PostMapping( "/decreaseFeed")
-    public @ResponseBody ResponseEntity decreaseFeed(int uid) {
-
-        return ResponseEntity.status(HttpStatus.OK).body("decreased");
-    }
-
-    @PostMapping( "/findFeedByType")
-    public @ResponseBody ResponseEntity findFeedByType(int uid) {
-
-        return ResponseEntity.status(HttpStatus.OK).body("");
+    @GetMapping( "/findFeedByName")
+    public @ResponseBody ResponseEntity findFeedByType(String name) {
+        List<Feed> feeds = feedService.getFeedByName(name);
+        return ResponseEntity.status(HttpStatus.OK).body(feeds);
     }
 
 }
