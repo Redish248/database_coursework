@@ -1,0 +1,17 @@
+.header-name {
+  font-size: 30px;
+  text-align: center;
+}
+
+.nav-item {
+  background-color: #01015c;
+  border: 1px solid black;
+}
+
+.nav-link {
+  color: white;
+}
+
+.header-buttons {
+  width: 2%;
+}

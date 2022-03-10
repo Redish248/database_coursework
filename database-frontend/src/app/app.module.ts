@@ -6,11 +6,21 @@ import { RouterModule, Routes } from '@angular/router'
 import { HeaderComponent } from './header/header.component'
 import { AnimalsComponent } from './animals/animals.component'
 import { NotFoundPageComponent } from './not-found-page/not-found-page.component'
-import { HomeComponent } from './home/home.component'
+import { HomeComponent } from './home/home.component';
+import { LoginComponent } from './login/login.component';
+import { SignupComponent } from './signup/signup.component';
+import { FeedComponent } from './feed/feed.component';
+import { ObjectsComponent } from './objects/objects.component';
+import { PersonalComponent } from './personal/personal.component'
 
 const appRoutes: Routes = [
   {path: '', component: HomeComponent},
   {path: 'animals', component: AnimalsComponent},
+  {path: 'feed', component: FeedComponent},
+  {path: 'objects', component: ObjectsComponent},
+  {path: 'personal', component: PersonalComponent},
+  {path: 'login', component: LoginComponent},
+  {path: 'signup', component: SignupComponent},
   {path: '**', component: NotFoundPageComponent}
 ]
 
@@ -20,7 +30,12 @@ const appRoutes: Routes = [
     HeaderComponent,
     AnimalsComponent,
     NotFoundPageComponent,
-    HomeComponent
+    HomeComponent,
+    LoginComponent,
+    SignupComponent,
+    FeedComponent,
+    ObjectsComponent,
+    PersonalComponent
   ],
   imports: [
     BrowserModule,
