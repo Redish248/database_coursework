@@ -42,24 +42,27 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
 
         http
-                .cors()
+                    .cors()
                 .and()
-                .csrf().disable()
-                .exceptionHandling()
-                .authenticationEntryPoint(authEntryPoint)
+                    .csrf().disable()
+                    .exceptionHandling()
+                    .authenticationEntryPoint(authEntryPoint)
                 .and()
-                .authorizeRequests()
-                .antMatchers("/databases/signup").permitAll()
-                .anyRequest().authenticated()
+                    .authorizeRequests()
+                    .antMatchers("/databases/signup").permitAll()
+                    .anyRequest().authenticated()
                 .and()
-                .formLogin()
-                .loginProcessingUrl("/login/**")
-                .successHandler(authSuccessHandler)
-                .failureHandler(failureHandler)
-                .permitAll()
+                    .formLogin()
+                    .loginProcessingUrl("/login/**")
+                    .successHandler(authSuccessHandler)
+                    .failureHandler(failureHandler)
+                    .permitAll()
                 .and()
-                .logout()
-                .permitAll();
+                    .logout()
+                    .logoutSuccessHandler(new LogoutSuccess())
+                    .deleteCookies("JSESSIONID")
+                    .invalidateHttpSession(false)
+                    .permitAll();
 
         http.sessionManagement().maximumSessions(1).sessionRegistry(sessionRegistry());
     }
@@ -71,7 +74,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Bean
     public ServletListenerRegistrationBean<HttpSessionEventPublisher> httpSessionEventPublisher() {
-        return new ServletListenerRegistrationBean<HttpSessionEventPublisher>(new HttpSessionEventPublisher());
+        return new ServletListenerRegistrationBean<>(new HttpSessionEventPublisher());
     }
 
     @Override

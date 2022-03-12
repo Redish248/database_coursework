@@ -12,6 +12,12 @@ import { SignupComponent } from './signup/signup.component';
 import { FeedComponent } from './feed/feed.component';
 import { ObjectsComponent } from './objects/objects.component';
 import { PersonalComponent } from './personal/personal.component'
+import { FormsModule } from '@angular/forms';
+import {HttpClientModule} from "@angular/common/http";
+import {MatButtonModule} from "@angular/material/button";
+import {MatInputModule} from "@angular/material/input";
+import {MatFormFieldModule} from "@angular/material/form-field";
+import {MatIconModule} from "@angular/material/icon";
 
 const appRoutes: Routes = [
   {path: '', component: HomeComponent},
@@ -39,7 +45,13 @@ const appRoutes: Routes = [
   ],
   imports: [
     BrowserModule,
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes),
+    FormsModule,
+    HttpClientModule,
+    MatButtonModule,
+    MatInputModule,
+    MatIconModule,
+    MatFormFieldModule
   ],
   providers: [],
   bootstrap: [AppComponent]

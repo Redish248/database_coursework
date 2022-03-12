@@ -1,1 +1,27 @@
-<p>login works!</p>
+<div id="joinForm">
+  <table align="center" id="join">
+    <tr>
+      <td>
+        <h2>Войти в систему</h2>
+        <div>
+          <label for="text_log">Имя пользователя:</label>
+          <br/>
+          <input id="text_log" class="text" matIcon matInput type="text" [(ngModel)]="log">
+        </div>
+        <div>
+          <label for="text_pass">Пароль:</label>
+          <br/>
+          <input id="text_pass" class="text" matIcon matInput type="text" [(ngModel)]="pass">
+        </div>
+        <p id="login_error"></p>
+        <p>
+          <button mat-button (click)="log_in(log,pass)" class="join_button"> Войти </button>
+          <button mat-button (click)="router.navigate(['']);" class="join_button"> На главную </button>
+        </p>
+        <p>
+          <button id="button_reg" mat-button (click)="router.navigate(['/signup']);" class="join_button"> Регистрация </button>
+        </p>
+      </td>
+    </tr>
+  </table>
+</div>

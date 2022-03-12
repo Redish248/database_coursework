@@ -1,15 +1,18 @@
 .header-name {
-  font-size: 30px;
+  font-size: 40px;
   text-align: center;
+  color: #e54368;
+  font-weight: bold;
 }
 
 .nav-item {
-  background-color: #01015c;
+  background-color: #3131d7;
   border: 1px solid black;
 }
 
 .nav-link {
   color: white;
+  font-weight: bold;
 }
 
 .header-buttons {

@@ -4,5 +4,6 @@ html {
 }
 
 html body {
-  background-color: #e9f8f6;
+  /*background-color: #e9f8f6;*/
+  background: url('background.jpg') no-repeat fixed center center;
 }
