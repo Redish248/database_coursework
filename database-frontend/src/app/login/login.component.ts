@@ -1,7 +1,6 @@
-import {Component, OnInit} from '@angular/core';
-import {AuthService} from "../auth.service";
-import {Router} from "@angular/router";
-import {HeaderComponent} from "../header/header.component";
+import { Component, OnInit } from '@angular/core'
+import { AuthService } from "../auth.service"
+import { Router } from "@angular/router"
 
 @Component({
   selector: 'app-login',
@@ -13,30 +12,30 @@ export class LoginComponent implements OnInit {
   constructor(public router: Router, private auth: AuthService) {
   }
 
-  log = '';
-  pass = '';
+  log = ''
+  pass = ''
 
   log_in(login: string, password: string) {
-    let login_error = document.getElementById('login_error');
+    let login_error = document.getElementById('login_error')
     if (login_error != null) {
-      login_error.innerText = '';
+      login_error.innerText = ''
     }
     if (password === '' || login === '') {
       if (login_error != null) {
-        login_error.innerText = 'Введите все данные!';
+        login_error.innerText = 'Введите все данные!'
       }
     } else {
       this.auth.login(login, password).subscribe(() => {
-        sessionStorage.setItem('password', password);
-        sessionStorage.setItem('login', "true");
+        sessionStorage.setItem('password', password)
+        sessionStorage.setItem('login', "true")
         this.router.navigate(['']).then(() => {
-          window.location.reload();
-        });
+          window.location.reload()
+        })
       }, () => {
         if (login_error != null) {
-          login_error.innerText = 'Неправильное имя пользователя или пароль';
+          login_error.innerText = 'Неправильное имя пользователя или пароль'
         }
-      });
+      })
     }
   }
 

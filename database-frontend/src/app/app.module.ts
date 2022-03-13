@@ -6,25 +6,25 @@ import { RouterModule, Routes } from '@angular/router'
 import { HeaderComponent } from './header/header.component'
 import { AnimalsComponent } from './animals/animals.component'
 import { NotFoundPageComponent } from './not-found-page/not-found-page.component'
-import { HomeComponent } from './home/home.component';
-import { LoginComponent } from './login/login.component';
-import { SignupComponent } from './signup/signup.component';
-import { FeedComponent } from './feed/feed.component';
-import { ObjectsComponent } from './objects/objects.component';
-import { PersonalComponent } from './personal/personal.component'
-import { FormsModule } from '@angular/forms';
-import {HttpClientModule} from "@angular/common/http";
-import {MatButtonModule} from "@angular/material/button";
-import {MatInputModule} from "@angular/material/input";
-import {MatFormFieldModule} from "@angular/material/form-field";
-import {MatIconModule} from "@angular/material/icon";
+import { HomeComponent } from './home/home.component'
+import { LoginComponent } from './login/login.component'
+import { SignupComponent } from './signup/signup.component'
+import { FeedComponent } from './feed/feed.component'
+import { ObjectsComponent } from './objects/objects.component'
+import { FormsModule } from '@angular/forms'
+import { HttpClientModule } from "@angular/common/http"
+import { MatButtonModule } from "@angular/material/button"
+import { MatInputModule } from "@angular/material/input"
+import { MatFormFieldModule } from "@angular/material/form-field"
+import { MatIconModule } from "@angular/material/icon"
+import { StaffComponent } from './staff/staff.component'
 
 const appRoutes: Routes = [
   {path: '', component: HomeComponent},
   {path: 'animals', component: AnimalsComponent},
   {path: 'feed', component: FeedComponent},
   {path: 'objects', component: ObjectsComponent},
-  {path: 'personal', component: PersonalComponent},
+  {path: 'staff', component: StaffComponent},
   {path: 'login', component: LoginComponent},
   {path: 'signup', component: SignupComponent},
   {path: '**', component: NotFoundPageComponent}
@@ -41,7 +41,7 @@ const appRoutes: Routes = [
     SignupComponent,
     FeedComponent,
     ObjectsComponent,
-    PersonalComponent
+    StaffComponent
   ],
   imports: [
     BrowserModule,
