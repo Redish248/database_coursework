@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core'
 
 @Component({
   selector: 'app-staff',
@@ -6,8 +6,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./staff.component.css']
 })
 export class StaffComponent implements OnInit {
+  testValue: number = 6
 
-  constructor() { }
+
+  constructor() {
+  }
 
   ngOnInit(): void {
   }

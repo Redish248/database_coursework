@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core'
 import { HttpClient, HttpParams } from "@angular/common/http"
-import { AppConfigService } from './app-config.service'
+import { AppConfigService } from '../app-config.service'
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  constructor(private http: HttpClient, private appConfig: AppConfigService) {
+  constructor(private http: HttpClient, private appConfig: AppConfigService ) {
   }
 
   get silverPowUrl(): String {
