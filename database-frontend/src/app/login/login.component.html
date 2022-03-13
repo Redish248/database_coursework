@@ -1,27 +1,20 @@
-<div id="joinForm">
-  <table align="center" id="join">
-    <tr>
-      <td>
-        <h2>Войти в систему</h2>
-        <div>
-          <label for="text_log">Имя пользователя:</label>
-          <br/>
-          <input id="text_log" class="text" matIcon matInput type="text" [(ngModel)]="log">
+<div class="login-wrapper">
+    <form clrForm [formGroup]="loginForm" class="login">
+        <section class="title">
+            <h3 class="welcome">Добро пожаловать в </h3>
+            SILVER PAW
+        </section>
+        <div class="login-group">
+            <clr-input-container>
+                <label class="clr-sr-only">Логин</label>
+                <input type="text" name="username" clrInput placeholder="Username" formControlName="username"/>
+            </clr-input-container>
+            <clr-password-container>
+                <label class="clr-sr-only">Пароль</label>
+                <input type="password" name="password" clrPassword placeholder="Password" formControlName="password"/>
+            </clr-password-container>
+
+            <button [disabled]="loginForm.invalid" (click)="submit()" class="btn btn-primary">ВОЙТИ</button>
         </div>
-        <div>
-          <label for="text_pass">Пароль:</label>
-          <br/>
-          <input id="text_pass" class="text" matIcon matInput type="text" [(ngModel)]="pass">
-        </div>
-        <p id="login_error"></p>
-        <p>
-          <button mat-button (click)="log_in(log,pass)" class="join_button"> Войти </button>
-          <button mat-button (click)="router.navigate(['']);" class="join_button"> На главную </button>
-        </p>
-        <p>
-          <button id="button_reg" mat-button (click)="router.navigate(['/signup']);" class="join_button"> Регистрация </button>
-        </p>
-      </td>
-    </tr>
-  </table>
+    </form>
 </div>

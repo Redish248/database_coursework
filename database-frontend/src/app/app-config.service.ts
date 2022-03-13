@@ -8,7 +8,10 @@ export class AppConfigService {
   constructor() {
   }
 
-  get silverPawUrl(): string {
+  get silverPawBaseUrl(): string {
     return 'http://localhost:8088'
+  }
+  get silverPawAppUrl(): string {
+    return 'http://localhost:8088/database'
   }
 }

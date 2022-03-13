@@ -1,28 +1,35 @@
-<table>
-  <tr>
-    <td class ='header-name'>
-      Приют для животных Silver paw
-    </td>
-    <td class="header-buttons">
-      <button type="button" class="btn btn-dark" *ngIf="!isLoggedIn" (click)="router.navigate(['/login']);">Войти</button>
-      <button type="button" class="btn btn-dark" *ngIf="isLoggedIn" (click)="logout()">Выйти</button>
-    </td>
-  </tr>
-</table>
-<ul class="nav nav-pills nav-fill">
-  <li class="nav-item item-blue">
-    <a class="nav-link" aria-current="page" href="#">Главная страница</a>
-  </li>
-  <li class="nav-item item-blue">
-    <a class="nav-link" href="/animals">Животные приюта</a>
-  </li>
-  <li class="nav-item item-blue">
-    <a class="nav-link" href="/staff">Персонал приюта</a>
-  </li>
-  <li class="nav-item item-blue">
-    <a class="nav-link" href="/feed">Корма</a>
-  </li>
-  <li class="nav-item item-blue">
-    <a class="nav-link" href="/objects">Вещи для животных</a>
-  </li>
-</ul>
+<header class="header-6">
+  <div class="branding">
+    <a class="nav-link" [routerLink]="['']" routerLinkActive="active">
+      <span class="clr-icon logo title">
+        Silver Paw
+      </span>
+    </a>
+  </div>
+  <div class="header-nav">
+    <a class="nav-link" [routerLink]="['animals']">
+      <span class="nav-text">Животные приюта</span>
+    </a>
+    <a class="nav-link" [routerLink]="['staff']">
+      <span class="nav-text">Персонал приюта</span>
+    </a>
+    <a class="nav-link" [routerLink]="['feed']">
+      <span class="nav-text">Корма</span>
+    </a>
+    <a class="nav-link" [routerLink]="['objects']">
+      <span class="nav-text">Вещи</span>
+    </a>
+  </div>
+  <div class="header-actions header-actions--overflow">
+    <div class="dropdown bottom-left">
+      <button class="nav-text dropdown-toggle" aria-label="open user profile">
+        email
+        <cds-icon shape="angle" direction="down"></cds-icon>
+      </button>
+      <div class="dropdown-menu">
+
+        <a href="javascript://" class="dropdown=item">Log out</a>
+      </div>
+    </div>
+  </div>
+</header>

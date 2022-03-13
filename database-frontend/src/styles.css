@@ -1,9 +1,1 @@
 /* You can add global styles to this file, and also import other style files */
-html {
-  height: 100%;
-}
-
-html body {
-  /*background-color: #e9f8f6;*/
-  background: url('background.jpg') no-repeat fixed center center;
-}

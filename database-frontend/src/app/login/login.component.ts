@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core'
-import { AuthService } from "../signup/auth.service"
-import { Router } from "@angular/router"
+import { FormBuilder, FormGroup, Validators } from '@angular/forms'
+import { AuthService } from '../auth.service'
 
 @Component({
   selector: 'app-login',
@@ -8,38 +8,27 @@ import { Router } from "@angular/router"
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+  loginForm: FormGroup
+  returnUrl: string
 
-  constructor(public router: Router, private auth: AuthService) {
-  }
-
-  log = ''
-  pass = ''
-
-  log_in(login: string, password: string) {
-    let login_error = document.getElementById('login_error')
-    if (login_error != null) {
-      login_error.innerText = ''
-    }
-    if (password === '' || login === '') {
-      if (login_error != null) {
-        login_error.innerText = 'Введите все данные!'
-      }
-    } else {
-      this.auth.login(login, password).subscribe(() => {
-        sessionStorage.setItem('password', password)
-        sessionStorage.setItem('login', "true")
-        this.router.navigate(['']).then(() => {
-          window.location.reload()
-        })
-      }, () => {
-        if (login_error != null) {
-          login_error.innerText = 'Неправильное имя пользователя или пароль'
-        }
-      })
-    }
+  constructor(private formBuilder: FormBuilder,
+              private authService: AuthService) {
   }
 
   ngOnInit(): void {
+    console.log(" login ok")
+    this.loginForm = this.formBuilder.group({
+      username: ['', Validators.required],
+      password: ['', Validators.required]
+    })
+  }
+
+  submit() {
+    console.log("submit login")
+    this.authService.login(this.loginForm.getRawValue()).subscribe(
+      _ => console.log("suc"),
+      err => console.log(err)
+    )
   }
 
 }
