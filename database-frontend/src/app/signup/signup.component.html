@@ -1,1 +1,78 @@
-<p>signin works!</p>
+<div id="joinForm">
+  <table align="center" id="join">
+    <tr>
+      <td>
+        <h2>Регистрация</h2>
+
+        <div>
+          <label for="text_nick">Имя пользователя:</label>
+          <br/>
+          <input id="text_nick" class="text" matIcon matInput type="text" [(ngModel)]="nick">
+        </div>
+
+        <div>
+          <label for="text_name">Имя:</label>
+          <br/>
+          <input id="text_name" class="text" matIcon matInput type="text" [(ngModel)]="name">
+        </div>
+
+        <div>
+          <label for="text_surname">Фамилия:</label>
+          <br/>
+          <input id="text_surname" class="text" matIcon matInput type="text" [(ngModel)]="surname">
+        </div>
+
+        <div>
+          <label for="text_email">Почта:</label>
+          <br/>
+          <input id="text_email" class="text" matIcon matInput type="text" [(ngModel)]="email">
+        </div>
+
+        <div>
+          <label>Пол:</label>
+          <br/>
+          <!--<mat-radio-group id="text_gender" [(ngModel)]="gender" aria-label="Select an option">
+            <mat-radio-button value="male">Мужской</mat-radio-button>
+            <mat-radio-button value="female">Женский</mat-radio-button>
+          </mat-radio-group>-->
+          <div class="btn-group" role="group" aria-label="Radio Buttons with Bootstrap 5">
+            <input type="radio" [formControl]="radio" [value]="1" class="btn-check" id="btnradio1" autocomplete="off">
+            <label class="btn btn-outline-primary" for="btnradio1">One</label>
+
+            <input type="radio" [formControl]="radio" [value]="2" class="btn-check" id="btnradio2" autocomplete="off">
+            <label class="btn btn-outline-primary" for="btnradio2">Two</label>
+          </div>
+        </div>
+
+        <div>
+          <label for="text_date">Дата рождения:</label>
+          <br/>
+          <input id="text_date" matInput [matDatepicker]="picker" [(ngModel)]="date_of_birth">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </div>
+
+        <div>
+          <label for="text_pass1">Пароль:</label>
+          <br/>
+          <input id="text_pass1" class="text" matIcon matInput type="text" [(ngModel)]="password">
+        </div>
+
+        <div>
+          <label for="text_pass2">Повторите пароль:</label>
+          <br/>
+          <input id="text_pass2" class="text" matIcon matInput type="text" [(ngModel)]="repeat">
+        </div>
+
+
+        <p id="register_error"></p>
+        <p>
+          <button mat-button class="join_button" (click)="register(nick, name, surname, date_of_birth, gender, email, password, repeat)"> Войти </button>
+        </p>
+        <p>
+          <button mat-button (click)="router.navigate(['']);" class="join_button"> На главную </button>
+        </p>
+      </td>
+    </tr>
+  </table>
+</div>

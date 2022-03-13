@@ -21,12 +21,15 @@ export class AuthService {
     });
   }
 
-  register(login: string, name: string, email: string, password: string) {
+  register(nick: string, name: string, surname: string, date_of_birth: string, gender: string, email: string, password: string) {
     const sendParams = new HttpParams()
-      .append('login', login)
-      .append('email', email)
+      .append('nick', nick)
+      .append('password', password)
       .append('name', name)
-      .append('password', password);
+      .append('surname', surname)
+      .append('email', email)
+      .append('gender', gender)
+      .append('dateOfBirth', date_of_birth);
     return this.http.post('http://localhost:8088/databases/signup', null, {
       params: sendParams,
       withCredentials: true,
