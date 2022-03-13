@@ -27,12 +27,15 @@ export class AuthService {
     })
   }
 
-  register(login: string, name: string, email: string, password: string) {
+  register(nick: string, name: string, surname: string, date_of_birth: string, gender: string, email: string, password: string) {
     const sendParams = new HttpParams()
-      .append('login', login)
-      .append('email', email)
-      .append('name', name)
+      .append('nick', nick)
       .append('password', password)
+      .append('name', name)
+      .append('surname', surname)
+      .append('email', email)
+      .append('gender', gender)
+      .append('dateOfBirth', date_of_birth);
     return this.http.post(`${this.silverPowUrl}/databases/signup`, null, {
       params: sendParams,
       withCredentials: true,

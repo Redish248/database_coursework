@@ -22,7 +22,7 @@ public class RegistrationController {
 
     @PostMapping( "/signup")
     public @ResponseBody
-    ResponseEntity registerUser(String nick, String password, String name, String surname, String email, String gender) {
+    ResponseEntity registerUser(String nick, String password, String name, String surname, String email, String gender, String dateOfBirth) {
        Users user = new Users();
         user.setName(name);
         user.setSurname(surname);
