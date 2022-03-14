@@ -11,20 +11,20 @@ import { FeedComponent } from './feed/feed.component'
 import { ObjectsComponent } from './objects/objects.component'
 import { StaffComponent } from './staff/staff.component'
 import { RouterModule, Routes } from '@angular/router'
-import { AnimalsComponent } from './animals/animals.component';
-import { ClarityModule } from '@clr/angular';
+import { AnimalsComponent } from './animals/animals.component'
+import { ClarityModule } from '@clr/angular'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { HttpClientModule } from '@angular/common/http'
+import { AuthGuard } from './auth.guard'
 
 const appRoutes: Routes = [
-  {path: '', component: HomeComponent},
-  {path: 'animals', component: AnimalsComponent},
-  {path: 'feed', component: FeedComponent},
-  {path: 'objects', component: ObjectsComponent},
-  {path: 'staff', component: StaffComponent},
+  {path: '', component: HomeComponent, canActivate: [AuthGuard]},
+  {path: 'animals', component: AnimalsComponent, canActivate: [AuthGuard]},
+  {path: 'feed', component: FeedComponent, canActivate: [AuthGuard]},
+  {path: 'objects', component: ObjectsComponent, canActivate: [AuthGuard]},
+  {path: 'staff', component: StaffComponent, canActivate: [AuthGuard]},
   {path: 'login', component: LoginComponent},
-  {path: 'signup', component: SignupComponent},
   {path: '**', component: NotFoundPageComponent}
 ]
 
@@ -49,7 +49,7 @@ const appRoutes: Routes = [
     ReactiveFormsModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule {
