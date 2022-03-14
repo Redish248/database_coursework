@@ -12,6 +12,6 @@ export class AppConfigService {
     return 'http://localhost:8088'
   }
   get silverPawAppUrl(): string {
-    return 'http://localhost:8088/database'
+    return 'http://localhost:8088/databases'
   }
 }

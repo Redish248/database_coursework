@@ -20,8 +20,14 @@ export class AuthService {
     return this.configService.silverPawBaseUrl
   }
 
-  getUser(): User {
-    return this.user
+  getUser(): string {
+    return localStorage.getItem("username")
+  }
+
+  loginAfterRegistration(username: string) {
+    localStorage.setItem("username", username)
+    this.user = {name: username}
+    this.router.navigate(['/'])
   }
 
   login(credentials) {
@@ -49,7 +55,7 @@ export class AuthService {
         localStorage.removeItem("username")
         this.router.navigate(['/login'])
       }, err => {
-        console.log("error during logout - " + err)
+        console.log("error during logout - " + err.message)
       }
     )
   }

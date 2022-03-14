@@ -14,20 +14,15 @@ export class LoginComponent implements OnInit {
   returnUrl: string
   errorMessage: String = undefined
 
+  registrationMode: boolean = false
+
   constructor(private formBuilder: FormBuilder,
               private authService: AuthService,
               private route: ActivatedRoute,
               private router: Router
   ) {
-    if (this
-
-      .authService
-      .getUser()
-
-    ) {
-      this
-        .router
-        .navigate(['/'])
+    if (this.authService.getUser()) {
+      this.router.navigate(['/'])
     }
   }
 
@@ -46,9 +41,14 @@ export class LoginComponent implements OnInit {
       .pipe(first())
       .subscribe(
         _ => {
+          this.router.navigate([this.returnUrl])
         },
         err => this.errorMessage = err
       )
   }
 
+  signup(username: string) {
+    this.registrationMode = false
+    this.authService.loginAfterRegistration(username)
+  }
 }

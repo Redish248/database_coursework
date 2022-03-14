@@ -1,2 +1,39 @@
-<h1>Регистрация</h1>
+<form clrForm [formGroup]="signupForm">
+    <clr-modal [(clrModalOpen)]="modalOpened" clrModalSize="xl">
+        <h3 class="modal-title">Регистрация</h3>
+        <div class="modal-body">
+            <clr-alert clrAlertType="danger" *ngIf="errorMessage">{{errorMessage}}</clr-alert>
+            <clr-input-container>
+                <label>Имя</label>
+                <input clrInput formControlName="username" type="text">
+            </clr-input-container>
+            <clr-input-container>
+                <label>Фамилия</label>
+                <input clrInput formControlName="surname" type="text">
+            </clr-input-container>
+            <clr-input-container>
+                <label>ник</label>
+                <input clrInput formControlName="nick" type="text">
+            </clr-input-container>
+            <clr-input-container>
+                <label>Электронная почта</label>
+                <input clrInput formControlName="email" type="email">
+            </clr-input-container>
+            <clr-input-container>
+                <label>Пароль</label>
+                <input clrInput formControlName="password" type="password">
+            </clr-input-container>
+            <clr-select-container>
+                <label>Пол</label>
+                <select clrSelect name="options" formControlName="gender">
+                    <option value="female">Жeнский</option>
+                    <option value="male">Mужской</option>
+                </select>
+            </clr-select-container>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-outline" (click)="signup()">Зарегистрироваться</button>
+        </div>
 
+    </clr-modal>
+</form>

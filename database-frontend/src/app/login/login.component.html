@@ -13,8 +13,16 @@
                 <label class="clr-sr-only">Пароль</label>
                 <input type="password" name="password" clrPassword placeholder="Password" formControlName="password"/>
             </clr-password-container>
+            <clr-alert clrAlertType="danger" *ngIf="errorMessage">{{errorMessage}}</clr-alert>
+
+            <button class="btn btn-link" (click)="registrationMode = true">Зарегистрироваться</button>
 
             <button [disabled]="loginForm.invalid" (click)="submit()" class="btn btn-primary">ВОЙТИ</button>
         </div>
     </form>
 </div>
+
+<app-signup *ngIf="registrationMode"
+            [modalOpened]="registrationMode"
+            (closeModal)="signup($event)">
+</app-signup>

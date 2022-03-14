@@ -1,35 +1,35 @@
 <header class="header-6">
-  <div class="branding">
-    <a class="nav-link" [routerLink]="['']" routerLinkActive="active">
+    <div class="branding">
+        <a class="nav-link" [routerLink]="['']" routerLinkActive="active">
       <span class="clr-icon logo title">
         Silver Paw
       </span>
-    </a>
-  </div>
-  <div class="header-nav">
-    <a class="nav-link" [routerLink]="['animals']">
-      <span class="nav-text">Животные приюта</span>
-    </a>
-    <a class="nav-link" [routerLink]="['staff']">
-      <span class="nav-text">Персонал приюта</span>
-    </a>
-    <a class="nav-link" [routerLink]="['feed']">
-      <span class="nav-text">Корма</span>
-    </a>
-    <a class="nav-link" [routerLink]="['objects']">
-      <span class="nav-text">Вещи</span>
-    </a>
-  </div>
-  <div class="header-actions header-actions--overflow">
-    <div class="dropdown bottom-left">
-      <button class="nav-text dropdown-toggle" aria-label="open user profile">
-        email
-        <cds-icon shape="angle" direction="down"></cds-icon>
-      </button>
-      <div class="dropdown-menu">
-
-        <a href="javascript://" class="dropdown=item">Log out</a>
-      </div>
+        </a>
     </div>
-  </div>
+    <div class="header-nav">
+        <a class="nav-link" [routerLink]="['animals']">
+            <span class="nav-text">Животные приюта</span>
+        </a>
+        <a class="nav-link" [routerLink]="['staff']">
+            <span class="nav-text">Персонал приюта</span>
+        </a>
+        <a class="nav-link" [routerLink]="['feed']">
+            <span class="nav-text">Корма</span>
+        </a>
+        <a class="nav-link" [routerLink]="['objects']">
+            <span class="nav-text">Вещи</span>
+        </a>
+    </div>
+    <div class="header-actions header-actions--overflow" *ngIf="authService.getUser()">
+        <clr-dropdown>
+            <button class="nav-text" clrDropdownTrigger aria-label="open user profile">
+                <clr-icon shape="user"></clr-icon>
+                {{this.getUsername()}}
+                <clr-icon shape="caret down"></clr-icon>
+            </button>
+            <clr-dropdown-menu *clrIfOpen clrPosition="bottom-right">
+                <a (click)="this.authService.logout()" clrDropdownItem>Log out</a>
+            </clr-dropdown-menu>
+        </clr-dropdown>
+    </div>
 </header>
