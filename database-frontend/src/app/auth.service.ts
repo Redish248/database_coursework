@@ -24,8 +24,8 @@ export class AuthService {
     return localStorage.getItem("username")
   }
 
-  loginAfterRegistration(username: string) {
-    localStorage.setItem("username", username)
+  loginAfterRegistration(username: string, password: string) {
+    AuthService.setLocalStorage(username, password)
     this.user = {name: username}
     this.router.navigate(['/'])
   }
@@ -41,11 +41,17 @@ export class AuthService {
       observe: 'response'
     }).pipe(
       map((user) => {
-        localStorage.setItem("username", credentials.username)
+        AuthService.setLocalStorage(credentials.username, credentials.password)
         this.user = {name: credentials.username}
         return user
       })
     )
+  }
+
+  private static setLocalStorage(username: string, pswd: string) {
+    localStorage.setItem("username", username)
+    const authToken = btoa(`${username}:${pswd}`)
+    localStorage.setItem("authData", authToken)
   }
 
   logout() {
@@ -53,6 +59,7 @@ export class AuthService {
       _ => {
         this.user = undefined
         localStorage.removeItem("username")
+        localStorage.removeItem("authData")
         this.router.navigate(['/login'])
       }, err => {
         console.log("error during logout - " + err)

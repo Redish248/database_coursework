@@ -47,8 +47,8 @@ export class LoginComponent implements OnInit {
       )
   }
 
-  signup(username: string) {
+  signup(data) {
     this.registrationMode = false
-    this.authService.loginAfterRegistration(username)
+    this.authService.loginAfterRegistration(data.username, data.password)
   }
 }

@@ -9,7 +9,7 @@ import { SignupService } from './signup.service'
 })
 export class SignupComponent implements OnInit {
   @Input() modalOpened: boolean
-  @Output() closeModal = new EventEmitter<string>()
+  @Output() closeModal = new EventEmitter<any>()
 
   signupForm: FormGroup
   errorMessage: string = undefined
@@ -33,7 +33,10 @@ export class SignupComponent implements OnInit {
     this.errorMessage = undefined
     this.signupService.signup(this.signupForm.getRawValue()).subscribe(
       _ => {
-        this.closeModal.emit(this.signupForm.value.username)
+        this.closeModal.emit({
+          username: this.signupForm.value.username,
+          password: this.signupForm.value.password
+        })
         this.modalOpened = false
       }, err => this.errorMessage = err
     )

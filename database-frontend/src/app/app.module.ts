@@ -16,8 +16,10 @@ import { ClarityModule } from '@clr/angular'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http'
-import { AuthGuard } from './auth.guard'
-import { ErrorInterceptor } from './error.interceptor'
+import { AuthGuard } from './helpers/auth.guard'
+import { ErrorInterceptor } from './helpers/error.interceptor'
+import { CatsComponent } from './cats/cats.component'
+import { AuthBasicInterceptor } from './helpers/auth-basic.interceptor'
 
 const appRoutes: Routes = [
   {path: '', component: HomeComponent, canActivate: [AuthGuard]},
@@ -39,7 +41,8 @@ const appRoutes: Routes = [
     SignupComponent,
     FeedComponent,
     ObjectsComponent,
-    StaffComponent
+    StaffComponent,
+    CatsComponent
   ],
   imports: [
     BrowserModule,
@@ -52,6 +55,7 @@ const appRoutes: Routes = [
   ],
   providers: [
     AuthGuard,
+    {provide: HTTP_INTERCEPTORS, useClass: AuthBasicInterceptor, multi: true},
     {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true},
   ],
   bootstrap: [AppComponent]
