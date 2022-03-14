@@ -35,7 +35,7 @@ export class SignupComponent implements OnInit {
       _ => {
         this.closeModal.emit(this.signupForm.value.username)
         this.modalOpened = false
-      }, err => this.errorMessage = err.message
+      }, err => this.errorMessage = err
     )
 
   }

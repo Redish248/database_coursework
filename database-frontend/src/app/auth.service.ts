@@ -55,7 +55,7 @@ export class AuthService {
         localStorage.removeItem("username")
         this.router.navigate(['/login'])
       }, err => {
-        console.log("error during logout - " + err.message)
+        console.log("error during logout - " + err)
       }
     )
   }
