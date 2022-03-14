@@ -3,6 +3,7 @@ package itmo.coursework.service
 import itmo.coursework.entity.Position
 import itmo.coursework.entity.Staff
 import itmo.coursework.exception.StaffNotFoundException
+import itmo.coursework.model.AddNewStaffRequest
 import itmo.coursework.repository.PositionRepository
 import itmo.coursework.repository.StaffRepository
 import org.springframework.stereotype.Service
@@ -14,6 +15,14 @@ class StaffServiceImpl(
 ) : StaffService {
 
     override fun getPositionByUid(uid: Long): Position? = positionRepository.findPositionByUid(uid)
+
+    fun createNewStaffAccount(newStaffRequest: AddNewStaffRequest) {
+//        addStaff()
+    }
+
+    override fun addStaff(newStaff: Staff?) {
+        staffRepository.save(newStaff)
+    }
 
     override fun getPositionByName(name: String?): MutableList<Position> = positionRepository.findPositionByName(name)
 

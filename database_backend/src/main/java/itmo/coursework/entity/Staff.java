@@ -55,4 +55,9 @@ public class Staff {
 
     @Column
     private Integer experience;
+
+    @Basic
+    @Column(name = "first_work_date")
+    private Date firstWorkDate;
+
 }

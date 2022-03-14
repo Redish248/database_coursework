@@ -1,0 +1,1 @@
+alter table staff add column first_work_date Date;

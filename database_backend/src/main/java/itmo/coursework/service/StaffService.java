@@ -8,6 +8,8 @@ import java.util.List;
 public interface StaffService {
     Position getPositionByUid(long uid);
 
+    void addStaff(Staff newStaff);
+
     List<Position> getPositionByName(String name);
 
     Staff getStaffByUid(long uid);
