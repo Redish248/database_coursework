@@ -12,11 +12,11 @@ export class StaffService {
   }
 
   private get apiUrl() {
-    return this.configService.silverPawAppUrl
+    return `${this.configService.silverPawAppUrl}/staff`
   }
 
 
   getStaff() {
-    return this.http.get(`${this.apiUrl}/staff`)
+    return this.http.get(this.apiUrl)
   }
 }

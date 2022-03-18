@@ -15,21 +15,21 @@ export class AuthBasicInterceptor implements HttpInterceptor {
   constructor(private authService: AuthService, private appService: AppConfigService) {
   }
 
-  intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
+  intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     if (this.authService.getUser() &&
       request.url.startsWith(this.appService.silverPawBaseUrl)) {
       request = request.clone(
         {
           setHeaders: {
             Authorization: `Basic ${AuthBasicInterceptor.getAuth()}`
-          }
+          },
+          withCredentials: true
         }
       )
     }
 
     return next.handle(request)
   }
-
 
   private static getAuth() {
     return localStorage.getItem("authData")

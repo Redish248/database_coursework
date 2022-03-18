@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core'
 import { AppConfigService } from './app-config.service'
-import { HttpClient, HttpParams } from '@angular/common/http'
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http'
 import { User } from './login/User'
 import { map } from 'rxjs'
 import { Router } from '@angular/router'
@@ -34,13 +34,15 @@ export class AuthService {
     const sendParams = new HttpParams()
       .append('username', credentials.username)
       .append('password', credentials.password)
+    const authToken = btoa(`${credentials.username}:${credentials.password}`)
     console.log(sendParams)
-    return this.http.post(`${this.apiUrl}/login`, null, {
+    return this.http.post<User>(`${this.apiUrl}/login`, null, {
       params: sendParams,
       withCredentials: true,
       observe: 'response'
     }).pipe(
       map((user) => {
+        console.log(user)
         AuthService.setLocalStorage(credentials.username, credentials.password)
         this.user = {name: credentials.username}
         return user

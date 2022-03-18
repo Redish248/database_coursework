@@ -7,6 +7,7 @@ import itmo.coursework.model.AddNewStaffRequest
 import itmo.coursework.repository.PositionRepository
 import itmo.coursework.repository.StaffRepository
 import org.springframework.stereotype.Service
+import java.security.Principal
 
 @Service
 class StaffServiceImpl(
@@ -14,6 +15,10 @@ class StaffServiceImpl(
     private val positionRepository: PositionRepository
 ) : StaffService {
 
+    fun getStaff(user: Principal) : Collection<Staff>{
+        println("user : ${user.name}")
+        return staffRepository.findAll()
+    }
     override fun getPositionByUid(uid: Long): Position? = positionRepository.findPositionByUid(uid)
 
     fun createNewStaffAccount(newStaffRequest: AddNewStaffRequest) {

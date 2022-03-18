@@ -14,7 +14,7 @@ export class StaffComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    //this.getStaff()
+   this.getStaff()
   }
 
   getStaff() {
