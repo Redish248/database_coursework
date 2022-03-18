@@ -1,4 +1,4 @@
-package itmo.coursework.entity;
+package itmo.coursework.entity.statistic;
 
 import lombok.Data;
 

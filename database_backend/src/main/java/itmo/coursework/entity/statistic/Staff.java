@@ -1,4 +1,4 @@
-package itmo.coursework.entity;
+package itmo.coursework.entity.statistic;
 
 import lombok.Data;
 
@@ -11,14 +11,14 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import java.sql.Date;
-import java.util.Objects;
 
 @Entity
 @Data
-@Table(name = "users", schema = "public", catalog = "database_coursework")
-public class Users {
+@Table(name = "staff", schema = "public", catalog = "database_coursework")
+public class Staff {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "uid")
@@ -32,6 +32,11 @@ public class Users {
     @Column(name = "surname")
     private String surname;
 
+    //отчество
+    @Basic
+    @Column(name = "patronymic")
+    private String patronymic;
+
     @Basic
     @Column(name = "date_of_birth")
     private Date dateOfBirth;
@@ -40,19 +45,19 @@ public class Users {
     @Column(name = "gender")
     private String gender;
 
-    @NotNull
-    @Column(name = "nick")
-    private String nick;
-
-    @Basic
-    @Column(name = "email")
-    private String email;
-
-    @Basic
-    @Column(name = "password")
-    private String password;
-
     @ManyToOne
-    @JoinColumn(name = "user_type", referencedColumnName = "uid")
-    private UserType userType;
+    @JoinColumn(name = "position", referencedColumnName = "uid")
+    private Position positionType;
+
+    @Min(0)
+    @Column(name = "salary")
+    private Integer salary;
+
+    @Column
+    private Integer experience;
+
+    @Basic
+    @Column(name = "first_work_date")
+    private Date firstWorkDate;
+
 }

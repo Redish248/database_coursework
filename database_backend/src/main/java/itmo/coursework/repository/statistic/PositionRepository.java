@@ -1,6 +1,6 @@
-package itmo.coursework.repository;
+package itmo.coursework.repository.statistic;
 
-import itmo.coursework.entity.Position;
+import itmo.coursework.entity.statistic.Position;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 

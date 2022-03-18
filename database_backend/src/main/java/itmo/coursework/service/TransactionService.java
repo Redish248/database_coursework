@@ -1,6 +1,6 @@
 package itmo.coursework.service;
 
-import itmo.coursework.entity.TransactionsBudget;
+import itmo.coursework.entity.statistic.TransactionsBudget;
 
 import java.sql.Timestamp;
 import java.util.List;

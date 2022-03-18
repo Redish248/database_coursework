@@ -1,21 +1,24 @@
-package itmo.coursework.entity;
+package itmo.coursework.entity.statistic;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
+import java.util.Collection;
 
 @Entity
 @Data
-@Table(name = "objects", schema = "public", catalog = "database_coursework")
-public class Objects {
+@Table(name = "position", schema = "public", catalog = "database_coursework")
+public class Position {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "uid")
@@ -29,11 +32,7 @@ public class Objects {
     @Column(name = "description")
     private String description;
 
-    @Min(0)
-    @Column(name = "price")
-    private Integer price;
-
-    @Min(0)
-    @Column(name = "amount")
-    private Integer amount;
+    @JsonIgnore
+    @OneToMany(mappedBy = "positionType", fetch = FetchType.LAZY)
+    private Collection<Staff> staff;
 }

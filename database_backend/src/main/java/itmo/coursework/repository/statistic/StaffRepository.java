@@ -1,7 +1,7 @@
-package itmo.coursework.repository;
+package itmo.coursework.repository.statistic;
 
-import itmo.coursework.entity.Position;
-import itmo.coursework.entity.Staff;
+import itmo.coursework.entity.statistic.Position;
+import itmo.coursework.entity.statistic.Staff;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;

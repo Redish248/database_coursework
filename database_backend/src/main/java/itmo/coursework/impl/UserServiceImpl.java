@@ -1,9 +1,9 @@
 package itmo.coursework.impl;
 
-import itmo.coursework.entity.UserType;
-import itmo.coursework.entity.Users;
-import itmo.coursework.repository.UserTypeRepository;
-import itmo.coursework.repository.UsersRepository;
+import itmo.coursework.entity.statistic.UserType;
+import itmo.coursework.entity.statistic.Users;
+import itmo.coursework.repository.statistic.UserTypeRepository;
+import itmo.coursework.repository.statistic.UsersRepository;
 import itmo.coursework.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

@@ -1,11 +1,11 @@
 package itmo.coursework.service
 
-import itmo.coursework.entity.Position
-import itmo.coursework.entity.Staff
+import itmo.coursework.entity.statistic.Position
+import itmo.coursework.entity.statistic.Staff
 import itmo.coursework.exception.StaffNotFoundException
 import itmo.coursework.model.AddNewStaffRequest
-import itmo.coursework.repository.PositionRepository
-import itmo.coursework.repository.StaffRepository
+import itmo.coursework.repository.statistic.PositionRepository
+import itmo.coursework.repository.statistic.StaffRepository
 import org.springframework.stereotype.Service
 import java.security.Principal
 

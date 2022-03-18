@@ -1,8 +1,7 @@
-package itmo.coursework.entity;
+package itmo.coursework.entity.statistic;
 
 import lombok.Data;
 
-import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -14,8 +13,8 @@ import javax.validation.constraints.NotNull;
 
 @Entity
 @Data
-@Table(name = "feed", schema = "public", catalog = "database_coursework")
-public class Feed {
+@Table(name = "animals", schema = "public", catalog = "database_coursework")
+public class Animals {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "uid")
@@ -25,15 +24,7 @@ public class Feed {
     @Column(name = "name")
     private String name;
 
-    @Basic
-    @Column(name = "description")
-    private String description;
-
     @Min(0)
-    @Column(name = "price")
-    private Integer price;
-
-    @Basic
     @Column(name = "amount")
     private Integer amount;
 }

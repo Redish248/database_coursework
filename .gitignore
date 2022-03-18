@@ -1,4 +1,5 @@
 /database_backend/.idea/
 /database_backend/.gradle/
 /database_backend/build/
+/database_backend/.jpb/
 *.iml

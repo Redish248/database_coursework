@@ -1,7 +1,7 @@
 package itmo.coursework.impl;
 
-import itmo.coursework.entity.Animals;
-import itmo.coursework.repository.AnimalsRepository;
+import itmo.coursework.entity.statistic.Animals;
+import itmo.coursework.repository.statistic.AnimalsRepository;
 import itmo.coursework.service.AnimalService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

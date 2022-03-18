@@ -1,7 +1,7 @@
 package itmo.coursework.service;
 
-import itmo.coursework.entity.Position;
-import itmo.coursework.entity.Staff;
+import itmo.coursework.entity.statistic.Position;
+import itmo.coursework.entity.statistic.Staff;
 
 import java.util.List;
 

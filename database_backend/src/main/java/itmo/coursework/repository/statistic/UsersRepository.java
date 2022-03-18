@@ -1,7 +1,7 @@
-package itmo.coursework.repository;
+package itmo.coursework.repository.statistic;
 
-import itmo.coursework.entity.UserType;
-import itmo.coursework.entity.Users;
+import itmo.coursework.entity.statistic.UserType;
+import itmo.coursework.entity.statistic.Users;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 

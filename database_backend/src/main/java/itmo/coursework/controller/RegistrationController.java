@@ -1,6 +1,6 @@
 package itmo.coursework.controller;
 
-import itmo.coursework.entity.Users;
+import itmo.coursework.entity.statistic.Users;
 import itmo.coursework.model.NewUser;
 import itmo.coursework.service.UserService;
 import lombok.RequiredArgsConstructor;

@@ -1,7 +1,7 @@
 package itmo.coursework.service;
 
-import itmo.coursework.entity.UserType;
-import itmo.coursework.entity.Users;
+import itmo.coursework.entity.statistic.UserType;
+import itmo.coursework.entity.statistic.Users;
 
 import java.util.List;
 

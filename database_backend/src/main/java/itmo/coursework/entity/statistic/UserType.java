@@ -1,4 +1,4 @@
-package itmo.coursework.entity;
+package itmo.coursework.entity.statistic;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
@@ -14,12 +14,11 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import java.util.Collection;
-import java.util.Objects;
 
 @Entity
 @Data
-@Table(name = "position", schema = "public", catalog = "database_coursework")
-public class Position {
+@Table(name = "user_type", schema = "public", catalog = "database_coursework")
+public class UserType {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "uid")
@@ -34,6 +33,6 @@ public class Position {
     private String description;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "positionType", fetch = FetchType.LAZY)
-    private Collection<Staff> staff;
+    @OneToMany(mappedBy = "userType", fetch = FetchType.LAZY)
+    private Collection<Users> users;
 }

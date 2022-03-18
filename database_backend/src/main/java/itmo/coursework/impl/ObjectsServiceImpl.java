@@ -1,8 +1,8 @@
 package itmo.coursework.impl;
 
-import itmo.coursework.entity.Objects;
+import itmo.coursework.entity.statistic.Objects;
 import itmo.coursework.exception.ObjectNotFoundException;
-import itmo.coursework.repository.ObjectsRepository;
+import itmo.coursework.repository.statistic.ObjectsRepository;
 import itmo.coursework.service.ObjectsService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

@@ -1,6 +1,6 @@
-package itmo.coursework.repository;
+package itmo.coursework.repository.statistic;
 
-import itmo.coursework.entity.Animals;
+import itmo.coursework.entity.statistic.Animals;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 

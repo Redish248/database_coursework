@@ -1,6 +1,6 @@
 package itmo.coursework.service;
 
-import itmo.coursework.entity.Objects;
+import itmo.coursework.entity.statistic.Objects;
 
 import java.util.List;
 

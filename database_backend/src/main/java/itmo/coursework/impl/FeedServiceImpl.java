@@ -1,8 +1,8 @@
 package itmo.coursework.impl;
 
-import itmo.coursework.entity.Feed;
+import itmo.coursework.entity.statistic.Feed;
 import itmo.coursework.exception.FeedNotFoundException;
-import itmo.coursework.repository.FeedRepository;
+import itmo.coursework.repository.statistic.FeedRepository;
 import itmo.coursework.service.FeedService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

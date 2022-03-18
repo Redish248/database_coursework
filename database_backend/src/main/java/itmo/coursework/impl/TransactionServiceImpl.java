@@ -1,7 +1,7 @@
 package itmo.coursework.impl;
 
-import itmo.coursework.entity.TransactionsBudget;
-import itmo.coursework.repository.TransactionRepository;
+import itmo.coursework.entity.statistic.TransactionsBudget;
+import itmo.coursework.repository.statistic.TransactionRepository;
 import itmo.coursework.service.TransactionService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

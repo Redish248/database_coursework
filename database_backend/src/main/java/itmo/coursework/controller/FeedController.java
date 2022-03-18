@@ -1,6 +1,6 @@
 package itmo.coursework.controller;
 
-import itmo.coursework.entity.Feed;
+import itmo.coursework.entity.statistic.Feed;
 import itmo.coursework.service.FeedService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
