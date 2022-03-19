@@ -6,16 +6,16 @@ import org.springframework.data.mongodb.core.mapping.Field;
 import javax.persistence.*;
 
 @Entity
-@Document(collation = "test_animal")
+@Document(collection = "test_animal")
 public class TestAnimal {
     @Id
-    private Long id;
+    private String id;
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -28,5 +28,13 @@ public class TestAnimal {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    @Override
+    public String toString() {
+        return "TestAnimal{" +
+                "id='" + id + '\'' +
+                ", name='" + name + '\'' +
+                '}';
     }
 }

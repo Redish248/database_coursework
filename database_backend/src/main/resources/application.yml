@@ -10,8 +10,11 @@ spring:
     username: mag_db
     password: mag_db
     driver-class-name: org.postgresql.Driver
-  mongodb:
-    uri: mongodb://localhost:27017/database_coursework
+  data:
+    mongodb:
+      host: localhost
+      port: 27017
+      database: database_coursework
 
   jpa:
     hibernate:
