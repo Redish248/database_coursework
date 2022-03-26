@@ -7,9 +7,11 @@ export interface Staff {
   surname: string
   patronymic: string
   gender: Gender
-  dateOfBirth: Date
+  dateOfBirth: string
   positionType: Position
   salary: number
   experience: number
-  firstWorkDate: Date
+  firstWorkDate: string
+
+  [k: string]: any
 }

@@ -4,18 +4,48 @@
     <!--    <clr-button>Additional filters</clr-button>-->
 </clr-button-group>
 <clr-datagrid>
-    <clr-dg-column [clrDgField]="'name'">Имя</clr-dg-column>
-    <clr-dg-column [clrDgField]="'gender'">Пол</clr-dg-column>
-    <clr-dg-column [clrDgField]="'birthday'">День Рождения</clr-dg-column>
-    <clr-dg-column [clrDgField]="'positionUid'">Должность</clr-dg-column>
-    <clr-dg-column [clrDgField]="'experience'">Опыт работы</clr-dg-column>
-    <clr-dg-column [clrDgField]="'firstWorkDate'">Первый рабочий день</clr-dg-column>
-    <clr-dg-column [clrDgField]="'salary'">Зарплата</clr-dg-column>
+    <clr-dg-column [clrDgField]="'fullName'">Имя</clr-dg-column>
+    <clr-dg-column [clrDgField]="'gender'">
+        <clr-dg-filter [clrDgFilter]="genderFilter">
+            <app-select-filter #genderFilter [clrFilterValue]="'gender'"
+                               [clrSelectedValue]="Gender">
 
-    <clr-dg-row *clrDgItems="let next of staff" (click)="viewStaff(next)">
+            </app-select-filter>
+        </clr-dg-filter>
+        Пол
+    </clr-dg-column>
+    <clr-dg-column [clrDgField]="'age'">
+        <clr-dg-filter [clrDgFilter]="ageFilter">
+            <app-range-filter #ageFilter [clrFilterValue]="'age'"
+                              [clrRangeValue]="ageFilterRange">
+            </app-range-filter>
+        </clr-dg-filter>
+        Возраст
+    </clr-dg-column>
+    <clr-dg-column [clrDgField]="'positionType.name'">Должность</clr-dg-column>
+    <clr-dg-column [clrDgField]="'experience'">
+        <clr-dg-filter [clrDgFilter]="experienceFilter">
+            <app-range-filter #experienceFilter [clrFilterValue]="'experience'"
+                              [clrRangeValue]="experienceFilterRange">
+            </app-range-filter>
+        </clr-dg-filter>
+        Опыт работы
+    </clr-dg-column>
+    <clr-dg-column [clrDgField]="'firstWorkDate'">Первый рабочий день</clr-dg-column>
+    <clr-dg-column [clrDgField]="'salary'">
+        <clr-dg-filter [clrDgFilter]="salaryFilter">
+            <app-range-filter #salaryFilter [clrFilterValue]="'salary'"
+                              [clrRangeValue]="salaryFilterParams">
+            </app-range-filter>
+        </clr-dg-filter>
+        Зарплата
+    </clr-dg-column>
+
+
+    <clr-dg-row *clrDgItems="let next of staff" [clrDgItem]="next" (click)="viewStaff(next)">
         <clr-dg-cell>{{next.surname}} {{next.name}} {{next.patronymic}}</clr-dg-cell>
         <clr-dg-cell>{{next.gender}}</clr-dg-cell>
-        <clr-dg-cell>{{next.dateOfBirth | date}}</clr-dg-cell>
+        <clr-dg-cell>{{next.age}}</clr-dg-cell>
         <clr-dg-cell>{{next.positionType.name}}</clr-dg-cell>
         <clr-dg-cell>{{next.experience}}</clr-dg-cell>
         <clr-dg-cell>{{next.firstWorkDate | date}}</clr-dg-cell>

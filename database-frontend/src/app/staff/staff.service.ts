@@ -51,7 +51,7 @@ export class StaffService {
     return this.http.put<Staff>(`${this.apiUrl}/${uid}`, JSON.stringify(staff), {headers: {'Content-Type': 'application/json'}})
   }
 
-  deleteStaff(staff) {
-
+  deleteStaff(uid: number) {
+    return this.http.delete(`${this.apiUrl}/${uid}`)
   }
 }

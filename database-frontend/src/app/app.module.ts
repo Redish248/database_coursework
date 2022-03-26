@@ -23,6 +23,7 @@ import { ProfileComponent } from "./profile/profile.component"
 import { CreateStaffAccountComponent } from './staff/components/create-staff-account/create-staff-account.component'
 import { ViewStaffAccountComponent } from './staff/components/view-staff-account/view-staff-account.component'
 import { DatePipe } from "@angular/common"
+import { FilterModule } from './helpers/filters/filter.module'
 
 const appRoutes: Routes = [
   {path: '', component: HomeComponent, canActivate: [AuthGuard]},
@@ -57,7 +58,8 @@ const appRoutes: Routes = [
     BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule, ReactiveFormsModule,
+    FilterModule
   ],
   providers: [
     AuthGuard,

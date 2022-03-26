@@ -63,8 +63,17 @@ class StaffServiceImpl(
         )
     }
 
+    fun deleteStaffAccount(uid: Long) {
+        getStaffByUid(uid)
+        deleteStaff(uid)
+    }
+
     override fun saveStaff(newStaff: Staff?) {
         staffRepository.save(newStaff)
+    }
+
+    override fun deleteStaff(uid: Long) {
+        staffRepository.deleteById(uid)
     }
 
     override fun getPositionByName(name: String?): List<Position> = positionRepository.findPositionByName(name)

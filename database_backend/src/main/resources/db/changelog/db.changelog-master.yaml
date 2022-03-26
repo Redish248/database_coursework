@@ -3,3 +3,5 @@ databaseChangeLog:
       file: /db/changelog/updates/test.sql
   - include:
       file: /db/changelog/updates/staff-v1.sql
+  - include:
+      file: /db/changelog/updates/positions.sql

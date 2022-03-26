@@ -14,6 +14,8 @@ public interface StaffService {
 
     void saveStaff(Staff newStaff);
 
+    void deleteStaff(Long uid);
+
     List<Staff> getStaff();
 
     Staff getStaffByUid(long uid);

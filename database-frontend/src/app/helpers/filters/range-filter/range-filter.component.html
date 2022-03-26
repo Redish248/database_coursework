@@ -1,0 +1,4 @@
+<clr-checkbox-wrapper *ngFor="let el of types| keyvalue">
+    <input clrCheckbox type="checkbox" value="{{el.key}}" (change)="select($event)"/>
+    <label>{{el.value.min}}-{{el.value.max}}</label>
+</clr-checkbox-wrapper>

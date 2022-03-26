@@ -43,6 +43,7 @@ export class ViewStaffAccountComponent implements OnInit {
       dateOfBirth: this.staff.dateOfBirth,
       firstWorkDate: this.staff.firstWorkDate
     })
+    console.log(this.staffForm)
     this.errorMessage = undefined
     this.staffService.getPositions().subscribe(
       data => this.positions = data,
@@ -66,6 +67,23 @@ export class ViewStaffAccountComponent implements OnInit {
         this.loading = false
         this.modalOpen = false
         this.closeModal.emit()
+      },
+      err => {
+        this.loading = false
+        this.errorMessage = err
+      }
+    )
+  }
+
+  deleteStaff() {
+    this.loading = true
+    this.errorMessage = undefined
+    this.staffService.deleteStaff(this.staff.uid).subscribe(
+      _ => {
+        this.loading = false
+        this.modalOpen = false
+        this.closeModal.emit(
+        )
       },
       err => {
         this.loading = false

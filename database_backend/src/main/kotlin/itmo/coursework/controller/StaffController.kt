@@ -4,14 +4,7 @@ import itmo.coursework.model.AddNewStaffRequest
 import itmo.coursework.model.UpdateStaffRequest
 import itmo.coursework.service.StaffServiceImpl
 import org.springframework.http.HttpStatus
-import org.springframework.web.bind.annotation.GetMapping
-import org.springframework.web.bind.annotation.PathVariable
-import org.springframework.web.bind.annotation.PostMapping
-import org.springframework.web.bind.annotation.PutMapping
-import org.springframework.web.bind.annotation.RequestBody
-import org.springframework.web.bind.annotation.RequestMapping
-import org.springframework.web.bind.annotation.ResponseStatus
-import org.springframework.web.bind.annotation.RestController
+import org.springframework.web.bind.annotation.*
 
 @RestController
 @RequestMapping("/databases/staff")
@@ -31,4 +24,6 @@ class StaffController(private val staffService: StaffServiceImpl) {
     fun updateStaffAccount(@PathVariable staffUid: Long, @RequestBody request: UpdateStaffRequest) =
         staffService.updateStaffAccount(staffUid, request)
 
+    @DeleteMapping("{staffUid}")
+    fun deleteStaffAccount(@PathVariable staffUid: Long) = staffService.deleteStaffAccount(staffUid)
 }

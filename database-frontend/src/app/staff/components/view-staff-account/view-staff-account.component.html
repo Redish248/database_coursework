@@ -58,6 +58,7 @@
                     (click)="update()">
                 Обновить профиль
             </button>
+            <button *ngIf="hasAdminPermissions && loading == false" (click)="deleteStaff()">Удалить сотрудника</button>
         </div>
 
     </clr-modal>
