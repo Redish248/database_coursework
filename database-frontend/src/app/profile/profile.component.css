@@ -8,6 +8,10 @@ table td, table th {
   padding: 15px;
 }
 
+table td {
+  vertical-align: bottom;
+}
+
 .naming {
   font-weight: bold;
 }
@@ -15,4 +19,13 @@ table td, table th {
 div.clr-col {
   margin: 30px;
 }
+
+.clr-align-items-center {
+  width: 100%;
+}
+
+.edit_button {
+  margin-top: 15px;
+}
+
 

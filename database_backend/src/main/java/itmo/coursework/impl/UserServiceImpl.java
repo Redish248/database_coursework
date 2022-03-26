@@ -9,6 +9,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -56,5 +57,14 @@ public class UserServiceImpl implements UserService {
         return userTypeRepository.findUserTypesByName(name);
     }
 
+    @Override
+    public Users updateUser(Users user) {
+        Users oldUser = userRepository.findUsersByNick(user.getNick());
+        Optional.ofNullable(user.getName()).ifPresent(oldUser::setName);
+        Optional.ofNullable(user.getSurname()).ifPresent(oldUser::setSurname);
+        Optional.ofNullable(user.getDateOfBirth()).ifPresent(oldUser::setDateOfBirth);
+        Optional.ofNullable(user.getGender()).ifPresent(oldUser::setGender);
+        return userRepository.save(oldUser);
+    }
 
 }

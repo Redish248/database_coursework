@@ -2,3 +2,7 @@ html body {
   background: url("./assets/grad.jpg") no-repeat fixed center center;
   background-size: 100% auto;
 }
+
+.clr-form-control {
+  display: table-cell;
+}
