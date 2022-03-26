@@ -20,8 +20,8 @@
                 <input clrInput formControlName="email" type="email">
             </clr-input-container>
             <clr-date-container>
-              <label>Дата рождения</label>
-              <input type="date" clrDate formControlName="dateOfBirth"/>
+                <label>Дата рождения</label>
+                <input type="date" clrDate formControlName="dateOfBirth"/>
             </clr-date-container>
             <clr-input-container>
                 <label>Пароль</label>
@@ -29,15 +29,14 @@
             </clr-input-container>
             <clr-select-container>
                 <label>Пол</label>
-                <select clrSelect name="options" formControlName="gender">
-                    <option value="female">Жeнский</option>
-                    <option value="male">Mужской</option>
+                <select clrSelect formControlName="gender">
+                    <option [value]="Gender.FEMALE">Жeнский</option>
+                    <option [value]="Gender.MALE">Mужской</option>
                 </select>
             </clr-select-container>
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-outline" (click)="signup()">Зарегистрироваться</button>
         </div>
-
     </clr-modal>
 </form>

@@ -1,1 +1,42 @@
-<p>staff works!</p>
+<clr-alert clrAlertType="danger" *ngIf="errorMessage">{{errorMessage}}</clr-alert>
+<clr-button-group class="btn-primary" *ngIf="hasAdminPermissions">
+    <clr-button (click)="addStaff()">Add staff profile</clr-button>
+    <!--    <clr-button>Additional filters</clr-button>-->
+</clr-button-group>
+<clr-datagrid>
+    <clr-dg-column [clrDgField]="'name'">Имя</clr-dg-column>
+    <clr-dg-column [clrDgField]="'gender'">Пол</clr-dg-column>
+    <clr-dg-column [clrDgField]="'birthday'">День Рождения</clr-dg-column>
+    <clr-dg-column [clrDgField]="'positionUid'">Должность</clr-dg-column>
+    <clr-dg-column [clrDgField]="'experience'">Опыт работы</clr-dg-column>
+    <clr-dg-column [clrDgField]="'firstWorkDate'">Первый рабочий день</clr-dg-column>
+    <clr-dg-column [clrDgField]="'salary'">Зарплата</clr-dg-column>
+
+    <clr-dg-row *clrDgItems="let next of staff" (click)="viewStaff(next)">
+        <clr-dg-cell>{{next.surname}} {{next.name}} {{next.patronymic}}</clr-dg-cell>
+        <clr-dg-cell>{{next.gender}}</clr-dg-cell>
+        <clr-dg-cell>{{next.dateOfBirth | date}}</clr-dg-cell>
+        <clr-dg-cell>{{next.positionType.name}}</clr-dg-cell>
+        <clr-dg-cell>{{next.experience}}</clr-dg-cell>
+        <clr-dg-cell>{{next.firstWorkDate | date}}</clr-dg-cell>
+        <clr-dg-cell>{{next.salary}}</clr-dg-cell>
+    </clr-dg-row>
+
+    <clr-dg-footer>
+        <clr-dg-pagination #pagination [clrDgPageSize]="5">
+            <clr-dg-page-size [clrPageSizeOptions]="[5,10,20]">сотрудников на страницу</clr-dg-page-size>
+            {{pagination.firstItem + 1}} - {{pagination.lastItem + 1}} of {{pagination.totalItems}} сотрудников
+        </clr-dg-pagination>
+    </clr-dg-footer>
+</clr-datagrid>
+
+<app-create-staff-account *ngIf="createNewStaffAccount"
+                          [modalOpen]="createNewStaffAccount"
+                          (closeModal)="createNewStaffAccount = false; getAllStaff()">
+
+</app-create-staff-account>
+<app-view-staff-account *ngIf="viewStaffAccount"
+                        [staff]="selectedStaff"
+                        [modalOpen]="viewStaffAccount"
+                        (closeModal)="viewStaffAccount = false; selectedStaff = undefined; getAllStaff()">
+</app-view-staff-account>

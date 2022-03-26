@@ -1,0 +1,60 @@
+<form clrForm [formGroup]="staffForm">
+    <clr-modal [(clrModalOpen)]="modalOpen" clrModalSize="xl">
+
+        <h3 class="modal-title">Регистрация нового сотрудника</h3>
+        <div class="modal-body">
+            <clr-alert clrAlertType="danger" *ngIf="errorMessage">{{errorMessage}}</clr-alert>
+            <p>Личная информация</p>
+            <clr-input-container>
+                <label>Фамилия</label>
+                <input clrInput formControlName="surname" type="text">
+            </clr-input-container>
+            <clr-input-container>
+                <label>Имя</label>
+                <input clrInput formControlName="name" type="text">
+            </clr-input-container>
+            <clr-input-container>
+                <label>Отчество</label>
+                <input clrInput formControlName="patronymic" type="text">
+            </clr-input-container>
+            <clr-select-container>
+                <label>Пол</label>
+                <select clrSelect formControlName="gender">
+                    <option [value]="Gender.MALE">мужской</option>
+                    <option [value]="Gender.FEMALE">Женский</option>
+                </select>
+            </clr-select-container>
+            <clr-date-container>
+                <label>Дата рождения</label>
+                <input clrDate type="date" formControlName="dateOfBirth"/>
+            </clr-date-container>
+            <p>Рабочая информация</p>
+            <clr-input-container>
+                <label>Опыт работы (полных лет)</label>
+                <input clrInput formControlName="experience" type="number">
+            </clr-input-container>
+            <clr-date-container>
+                <label>Дата выхода на работу</label>
+                <input clrDate type="date" formControlName="firstWorkDate"/>
+            </clr-date-container>
+            <clr-input-container>
+                <label>Зарплата</label>
+                <input clrInput formControlName="salary" type="number">
+            </clr-input-container>
+            <clr-select-container>
+                <label>Должность</label>
+                <select clrSelect formControlName="positionUid">
+                    <option *ngFor="let position of positions" [value]="position.uid">{{position.name}}</option>
+                </select>
+            </clr-select-container>
+        </div>
+        <div class="modal-footer">
+            <button *ngIf="staffForm.valid && loading == false"
+                    type="button"
+                    class="btn btn-outline"
+                    (click)="addNewStaff()">
+                Создать аккаунт
+            </button>
+        </div>
+    </clr-modal>
+</form>

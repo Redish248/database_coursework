@@ -57,7 +57,7 @@ export class AuthService {
 
   private static setLocalStorage(username: string, pswd: string) {
     localStorage.setItem("username", username)
-    const authToken = btoa(`${username}:${pswd}`)
+    const authToken = window.btoa(`${username}:${pswd}`)
     localStorage.setItem("authData", authToken)
   }
 

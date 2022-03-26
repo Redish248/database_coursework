@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core'
 import { FormBuilder, FormGroup, Validators } from '@angular/forms'
 import { SignupService } from './signup.service'
+import { Gender } from '../common_model'
 
 @Component({
   selector: 'app-signup',
@@ -13,6 +14,7 @@ export class SignupComponent implements OnInit {
 
   signupForm: FormGroup
   errorMessage: string = undefined
+  Gender = Gender
 
   constructor(private formBuilder: FormBuilder,
               private signupService: SignupService) {
@@ -23,7 +25,7 @@ export class SignupComponent implements OnInit {
       username: ['', Validators.required],
       surname: ['', Validators.required],
       password: ['', Validators.required],
-      nick: ['', Validators.required],
+      nick: ['', [Validators.required, Validators.pattern("[A-Za-z]")]],
       email: ['', Validators.required],
       dateOfBirth: ['', Validators.required],
       gender: ['male', Validators.required]
@@ -35,7 +37,7 @@ export class SignupComponent implements OnInit {
     this.signupService.signup(this.signupForm.getRawValue()).subscribe(
       _ => {
         this.closeModal.emit({
-          username: this.signupForm.value.username,
+          username: this.signupForm.value.nick,
           password: this.signupForm.value.password
         })
         this.modalOpened = false

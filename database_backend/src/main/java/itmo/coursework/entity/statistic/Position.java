@@ -26,7 +26,7 @@ public class Position {
 
     @NotNull
     @Column(name = "name")
-    private String name;
+    private String name; // todo : title ?
 
     @Basic
     @Column(name = "description")

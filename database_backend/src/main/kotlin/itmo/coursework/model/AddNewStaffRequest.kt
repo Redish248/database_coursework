@@ -7,10 +7,9 @@ data class AddNewStaffRequest(
     val surname: String,
     val patronymic: String,
     val gender: String,
-//    val birthday: Date,
-//    val firstWorkDate: Date = today
-    val positionType: Int,
+    val dateOfBirth: String,
+    val firstWorkDate: String,
+    val positionUid: Long,
     val salary: Int,
     val experience: Int
-
 )

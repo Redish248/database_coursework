@@ -60,4 +60,54 @@ public class Staff {
     @Column(name = "first_work_date")
     private Date firstWorkDate;
 
+    public String getName() {
+        return name;
+    }
+
+    public String getSurname() {
+        return surname;
+    }
+
+    public String getPatronymic() {
+        return patronymic;
+    }
+
+    public Date getDateOfBirth() {
+        return dateOfBirth;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public Position getPositionType() {
+        return positionType;
+    }
+
+    public Integer getSalary() {
+        return salary;
+    }
+
+    public Integer getExperience() {
+        return experience;
+    }
+
+    public Date getFirstWorkDate() {
+        return firstWorkDate;
+    }
+
+    public Staff() {
+    }
+
+    public Staff(String name, String surname, String patronymic, Date dateOfBirth, String gender, Position positionType, Integer salary, Integer experience, Date firstWorkDate) {
+        this.name = name;
+        this.surname = surname;
+        this.patronymic = patronymic;
+        this.dateOfBirth = dateOfBirth;
+        this.gender = gender;
+        this.positionType = positionType;
+        this.salary = salary;
+        this.experience = experience;
+        this.firstWorkDate = firstWorkDate;
+    }
 }

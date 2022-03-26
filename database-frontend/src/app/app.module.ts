@@ -18,9 +18,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http'
 import { AuthGuard } from './helpers/auth.guard'
 import { ErrorInterceptor } from './helpers/error.interceptor'
-import { CatsComponent } from './cats/cats.component'
 import { AuthBasicInterceptor } from './helpers/auth-basic.interceptor'
-import {ProfileComponent} from "./profile/profile.component";
+import { ProfileComponent } from "./profile/profile.component"
+import { CreateStaffAccountComponent } from './staff/components/create-staff-account/create-staff-account.component';
+import { ViewStaffAccountComponent } from './staff/components/view-staff-account/view-staff-account.component'
 
 const appRoutes: Routes = [
   {path: '', component: HomeComponent, canActivate: [AuthGuard]},
@@ -44,8 +45,9 @@ const appRoutes: Routes = [
     FeedComponent,
     ObjectsComponent,
     StaffComponent,
-    CatsComponent,
-    ProfileComponent
+    ProfileComponent,
+    CreateStaffAccountComponent,
+    ViewStaffAccountComponent
   ],
   imports: [
     BrowserModule,

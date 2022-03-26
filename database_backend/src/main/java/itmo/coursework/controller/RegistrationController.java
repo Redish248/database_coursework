@@ -11,8 +11,8 @@ import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.web.bind.annotation.*;
 
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+
+import static itmo.coursework.CommonUtilsKt.parseStringToSqlDate;
 
 @RestController
 @RequestMapping("/databases")
@@ -24,7 +24,7 @@ public class RegistrationController {
 
     @PostMapping("/signup")
     public @ResponseBody
-    ResponseEntity registerUser(@RequestBody NewUser newUser) throws ParseException {
+    ResponseEntity registerUser(@RequestBody NewUser newUser) {
         System.out.println(newUser.getNick());
         Users user = new Users();
         user.setName(newUser.getUsername());
@@ -34,11 +34,7 @@ public class RegistrationController {
 
         //TODO: add user type
         user.setUserType(userService.getUserTypeByUid(1));
-
-        SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
-        Date parsed = format.parse(newUser.getDateOfBirth());
-        java.sql.Date sqlDate = new java.sql.Date(parsed.getTime());
-        user.setDateOfBirth(sqlDate);
+        user.setDateOfBirth(parseStringToSqlDate(newUser.getDateOfBirth()));
 
         user.setNick(newUser.getNick());
         user.setPassword(BCrypt.hashpw(newUser.getPassword(), BCrypt.gensalt()));
