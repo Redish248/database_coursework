@@ -1,28 +1,73 @@
-<h2>Моя страница</h2>
-{{this.getUserInfo().email}}
+<div class="user_info" align="center">
+  <h1>Моя страница</h1>
 
-<!--<table class="table table-noborder">
-  <caption>
-    Demo for a borderless Clarity table.
-  </caption>
-  <thead>
-  <tr>
-    <th class="left">Monster</th>
-  </tr>
-  </thead>
-  <tbody>
-  <tr>
-    <td class="left">Wolfman</td>
-    <td><img height="100" width="100" src="./assets/avatar.jpg" alt="avatar"></td>
-  </tr>
-  <tr>
-    <td class="left">Mothra</td>
-  </tr>
-  <tr>
-    <td class="left">Oscar the Grouch</td>
-  </tr>
-  <tr>
-    <td class="left">Cookie Monster</td>
-  </tr>
-  </tbody>
-</table>-->
+  <div class="clr-row clr-align-items-center">
+    <div class="clr-col" align="right">
+      <img height="400" width="400" src="./assets/avatar.jpg" alt="avatar">
+      <div class="edit_button">
+        <button *ngIf="!this.editMode" class="btn btn-outline" (click)="enableEditMode()">Редактировать</button>
+      </div>
+    </div>
+    <div class="clr-col" align="left">
+      <table class="table table-noborder user_data">
+        <thead>
+        <tr>
+          <th class="left">Данные</th>
+          <th class="left">Значения</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+          <td class="left naming">Ник:</td>
+          <td class="left">
+            {{this.profileService.userInfo.nick}}
+          </td>
+          </tr>
+        <tr>
+          <td class="left naming">Имя:</td>
+          <td class="left">
+            <div *ngIf="!this.editMode">{{this.profileService.userInfo.name}}</div>
+            <input *ngIf="this.editMode" clrInput name="input" [(ngModel)]="newName" />
+          </td>
+        </tr>
+        <tr>
+          <td class="left naming">Фамилия:</td>
+          <td class="left">
+            <div *ngIf="!this.editMode">{{this.profileService.userInfo.surname}}</div>
+            <input *ngIf="this.editMode" clrInput name="input" [(ngModel)]="newSurname" />
+          </td>
+        </tr>
+        <tr>
+          <td class="left naming">Почта:</td>
+          <td class="left">{{this.profileService.userInfo.email}}</td>
+        </tr>
+        <tr>
+          <td class="left naming">Дата рождения:</td>
+          <td class="left">
+            <div *ngIf="!this.editMode">{{this.dateTransform(this.profileService.userInfo.dateOfBirth)}}</div>
+            <input *ngIf="this.editMode" type="date" clrDate [(ngModel)]="newDate"/>
+          </td>
+        </tr>
+        <tr>
+          <td class="left naming">Пол:</td>
+          <td class="left">
+            <div *ngIf="!this.editMode">{{this.profileService.userInfo.gender == 'male' ? 'Мужской' : 'Женский'}}</div>
+            <select *ngIf="this.editMode" clrSelect name="options" [(ngModel)]="newGender">
+              <option value="female">Жeнский</option>
+              <option value="male">Mужской</option>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <td class="left naming">Тип пользователя:</td>
+          <td class="left">{{this.profileService.userInfo.userType.name}} ({{this.profileService.userInfo.userType.description}}) </td>
+        </tr>
+        <tr>
+          <td><button *ngIf="this.editMode" class="btn btn-danger-outline" (click)="cancel()">Отмена</button></td>
+          <td><button *ngIf="this.editMode" class="btn btn-success-outline" (click)="saveChanges()">Сохранить</button></td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

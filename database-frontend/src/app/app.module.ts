@@ -22,6 +22,8 @@ import { AuthBasicInterceptor } from './helpers/auth-basic.interceptor'
 import { ProfileComponent } from "./profile/profile.component"
 import { CreateStaffAccountComponent } from './staff/components/create-staff-account/create-staff-account.component';
 import { ViewStaffAccountComponent } from './staff/components/view-staff-account/view-staff-account.component'
+import {ProfileComponent} from "./profile/profile.component";
+import {DatePipe} from "@angular/common";
 
 const appRoutes: Routes = [
   {path: '', component: HomeComponent, canActivate: [AuthGuard]},
@@ -62,6 +64,7 @@ const appRoutes: Routes = [
     AuthGuard,
     {provide: HTTP_INTERCEPTORS, useClass: AuthBasicInterceptor, multi: true},
     {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true},
+    DatePipe
   ],
   bootstrap: [AppComponent]
 })

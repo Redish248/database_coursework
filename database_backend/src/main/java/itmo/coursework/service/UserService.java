@@ -23,4 +23,6 @@ public interface UserService {
 
     List<UserType> getUserTypesByName(String name);
 
+    Users updateUser(Users user);
+
 }

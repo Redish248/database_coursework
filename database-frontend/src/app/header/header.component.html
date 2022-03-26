@@ -28,8 +28,8 @@
                 <clr-icon shape="caret down"></clr-icon>
             </button>
           <div class="dropdown-menu">
-            <a (click)="this.authService.getUserInfo()" class="dropdown-item">Мой профиль</a>
-            <a (click)="this.authService.logout()" class="dropdown-item">Выйти</a>
+            <a (click)="this.profileService.getUserInfo()" clrDropdownItem>Мой профиль</a>
+            <a (click)="this.authService.logout()" clrDropdownItem>Выйти</a>
           </div>
         </clr-dropdown>
     </div>
