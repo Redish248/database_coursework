@@ -3,7 +3,7 @@
         <h3 class="modal-title">
             <clr-icon *ngIf="mode == ViewMode.VIEW && hasAdminPermissions" shape="pencil" (click)="switchModeToEdit()">
             </clr-icon>
-            Сотурдник
+            Сотрудник
         </h3>
         <div class="modal-body">
             <clr-alert clrAlertType="danger" *ngIf="errorMessage">{{errorMessage}}</clr-alert>
