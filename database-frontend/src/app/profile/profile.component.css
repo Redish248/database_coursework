@@ -1,0 +1,18 @@
+table {
+  color: black;
+  width: 400px;
+  font-size: 25px;
+}
+table td, table th {
+  font-size: 15px;
+  padding: 15px;
+}
+
+.naming {
+  font-weight: bold;
+}
+
+div.clr-col {
+  margin: 30px;
+}
+
