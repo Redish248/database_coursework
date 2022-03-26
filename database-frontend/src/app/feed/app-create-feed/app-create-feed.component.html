@@ -1,0 +1,35 @@
+<form clrForm [formGroup]="feedForm">
+  <clr-modal [(clrModalOpen)]="modalOpen" clrModalSize="xl">
+
+    <h3 class="modal-title">Добавление нового корма</h3>
+    <div class="modal-body">
+      <clr-alert clrAlertType="danger" *ngIf="errorMessage">{{errorMessage}}</clr-alert>
+      <p>Информация о корме</p>
+      <clr-input-container>
+        <label>Название</label>
+        <input clrInput formControlName="name" type="text">
+      </clr-input-container>
+      <clr-input-container>
+        <label>Описание</label>
+        <input clrInput formControlName="description" type="text">
+      </clr-input-container>
+      <clr-input-container>
+        <label>Цена</label>
+        <input clrInput formControlName="price" type="number">
+      </clr-input-container>
+
+      <clr-input-container>
+        <label>Количество</label>
+        <input clrInput formControlName="amount" type="number">
+      </clr-input-container>
+    </div>
+    <div class="modal-footer">
+      <button *ngIf="feedForm.valid && loading == false"
+              type="button"
+              class="btn btn-outline"
+              (click)="createFeed()">
+        Создать корм
+      </button>
+    </div>
+  </clr-modal>
+</form>

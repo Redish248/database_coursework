@@ -26,12 +26,12 @@ public class FeedServiceImpl implements FeedService {
     }
 
     @Override
-    public Feed createFeed(String feed_type, String description, int price, int amount) {
+    public Feed createFeed(Feed newFeed) {
         Feed feed = new Feed();
-        feed.setName(feed_type);
-        feed.setDescription(description);
-        feed.setPrice(price);
-        feed.setAmount(amount);
+        feed.setName(newFeed.getName());
+        feed.setDescription(newFeed.getDescription());
+        feed.setPrice(newFeed.getPrice());
+        feed.setAmount(newFeed.getAmount());
         return feedRepository.save(feed);
     }
 
@@ -47,19 +47,20 @@ public class FeedServiceImpl implements FeedService {
     }
 
     @Override
-    public void updateFeed(long uid, String name, String description, int price, int amount) {
-        Feed oldFeed = feedRepository.findFeedByUid(uid);
+    public Feed updateFeed(Feed receivedFeed) {
+        Feed oldFeed = feedRepository.findFeedByUid(receivedFeed.getUid());
         Optional.ofNullable(oldFeed).ifPresentOrElse(
                 optOldFeed -> {
-                    optOldFeed.setName(name);
-                    optOldFeed.setDescription(description);
-                    optOldFeed.setPrice(price);
-                    optOldFeed.setAmount(amount);
+                    optOldFeed.setName(receivedFeed.getName());
+                    optOldFeed.setDescription(receivedFeed.getDescription());
+                    optOldFeed.setPrice(receivedFeed.getPrice());
+                    optOldFeed.setAmount(receivedFeed.getAmount());
                     feedRepository.save(optOldFeed);
                 },
                 () -> {
-                    throw new FeedNotFoundException(String.format("Feed with uid %d does not exist", uid));
+                    throw new FeedNotFoundException(String.format("Feed with uid %d does not exist", receivedFeed.getUid()));
                 }
         );
+        return receivedFeed;
     }
 }

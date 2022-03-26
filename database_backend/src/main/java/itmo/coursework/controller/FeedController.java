@@ -6,7 +6,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -26,27 +28,21 @@ public class FeedController {
     }
 
     @PostMapping( "/createFeed")
-    public @ResponseBody ResponseEntity createFeed(String feed_type, String description, int price, int amount) {
-        Feed feed = feedService.createFeed(feed_type, description, price, amount);
+    public @ResponseBody ResponseEntity createFeed(@RequestBody Feed newFeed) {
+        Feed feed = feedService.createFeed(newFeed);
         return ResponseEntity.status(HttpStatus.CREATED).body(feed);
     }
 
-    @PostMapping( "/deleteFeed")
-    public @ResponseBody ResponseEntity deleteFeed(long uid) {
+    @PostMapping( "/deleteFeed/{uid}")
+    public @ResponseBody ResponseEntity deleteFeed(@PathVariable long uid) {
         feedService.deleteFeed(uid);
         return ResponseEntity.status(HttpStatus.OK).body("deleted");
     }
 
     @PostMapping( "/updateFeed")
-    public @ResponseBody ResponseEntity updateFeed(long uid, String name, String description, int price, int amount) {
-        feedService.updateFeed(uid, name, description, price, amount);
-        return ResponseEntity.status(HttpStatus.OK).body("updated");
-    }
-
-    @GetMapping( "/findFeedByName")
-    public @ResponseBody ResponseEntity findFeedByType(String name) {
-        List<Feed> feeds = feedService.getFeedByName(name);
-        return ResponseEntity.status(HttpStatus.OK).body(feeds);
+    public @ResponseBody ResponseEntity updateFeed(@RequestBody Feed feed) {
+        Feed newFeed = feedService.updateFeed(feed);
+        return ResponseEntity.status(HttpStatus.OK).body(newFeed);
     }
 
 }

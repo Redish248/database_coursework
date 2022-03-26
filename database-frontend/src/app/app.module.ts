@@ -23,7 +23,9 @@ import { ProfileComponent } from "./profile/profile.component"
 import { CreateStaffAccountComponent } from './staff/components/create-staff-account/create-staff-account.component'
 import { ViewStaffAccountComponent } from './staff/components/view-staff-account/view-staff-account.component'
 import { DatePipe } from "@angular/common"
-import { FilterModule } from './helpers/filters/filter.module'
+import {AppViewFeedComponent} from "./feed/app-view-feed/app-view-feed.component";
+import {AppCreateFeedComponent} from "./feed/app-create-feed/app-create-feed.component";
+import {FilterModule} from "./helpers/filters/filter.module";
 
 const appRoutes: Routes = [
   {path: '', component: HomeComponent, canActivate: [AuthGuard]},
@@ -49,18 +51,20 @@ const appRoutes: Routes = [
     StaffComponent,
     ProfileComponent,
     CreateStaffAccountComponent,
-    ViewStaffAccountComponent
+    ViewStaffAccountComponent,
+    AppViewFeedComponent,
+    AppCreateFeedComponent
   ],
-  imports: [
-    BrowserModule,
-    RouterModule.forRoot(appRoutes),
-    ClarityModule,
-    BrowserAnimationsModule,
-    FormsModule,
-    ReactiveFormsModule,
-    HttpClientModule, ReactiveFormsModule,
-    FilterModule
-  ],
+    imports: [
+        BrowserModule,
+        RouterModule.forRoot(appRoutes),
+        ClarityModule,
+        BrowserAnimationsModule,
+        FormsModule,
+        ReactiveFormsModule,
+        HttpClientModule,
+        FilterModule
+    ],
   providers: [
     AuthGuard,
     {provide: HTTP_INTERCEPTORS, useClass: AuthBasicInterceptor, multi: true},

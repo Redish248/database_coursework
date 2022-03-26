@@ -10,9 +10,9 @@ public interface FeedService {
 
     List<Feed> getFeedByName(String name);
 
-    Feed createFeed(String feed_type, String description, int price, int amount);
+    Feed createFeed(Feed newFeed);
 
     void deleteFeed(long uid);
 
-    void updateFeed(long uid, String name, String description, int price, int amount);
+    Feed updateFeed(Feed feed);
 }
