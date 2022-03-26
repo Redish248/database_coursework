@@ -14,8 +14,8 @@ class MongoTest {
 
     @Test
     fun `mongo alive`() {
-        val animals = animalService.findAll();
+        val animals = animalService.findAll()
         println(animals)
-        Assertions.assertTrue { animals.size == 2 }
+        Assertions.assertTrue { animals.size > 0 }
     }
 }
