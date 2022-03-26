@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core'
 import { AppConfigService } from './app-config.service'
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http'
-import { User } from './login/User'
+import {User, UserInfo} from './login/User'
 import { map } from 'rxjs'
 import { Router } from '@angular/router'
 
@@ -10,6 +10,7 @@ import { Router } from '@angular/router'
 })
 export class AuthService {
   user: User = undefined
+  userInfo: UserInfo = undefined
 
   constructor(private configService: AppConfigService,
               private http: HttpClient,
@@ -18,6 +19,10 @@ export class AuthService {
 
   private get apiUrl(): string {
     return this.configService.silverPawBaseUrl
+  }
+
+  private get appUrl(): string {
+    return this.configService.silverPawAppUrl
   }
 
   getUser(): string {
@@ -65,6 +70,18 @@ export class AuthService {
         this.router.navigate(['/login'])
       }, err => {
         console.log("error during logout - " + err)
+      }
+    )
+  }
+
+  getUserInfo() {
+    const nick = localStorage.getItem("username");
+    return this.http.get<UserInfo>(`${this.appUrl}/users/getUserByNick?nick=${nick}`).subscribe(
+      (data: UserInfo) => {
+        this.userInfo = data;
+        this.router.navigate(['/profile'])
+      }, err => {
+        console.log("error during getting user info - " + err)
       }
     )
   }
