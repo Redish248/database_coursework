@@ -27,9 +27,10 @@
                 {{this.getUsername()}}
                 <clr-icon shape="caret down"></clr-icon>
             </button>
-            <clr-dropdown-menu *clrIfOpen clrPosition="bottom-right">
-                <a (click)="this.authService.logout()" clrDropdownItem>Log out</a>
-            </clr-dropdown-menu>
+          <div class="dropdown-menu">
+            <a (click)="this.authService.getUserInfo()" class="dropdown-item">Мой профиль</a>
+            <a (click)="this.authService.logout()" class="dropdown-item">Выйти</a>
+          </div>
         </clr-dropdown>
     </div>
 </header>

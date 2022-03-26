@@ -20,6 +20,7 @@ import { AuthGuard } from './helpers/auth.guard'
 import { ErrorInterceptor } from './helpers/error.interceptor'
 import { CatsComponent } from './cats/cats.component'
 import { AuthBasicInterceptor } from './helpers/auth-basic.interceptor'
+import {ProfileComponent} from "./profile/profile.component";
 
 const appRoutes: Routes = [
   {path: '', component: HomeComponent, canActivate: [AuthGuard]},
@@ -28,6 +29,7 @@ const appRoutes: Routes = [
   {path: 'objects', component: ObjectsComponent, canActivate: [AuthGuard]},
   {path: 'staff', component: StaffComponent, canActivate: [AuthGuard]},
   {path: 'login', component: LoginComponent},
+  {path: 'profile', component: ProfileComponent},
   {path: '**', component: NotFoundPageComponent}
 ]
 
@@ -42,7 +44,8 @@ const appRoutes: Routes = [
     FeedComponent,
     ObjectsComponent,
     StaffComponent,
-    CatsComponent
+    CatsComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,
