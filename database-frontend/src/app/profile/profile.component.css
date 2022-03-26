@@ -28,4 +28,6 @@ div.clr-col {
   margin-top: 15px;
 }
 
-
+.clr-form-control {
+  display: table-cell;
+}

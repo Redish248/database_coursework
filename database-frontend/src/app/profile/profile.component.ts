@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core'
 import { DatePipe } from '@angular/common'
-import {ProfileService} from "./profile.service";
+import { ProfileService } from "./profile.service"
 
 @Component({
   selector: 'app-profile',
@@ -9,27 +9,28 @@ import {ProfileService} from "./profile.service";
 })
 export class ProfileComponent implements OnInit {
   editMode: boolean = false
-  newName : string
+  newName: string
   newSurname: string
   newGender: string
   newDate: string
 
-  constructor(public profileService: ProfileService, public datepipe: DatePipe) { }
+  constructor(public profileService: ProfileService, public datepipe: DatePipe) {
+  }
 
   ngOnInit(): void {
     this.profileService.getUserInfo()
   }
 
-  dateTransform(dateOld){
-    return this.datepipe.transform(dateOld, 'dd-MM-yyyy');
+  dateTransform(dateOld) {
+    return this.datepipe.transform(dateOld, 'dd-MM-yyyy')
   }
 
-  dateForBackend(dateOld){
-    return this.datepipe.transform(dateOld, 'yyyy-MM-dd');
+  dateForBackend(dateOld) {
+    return this.datepipe.transform(dateOld, 'yyyy-MM-dd')
   }
 
   dateInputShow(dateOld) {
-    return this.datepipe.transform(dateOld, 'MM/dd/yyyy');
+    return this.datepipe.transform(dateOld, 'MM/dd/yyyy')
   }
 
   enableEditMode() {

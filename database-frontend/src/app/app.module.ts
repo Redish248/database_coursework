@@ -20,10 +20,9 @@ import { AuthGuard } from './helpers/auth.guard'
 import { ErrorInterceptor } from './helpers/error.interceptor'
 import { AuthBasicInterceptor } from './helpers/auth-basic.interceptor'
 import { ProfileComponent } from "./profile/profile.component"
-import { CreateStaffAccountComponent } from './staff/components/create-staff-account/create-staff-account.component';
+import { CreateStaffAccountComponent } from './staff/components/create-staff-account/create-staff-account.component'
 import { ViewStaffAccountComponent } from './staff/components/view-staff-account/view-staff-account.component'
-import {ProfileComponent} from "./profile/profile.component";
-import {DatePipe} from "@angular/common";
+import { DatePipe } from "@angular/common"
 
 const appRoutes: Routes = [
   {path: '', component: HomeComponent, canActivate: [AuthGuard]},
