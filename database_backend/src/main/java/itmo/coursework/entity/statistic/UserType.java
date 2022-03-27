@@ -1,6 +1,7 @@
 package itmo.coursework.entity.statistic;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import itmo.coursework.config.security.Permission;
 import lombok.Data;
 
 import javax.persistence.Basic;
@@ -14,6 +15,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import java.util.Collection;
+import java.util.List;
 
 @Entity
 @Data

@@ -3,15 +3,18 @@ package itmo.coursework.controller
 import itmo.coursework.model.AddNewStaffRequest
 import itmo.coursework.model.UpdateStaffRequest
 import itmo.coursework.service.StaffServiceImpl
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration
 import org.springframework.http.HttpStatus
+import org.springframework.security.access.annotation.Secured
 import org.springframework.web.bind.annotation.*
+import java.security.Principal
 
 @RestController
 @RequestMapping("/databases/staff")
 class StaffController(private val staffService: StaffServiceImpl) {
 
     @GetMapping
-    fun getAllStaff() = staffService.getStaff()
+    fun getAllStaff(user: Principal) = staffService.getStaff(user)
 
     @GetMapping("positions")
     fun getPositions() = staffService.getPositions()

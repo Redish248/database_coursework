@@ -10,12 +10,18 @@ import itmo.coursework.parseStringToSqlDate
 import itmo.coursework.repository.statistic.PositionRepository
 import itmo.coursework.repository.statistic.StaffRepository
 import org.springframework.stereotype.Service
+import java.security.Principal
 
 @Service
 class StaffServiceImpl(
     private val staffRepository: StaffRepository,
     private val positionRepository: PositionRepository
 ) : StaffService {
+
+    fun getStaff(user: Principal) {
+        println(user)
+        staffRepository.findAll()
+    }
 
     override fun getStaff(): List<Staff> {
         return staffRepository.findAll()

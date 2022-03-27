@@ -6,6 +6,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -49,6 +50,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                     .authenticationEntryPoint(authEntryPoint)
                 .and()
                     .authorizeRequests()
+                    .antMatchers(HttpMethod.GET, "/databases/staff").hasAnyAuthority(Role.READER.name(),Role.MANAGER.name(), Role.ADMIN.name())
                     .antMatchers("/databases/signup").permitAll()
                     .anyRequest().authenticated()
                 .and()

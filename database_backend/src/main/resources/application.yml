@@ -27,3 +27,9 @@ spring:
   sql:
     init:
       mode: always
+
+#security:
+#  roles:
+#    ADMIN: [ READ, MANAGE_ANIMALS, ADMINISTRATION ]
+#    MANAGER: [ READ, MANAGE_ANIMALS ]
+#    READER: [ READ ]
