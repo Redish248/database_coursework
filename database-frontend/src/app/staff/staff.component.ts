@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core'
 import { StaffService } from './staff.service'
 import { Staff } from './model/Staff'
 import { Gender } from '../common_model'
+import { DatePipe } from '@angular/common'
 
 @Component({
   selector: 'app-staff',
@@ -42,7 +43,7 @@ export class StaffComponent implements OnInit {
     {min: 60000, max: 100000}
   ]
 
-  constructor(private staffService: StaffService) {
+  constructor(private staffService: StaffService, private datePipe: DatePipe) {
   }
 
   ngOnInit(): void {
@@ -60,15 +61,21 @@ export class StaffComponent implements OnInit {
         this.staff = data
         this.staff.forEach(el => {
           el['fullName'] = `${el.surname} ${el.name} ${el.patronymic}`
-          el['age'] = this.getAge(el.dateOfBirth)
+          el['age'] = StaffComponent.getAge(el.dateOfBirth)
+          el.dateOfBirth = this.replaceDate(el.dateOfBirth)
+          el.firstWorkDate = this.replaceDate(el.firstWorkDate)
         })
+        console.log("staff", this.staff)
       },
       err => {
         this.loading = false
         this.errorMessage = err
       }
     )
+  }
 
+  private replaceDate(dateString: string): string {
+    return this.datePipe.transform(dateString.replace(/-/g, "/"), "dd/MM/yyyy")
   }
 
   addStaff() {
@@ -80,7 +87,7 @@ export class StaffComponent implements OnInit {
     this.viewStaffAccount = true
   }
 
-  private getAge(birthday): number {
+  private static getAge(birthday): number {
     const today = new Date()
     birthday = new Date(birthday)
     let age = today.getFullYear() - birthday.getFullYear()

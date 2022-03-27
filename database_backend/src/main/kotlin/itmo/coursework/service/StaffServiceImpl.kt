@@ -50,6 +50,7 @@ class StaffServiceImpl(
         println("update staff $request")
         saveStaff(
             Staff(
+                uid,
                 request.name ?: name,
                 request.surname ?: surname,
                 request.patronymic ?: patronymic,

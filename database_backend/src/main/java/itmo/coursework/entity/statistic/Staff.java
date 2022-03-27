@@ -60,6 +60,10 @@ public class Staff {
     @Column(name = "first_work_date")
     private Date firstWorkDate;
 
+    public long getUid() {
+        return uid;
+    }
+
     public String getName() {
         return name;
     }
@@ -100,6 +104,19 @@ public class Staff {
     }
 
     public Staff(String name, String surname, String patronymic, Date dateOfBirth, String gender, Position positionType, Integer salary, Integer experience, Date firstWorkDate) {
+        this.name = name;
+        this.surname = surname;
+        this.patronymic = patronymic;
+        this.dateOfBirth = dateOfBirth;
+        this.gender = gender;
+        this.positionType = positionType;
+        this.salary = salary;
+        this.experience = experience;
+        this.firstWorkDate = firstWorkDate;
+    }
+
+    public Staff(long uid, String name, String surname, String patronymic, Date dateOfBirth, String gender, Position positionType, Integer salary, Integer experience, Date firstWorkDate) {
+        this.uid = uid;
         this.name = name;
         this.surname = surname;
         this.patronymic = patronymic;

@@ -41,14 +41,13 @@
         Зарплата
     </clr-dg-column>
 
-
-    <clr-dg-row *clrDgItems="let next of staff" [clrDgItem]="next" (click)="viewStaff(next)">
+    <clr-dg-row *clrDgItems="let next of staff" [clrDgItem]="next" (click)="viewStaff(next)" style="cursor: pointer;">
         <clr-dg-cell>{{next.surname}} {{next.name}} {{next.patronymic}}</clr-dg-cell>
         <clr-dg-cell>{{next.gender}}</clr-dg-cell>
         <clr-dg-cell>{{next.age}}</clr-dg-cell>
         <clr-dg-cell>{{next.positionType.name}}</clr-dg-cell>
         <clr-dg-cell>{{next.experience}}</clr-dg-cell>
-        <clr-dg-cell>{{next.firstWorkDate | date}}</clr-dg-cell>
+        <clr-dg-cell>{{next.firstWorkDate}}</clr-dg-cell>
         <clr-dg-cell>{{next.salary}}</clr-dg-cell>
     </clr-dg-row>
 

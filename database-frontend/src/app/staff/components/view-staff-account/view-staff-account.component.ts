@@ -4,6 +4,7 @@ import { Gender, ViewMode } from '../../../common_model'
 import { StaffService } from '../../staff.service'
 import { Staff } from '../../model/Staff'
 import { Position } from '../../model/Position'
+import { DatePipe } from '@angular/common'
 
 @Component({
   selector: 'app-view-staff-account',
@@ -26,7 +27,7 @@ export class ViewStaffAccountComponent implements OnInit {
 
   hasAdminPermissions: boolean = true
 
-  constructor(private staffService: StaffService) {
+  constructor(private staffService: StaffService, private datePipe: DatePipe) {
     this.staffForm = staffService.buildStaffForm()
   }
 
@@ -51,6 +52,11 @@ export class ViewStaffAccountComponent implements OnInit {
     )
     this.staffForm.disable()
   }
+
+  private replaceDate(dateString: string): string {
+    return this.datePipe.transform(dateString.replace(/-/g, "/"), "dd/MM/yyyy")
+  }
+
 
   switchModeToEdit() {
     if (this.mode == ViewMode.VIEW) {
@@ -82,8 +88,7 @@ export class ViewStaffAccountComponent implements OnInit {
       _ => {
         this.loading = false
         this.modalOpen = false
-        this.closeModal.emit(
-        )
+        this.closeModal.emit()
       },
       err => {
         this.loading = false

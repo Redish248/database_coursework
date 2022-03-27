@@ -1,5 +1,5 @@
 <form clrForm [formGroup]="staffForm">
-    <clr-modal [(clrModalOpen)]="modalOpen" clrModalSize="xl">
+    <clr-modal [(clrModalOpen)]="modalOpen" clrModalSize="xl" (clrModalOpenChange)="closeModal.emit()">
         <h3 class="modal-title">
             <clr-icon *ngIf="mode == ViewMode.VIEW && hasAdminPermissions" shape="pencil" (click)="switchModeToEdit()">
             </clr-icon>
@@ -58,7 +58,9 @@
                     (click)="update()">
                 Обновить профиль
             </button>
-            <button *ngIf="hasAdminPermissions && loading == false" (click)="deleteStaff()">Удалить сотрудника</button>
+            <button *ngIf="hasAdminPermissions && loading == false" class="btn btn-danger-outline"
+                    (click)="deleteStaff()">Удалить сотрудника
+            </button>
         </div>
 
     </clr-modal>
