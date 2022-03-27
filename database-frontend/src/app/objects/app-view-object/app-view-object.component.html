@@ -1,0 +1,54 @@
+<form clrForm [formGroup]="objectsForm">
+  <clr-modal [(clrModalOpen)]="modalOpen" clrModalSize="xl">
+    <h3 class="modal-title">
+      <clr-icon *ngIf="mode == ViewMode.VIEW" shape="pencil" (click)="switchModeToEdit()">
+      </clr-icon>
+      Вещь
+    </h3>
+    <div class="modal-body">
+      <clr-alert clrAlertType="danger" *ngIf="errorMessage">{{errorMessage}}</clr-alert>
+      <p>Информация о вещь</p>
+      <clr-input-container>
+        <label>Название</label>
+        <label *ngIf="mode == ViewMode.VIEW">{{objectsInfo.name}}</label>
+        <input *ngIf="mode == ViewMode.EDIT" clrInput formControlName="name" type="text">
+      </clr-input-container>
+      <clr-input-container>
+        <label>Описание</label>
+        <label *ngIf="mode == ViewMode.VIEW">{{objectsInfo.description}}</label>
+        <input *ngIf="mode == ViewMode.EDIT" clrInput formControlName="description" type="text">
+      </clr-input-container>
+      <clr-input-container>
+        <label>Цена</label>
+        <label *ngIf="mode == ViewMode.VIEW">{{objectsInfo.price}}</label>
+        <input *ngIf="mode == ViewMode.EDIT" clrInput formControlName="price" type="number">
+      </clr-input-container>
+      <clr-input-container>
+        <label>Количество</label>
+        <label *ngIf="mode == ViewMode.VIEW">{{objectsInfo.amount}}</label>
+        <input *ngIf="mode == ViewMode.EDIT" clrInput formControlName="amount" type="number">
+      </clr-input-container>
+      <button *ngIf="loading == false"
+              type="button"
+              class="btn btn-outline delete-button"
+              (click)="deleteObject()">
+        Удалить
+      </button>
+    </div>
+    <div class="modal-footer">
+      <button *ngIf="mode == ViewMode.EDIT && loading == false && objectsForm.valid"
+              type="button"
+              class="btn btn-outline"
+              (click)="update()">
+        Обновить запись
+      </button>
+      <button *ngIf="mode == ViewMode.EDIT && loading == false"
+              type="button"
+              class="btn btn-outline"
+              (click)="cancelEdit()">
+        Отмена
+      </button>
+    </div>
+
+  </clr-modal>
+</form>

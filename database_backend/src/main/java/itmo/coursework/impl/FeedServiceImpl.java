@@ -21,11 +21,6 @@ public class FeedServiceImpl implements FeedService {
     }
 
     @Override
-    public List<Feed> getFeedByName(String name) {
-        return feedRepository.findFeedsByName(name);
-    }
-
-    @Override
     public Feed createFeed(Feed newFeed) {
         Feed feed = new Feed();
         feed.setName(newFeed.getName());

@@ -1,1 +1,52 @@
-<p>objects works!</p>
+<clr-alert clrAlertType="danger" *ngIf="errorMessage">{{errorMessage}}</clr-alert>
+<clr-button-group class="btn-primary">
+  <clr-button (click)="addObject()">Добавить вещь</clr-button>
+</clr-button-group>
+<clr-datagrid>
+  <clr-dg-column [clrDgField]="'uid'">ID</clr-dg-column>
+  <clr-dg-column [clrDgField]="'name'">Имя</clr-dg-column>
+  <clr-dg-column [clrDgField]="'description'">Описание</clr-dg-column>
+
+  <clr-dg-column [clrDgField]="'price'">
+    <clr-dg-filter [clrDgFilter]="priceFilter">
+      <app-range-filter #priceFilter [clrFilterValue]="'price'"
+                        [clrRangeValue]="priceFilterRange">
+      </app-range-filter>
+    </clr-dg-filter>
+    Цена
+  </clr-dg-column>
+  <clr-dg-column [clrDgField]="'amount'">
+    <clr-dg-filter [clrDgFilter]="amountFilter">
+      <app-range-filter #amountFilter [clrFilterValue]="'amount'"
+                        [clrRangeValue]="amountFilterRange">
+      </app-range-filter>
+    </clr-dg-filter>
+    Количество
+  </clr-dg-column>
+
+  <clr-dg-row *clrDgItems="let next of objects" (click)="viewObject(next)">
+    <clr-dg-cell>{{next.uid}}</clr-dg-cell>
+    <clr-dg-cell>{{next.name}}</clr-dg-cell>
+    <clr-dg-cell>{{next.description}}</clr-dg-cell>
+    <clr-dg-cell>{{next.price}}</clr-dg-cell>
+    <clr-dg-cell>{{next.amount}}</clr-dg-cell>
+  </clr-dg-row>
+
+  <clr-dg-footer>
+    <clr-dg-pagination #pagination [clrDgPageSize]="5">
+      <clr-dg-page-size [clrPageSizeOptions]="[5,10,20]">Вещей на страницу</clr-dg-page-size>
+      {{pagination.firstItem + 1}} - {{pagination.lastItem + 1}} из {{pagination.totalItems}} вещей
+    </clr-dg-pagination>
+  </clr-dg-footer>
+</clr-datagrid>
+
+<app-create-object *ngIf="createNewObject"
+                 [modalOpen]="createNewObject"
+                 (closeModal)="createNewObject = false; getAllObjects()">
+
+</app-create-object>
+<app-view-object *ngIf="viewObjectVal"
+               [objectsInfo]="selectedObject"
+               [modalOpen]="viewObjectVal"
+               (closeModal)="this.viewObjectVal = false; this.selectedObject = undefined; this.getAllObjects()">
+</app-view-object>

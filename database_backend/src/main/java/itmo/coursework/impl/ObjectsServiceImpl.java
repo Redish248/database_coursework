@@ -22,22 +22,12 @@ public class ObjectsServiceImpl implements ObjectsService {
     }
 
     @Override
-    public Objects findObjectsByUid(long uid) {
-        return objectsRepository.findObjectsByUid(uid);
-    }
-
-    @Override
-    public List<Objects> findObjectsByName(String name) {
-        return objectsRepository.findObjectsByName(name);
-    }
-
-    @Override
-    public Objects createObject(String name, String description, int price, int amount) {
+    public Objects createObject(Objects newObject) {
         Objects object = new Objects();
-        object.setName(name);
-        object.setDescription(description);
-        object.setPrice(price);
-        object.setAmount(amount);
+        object.setName(newObject.getName());
+        object.setDescription(newObject.getDescription());
+        object.setPrice(newObject.getPrice());
+        object.setAmount(newObject.getAmount());
         return objectsRepository.save(object);
     }
 
@@ -53,19 +43,20 @@ public class ObjectsServiceImpl implements ObjectsService {
     }
 
     @Override
-    public void updateObject(long uid, String name, String description, int price, int amount) {
-        Objects oldObject = objectsRepository.findObjectsByUid(uid);
+    public Objects updateObject(Objects receivedObject) {
+        Objects oldObject = objectsRepository.findObjectsByUid(receivedObject.getUid());
         Optional.ofNullable(oldObject).ifPresentOrElse(
                 optOldObject -> {
-                    optOldObject.setName(name);
-                    optOldObject.setDescription(description);
-                    optOldObject.setPrice(price);
-                    optOldObject.setAmount(amount);
+                    optOldObject.setName(receivedObject.getName());
+                    optOldObject.setDescription(receivedObject.getDescription());
+                    optOldObject.setPrice(receivedObject.getPrice());
+                    optOldObject.setAmount(receivedObject.getAmount());
                     objectsRepository.save(optOldObject);
                 },
                 () -> {
-                    throw new ObjectNotFoundException(String.format("Object with uid %d does not exist", uid));
+                    throw new ObjectNotFoundException(String.format("Object with uid %d does not exist", receivedObject.getUid()));
                 }
         );
+        return receivedObject;
     }
 }

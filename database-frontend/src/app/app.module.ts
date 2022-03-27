@@ -26,6 +26,8 @@ import { DatePipe } from "@angular/common"
 import {AppViewFeedComponent} from "./feed/app-view-feed/app-view-feed.component";
 import {AppCreateFeedComponent} from "./feed/app-create-feed/app-create-feed.component";
 import {FilterModule} from "./helpers/filters/filter.module";
+import {AppCreateObjectsComponent} from "./objects/app-create-object/app-create-object.component";
+import {AppViewObjectComponent} from "./objects/app-view-object/app-view-object.component";
 
 const appRoutes: Routes = [
   {path: '', component: HomeComponent, canActivate: [AuthGuard]},
@@ -53,7 +55,9 @@ const appRoutes: Routes = [
     CreateStaffAccountComponent,
     ViewStaffAccountComponent,
     AppViewFeedComponent,
-    AppCreateFeedComponent
+    AppCreateFeedComponent,
+    AppCreateObjectsComponent,
+    AppViewObjectComponent
   ],
     imports: [
         BrowserModule,

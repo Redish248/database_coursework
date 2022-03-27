@@ -1,32 +1,33 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core'
 import {FormGroup} from '@angular/forms'
-import {FeedService} from "../feed.service";
+import {ObjectsService} from "../objects.service";
 
 @Component({
-  selector: 'app-create-feed',
-  templateUrl: './app-create-feed.component.html',
-  styleUrls: ['./app-create-feed.component.css']
+  selector: 'app-create-object',
+  templateUrl: './app-create-object.component.html',
+  styleUrls: ['./app-create-object.component.css']
 })
-export class AppCreateFeedComponent implements OnInit {
+export class AppCreateObjectsComponent implements OnInit {
   @Input() modalOpen: boolean
   @Output() closeModal = new EventEmitter()
 
-  feedForm: FormGroup
+  objectsForm: FormGroup
   errorMessage: string = undefined
   loading: boolean = false
 
-  constructor(private feedService: FeedService) {
-    this.feedForm = feedService.buildFeedForm()
+  constructor(private objectsService: ObjectsService) {
+    this.objectsForm = objectsService.buildObjectsForm()
   }
 
   ngOnInit(): void {
     this.errorMessage = undefined
   }
 
-  createFeed() {
+  createObject() {
     this.loading = true
     this.errorMessage = undefined
-    this.feedService.createFeed(this.feedForm.getRawValue()).subscribe(
+    console.log(this.objectsForm.getRawValue())
+    this.objectsService.createObjects(this.objectsForm.getRawValue()).subscribe(
       _ => {
         this.loading = false
         this.closeModal.emit()

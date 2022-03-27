@@ -8,8 +8,6 @@ public interface FeedService {
 
     List<Feed> getAllFeeds();
 
-    List<Feed> getFeedByName(String name);
-
     Feed createFeed(Feed newFeed);
 
     void deleteFeed(long uid);

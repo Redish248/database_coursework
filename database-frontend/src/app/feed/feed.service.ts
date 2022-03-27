@@ -23,7 +23,7 @@ export class FeedService {
     return this.http.get<Feed[]>(this.apiUrl + '/getAllFeed')
   }
 
-  buildStaffForm(): FormGroup {
+  buildFeedForm(): FormGroup {
     return this.formBuilder.group({
       name: ['', Validators.required],
       description: ['', Validators.required],

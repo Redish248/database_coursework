@@ -9,6 +9,4 @@ import java.util.List;
 @Repository
 public interface ObjectsRepository extends CrudRepository<Objects, Long> {
     Objects findObjectsByUid(long uid);
-
-    List<Objects> findObjectsByName(String name);
 }

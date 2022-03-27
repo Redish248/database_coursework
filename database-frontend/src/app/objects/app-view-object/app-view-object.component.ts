@@ -1,54 +1,54 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core'
 import {FormGroup} from '@angular/forms'
 import {ViewMode} from '../../common_model'
-import {Feed} from "../Feed";
-import {FeedService} from "../feed.service";
+import {ObjectsInfo} from "../Objects";
+import {ObjectsService} from "../objects.service";
 
 @Component({
-  selector: 'app-view-feed',
-  templateUrl: './app-view-feed.component.html',
-  styleUrls: ['./app-view-feed.component.css']
+  selector: 'app-view-object',
+  templateUrl: './app-view-object.component.html',
+  styleUrls: ['./app-view-object.component.css']
 })
-export class AppViewFeedComponent implements OnInit {
+export class AppViewObjectComponent implements OnInit {
   @Input() modalOpen: boolean
-  @Input() feed: Feed
+  @Input() objectsInfo: ObjectsInfo
   @Output() closeModal = new EventEmitter()
 
-  feedForm: FormGroup
+  objectsForm: FormGroup
   errorMessage: string = undefined
   ViewMode = ViewMode
   mode: ViewMode = ViewMode.VIEW
   loading: boolean = false
 
-  constructor(private feedService: FeedService) {
-    this.feedForm = feedService.buildFeedForm()
+  constructor(private objectsService: ObjectsService) {
+    this.objectsForm = objectsService.buildObjectsForm()
   }
 
   ngOnInit(): void {
-    this.feedForm.reset({
-      name: this.feed.name,
-      description: this.feed.description,
-      price: this.feed.price,
-      amount: this.feed.amount
+    this.objectsForm.reset({
+      name: this.objectsInfo.name,
+      description: this.objectsInfo.description,
+      price: this.objectsInfo.price,
+      amount: this.objectsInfo.amount
     })
     this.errorMessage = undefined
-    this.feedForm.disable()
+    this.objectsForm.disable()
   }
 
   switchModeToEdit() {
     if (this.mode == ViewMode.VIEW) {
       this.mode = ViewMode.EDIT
-      this.feedForm.enable()
+      this.objectsForm.enable()
     }
   }
 
   update() {
     this.loading = true
     this.errorMessage = undefined
-    this.feedService.updateFeed(this.feed.uid, this.feedForm.getRawValue()).subscribe(
+    this.objectsService.updateObjects(this.objectsInfo.uid, this.objectsForm.getRawValue()).subscribe(
       data => {
         this.loading = false
-        this.feed = data
+        this.objectsInfo = data
       },
       err => {
         this.loading = false
@@ -60,19 +60,19 @@ export class AppViewFeedComponent implements OnInit {
   }
 
   cancelEdit(){
-    this.feedForm.reset({
-      name: this.feed.name,
-      description: this.feed.description,
-      price: this.feed.price,
-      amount: this.feed.amount
+    this.objectsForm.reset({
+      name: this.objectsInfo.name,
+      description: this.objectsInfo.description,
+      price: this.objectsInfo.price,
+      amount: this.objectsInfo.amount
     })
     this.mode = ViewMode.VIEW
   }
 
-  deleteFeed() {
+  deleteObject() {
     this.loading = true
     this.errorMessage = undefined
-    this.feedService.deleteFeed(this.feed.uid).subscribe(
+    this.objectsService.deleteObjects(this.objectsInfo.uid).subscribe(
       _ => {
         this.loading = false
         this.modalOpen = false

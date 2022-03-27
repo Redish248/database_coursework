@@ -10,6 +10,4 @@ import java.util.List;
 public interface FeedRepository extends CrudRepository<Feed, Long> {
     Feed findFeedByUid(long uid);
 
-    //TODO: may be regex
-    List<Feed> findFeedsByName(String name);
 }
