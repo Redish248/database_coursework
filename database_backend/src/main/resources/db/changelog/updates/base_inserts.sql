@@ -1,38 +1,38 @@
 -- staff
 insert into staff(name, surname, patronymic, date_of_birth, gender, position, salary, experience, first_work_date)
-values ('Илья', 'Сидоров', 'Владимирович', '1982-05-10', 'male', 2, 120000, 15, '2020-02-10');
+values ('Илья', 'Сидоров', 'Владимирович', '1982-05-10', 'мужской', 2, 120000, 15, '2020-02-10');
 
 insert into staff(name, surname, patronymic, date_of_birth, gender, position, salary, experience, first_work_date)
-values ('Юлия', 'Прокатьева', 'Ивановна', '2070-01-18', 'female', 3, 90000, 30, '2019-11-01');
+values ('Юлия', 'Прокатьева', 'Ивановна', '1970-01-18', 'женский', 3, 90000, 30, '2019-11-01');
 insert into staff(name, surname, patronymic, date_of_birth, gender, position, salary, experience, first_work_date)
-values ('Илона', 'Кузьмина', 'Руслановна', '1995-07-01', 'female', 3, 65000, 4, '2021-05-19');
+values ('Илона', 'Кузьмина', 'Руслановна', '1995-07-01', 'женский', 3, 65000, 4, '2021-05-19');
 
 insert into staff(name, surname, patronymic, date_of_birth, gender, position, salary, experience, first_work_date)
-values ('Ульяна', 'Васильева', 'Игоревна', '1995-08-10', 'female', 4, 98000, 7, '2021-01-15');
+values ('Ульяна', 'Васильева', 'Игоревна', '1995-08-10', 'женский', 4, 98000, 7, '2021-01-15');
 
 insert into staff(name, surname, patronymic, date_of_birth, gender, position, salary, experience, first_work_date)
-values ('Марьяна', 'Петрова', 'Евдокомовна', '1979-09-20', 'female', 5, 105000, 19, '2019-12-31');
+values ('Марьяна', 'Петрова', 'Евдокомовна', '1979-09-20', 'женский', 5, 105000, 19, '2019-12-31');
 
 insert into staff(name, surname, patronymic, date_of_birth, gender, position, salary, experience, first_work_date)
-values ('Олег', 'Песков', 'Александрович', '2000-06-19', 'male', 6, 90000, 3, '2021-10-10');
+values ('Олег', 'Песков', 'Александрович', '2000-06-19', 'мужской', 6, 90000, 3, '2021-10-10');
 
 insert into staff(name, surname, patronymic, date_of_birth, gender, position, salary, experience, first_work_date)
-values ('Евгений', 'Окатьев', 'Алексеевич', '1997-04-01', 'male', 7, 30000, 3, '2020-07-01');
+values ('Евгений', 'Окатьев', 'Алексеевич', '1997-04-01', 'мужской', 7, 30000, 3, '2020-07-01');
 insert into staff(name, surname, patronymic, date_of_birth, gender, position, salary, experience, first_work_date)
-values ('Александр', 'Культов', 'Ильич', '1999-08-15', 'male', 7, 30000, 2, '2020-07-01');
+values ('Александр', 'Культов', 'Ильич', '1999-08-15', 'мужской', 7, 30000, 2, '2020-07-01');
 insert into staff(name, surname, patronymic, date_of_birth, gender, position, salary, experience, first_work_date)
-values ('Игорь', 'Михайлов', 'Дмитриевич', '1996-09-01', 'male', 7, 30000, 5, '2020-07-01');
+values ('Игорь', 'Михайлов', 'Дмитриевич', '1996-09-01', 'мужской', 7, 30000, 5, '2020-07-01');
 
 insert into staff(name, surname, patronymic, date_of_birth, gender, position, salary, experience, first_work_date)
-values ('Иван', 'Прокофьев', 'Олегович', '1999-10-01', 'male', 8, 27000, 5, '2021-07-23');
+values ('Иван', 'Прокофьев', 'Олегович', '1999-10-01', 'мужской', 8, 27000, 5, '2021-07-23');
 insert into staff(name, surname, patronymic, date_of_birth, gender, position, salary, experience, first_work_date)
-values ('Игорь', 'Михайлов', 'Дмитриевич', '1989-09-01', 'male', 8, 31000, 15, '2022-01-19');
+values ('Игорь', 'Михайлов', 'Дмитриевич', '1989-09-01', 'мужской', 8, 31000, 15, '2022-01-19');
 
 insert into staff(name, surname, patronymic, date_of_birth, gender, position, salary, experience, first_work_date)
-values ('Артем', 'Спиридонов', 'Михайлович', '1989-09-15', 'male', 9, 37000, 16, '2021-12-19');
+values ('Артем', 'Спиридонов', 'Михайлович', '1989-09-15', 'мужской', 9, 37000, 16, '2021-12-19');
 
 insert into staff(name, surname, patronymic, date_of_birth, gender, position, salary, experience, first_work_date)
-values ('Мария', 'Васильева', 'Юрьевна', '1990-09-15', 'male', 10, 89000, 10, '2019-01-19');
+values ('Мария', 'Васильева', 'Юрьевна', '1990-09-15', 'мужской', 10, 89000, 10, '2019-01-19');
 
 
 -- objects

@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core'
 import { FormBuilder, FormGroup, Validators } from '@angular/forms'
 import { SignupService } from './signup.service'
 import { Gender } from '../common_model'
+import { AuthService } from '../auth.service'
 
 @Component({
   selector: 'app-signup',
@@ -10,14 +11,16 @@ import { Gender } from '../common_model'
 })
 export class SignupComponent implements OnInit {
   @Input() modalOpened: boolean
-  @Output() closeModal = new EventEmitter<any>()
+  @Output() closeModal = new EventEmitter()
 
   signupForm: FormGroup
   errorMessage: string = undefined
+  loading: boolean = false
   Gender = Gender
 
   constructor(private formBuilder: FormBuilder,
-              private signupService: SignupService) {
+              private signupService: SignupService,
+              private authService: AuthService) {
   }
 
   ngOnInit(): void {
@@ -33,17 +36,31 @@ export class SignupComponent implements OnInit {
   }
 
   signup() {
+    this.loading = true
     this.errorMessage = undefined
     this.signupService.signup(this.signupForm.getRawValue()).subscribe(
       _ => {
-        this.closeModal.emit({
+        // login after success registration
+        this.authService.login({
           username: this.signupForm.value.nick,
           password: this.signupForm.value.password
-        })
-        this.modalOpened = false
-      }, err => this.errorMessage = err
-    )
-
+        }).subscribe(
+          _ => {
+            this.loading = false
+            this.closeModal.emit({
+              username: this.signupForm.value.nick,
+              password: this.signupForm.value.password
+            })
+            this.modalOpened = false
+          },
+          err => {
+            this.loading = false
+            this.errorMessage = err
+          }
+        )
+      }, err => {
+        this.loading = false
+        this.errorMessage = err
+      })
   }
-
 }

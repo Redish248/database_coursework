@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core'
 import { AppConfigService } from './app-config.service'
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http'
+import { HttpClient, HttpParams } from '@angular/common/http'
 import { map } from 'rxjs'
 import { Router } from '@angular/router'
-import {User} from "./login/User";
+import { User } from "./login/User"
 
 @Injectable({
   providedIn: 'root'
@@ -24,18 +24,10 @@ export class AuthService {
     return localStorage.getItem("username")
   }
 
-  loginAfterRegistration(username: string, password: string) {
-    AuthService.setLocalStorage(username, password)
-    this.user = {name: username}
-    this.router.navigate(['/'])
-  }
-
   login(credentials) {
     const sendParams = new HttpParams()
       .append('username', credentials.username)
       .append('password', credentials.password)
-    const authToken = btoa(`${credentials.username}:${credentials.password}`)
-    console.log(sendParams)
     return this.http.post<User>(`${this.apiUrl}/login`, null, {
       params: sendParams,
       withCredentials: true,

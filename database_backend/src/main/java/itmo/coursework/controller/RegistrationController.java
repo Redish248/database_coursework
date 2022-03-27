@@ -33,7 +33,7 @@ public class RegistrationController {
         user.setGender(newUser.getGender());
 
         //TODO: add user type
-        user.setUserType(userService.getUserTypeByUid(1));
+        user.setUserType(userService.getUserTypeByUid(3));
         user.setDateOfBirth(parseStringToSqlDate(newUser.getDateOfBirth()));
 
         user.setNick(newUser.getNick());
