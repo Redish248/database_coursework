@@ -53,11 +53,6 @@ export class ViewStaffAccountComponent implements OnInit {
     this.staffForm.disable()
   }
 
-  private replaceDate(dateString: string): string {
-    return this.datePipe.transform(dateString.replace(/-/g, "/"), "dd/MM/yyyy")
-  }
-
-
   switchModeToEdit() {
     if (this.mode == ViewMode.VIEW) {
       this.mode = ViewMode.EDIT

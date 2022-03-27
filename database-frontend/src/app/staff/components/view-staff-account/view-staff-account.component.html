@@ -40,7 +40,7 @@
                 <label>Дата выхода на работу</label>
                 <input clrDate type="date" formControlName="firstWorkDate"/>
             </clr-date-container>
-            <clr-input-container>
+            <clr-input-container *ngIf="hasAdminPermissions">
                 <label>Зарплата</label>
                 <input clrInput formControlName="salary" type="number">
             </clr-input-container>

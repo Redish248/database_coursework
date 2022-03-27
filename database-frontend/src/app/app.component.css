@@ -1,0 +1,11 @@
+.critical_amount {
+    background-color: #E9967A !important;
+}
+
+.average_amount {
+    background-color: #F5DEB3;
+}
+
+.enough_amount {
+    background-color: aquamarine;
+}

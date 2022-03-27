@@ -1,11 +1,12 @@
-import {Component, OnInit} from '@angular/core';
-import {Feed} from "./Feed";
-import {FeedService} from "./feed.service";
+import { Component, OnInit } from '@angular/core'
+import { Feed } from "./Feed"
+import { FeedService } from "./feed.service"
+import { Amount } from '../common_model'
 
 @Component({
   selector: 'app-feed',
   templateUrl: './feed.component.html',
-  styleUrls: ['./feed.component.css']
+  styleUrls: ['./feed.component.css', '../app.component.css']
 })
 export class FeedComponent implements OnInit {
 
@@ -58,7 +59,6 @@ export class FeedComponent implements OnInit {
         this.errorMessage = err
       }
     )
-
   }
 
   addFeed() {
@@ -70,4 +70,9 @@ export class FeedComponent implements OnInit {
     this.viewFeedVal = true
   }
 
+  rowColor(amount: number): string {
+    if (amount >= 0 && amount <= 5) return Amount.CRITICAL
+    if (amount > 5 && amount <= 10) return Amount.AVERAGE
+    return Amount.ENOUGH
+  }
 }

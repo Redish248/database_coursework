@@ -1,5 +1,5 @@
 <form clrForm [formGroup]="feedForm">
-  <clr-modal [(clrModalOpen)]="modalOpen" clrModalSize="xl">
+  <clr-modal [(clrModalOpen)]="modalOpen"  (clrModalOpenChange)="closeModal.emit()">
 
     <h3 class="modal-title">Добавление нового корма</h3>
     <div class="modal-body">

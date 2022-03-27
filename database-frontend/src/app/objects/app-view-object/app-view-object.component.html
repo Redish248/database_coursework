@@ -1,5 +1,5 @@
 <form clrForm [formGroup]="objectsForm">
-  <clr-modal [(clrModalOpen)]="modalOpen" clrModalSize="xl">
+  <clr-modal [(clrModalOpen)]="modalOpen"(clrModalOpenChange)="closeModal.emit()">
     <h3 class="modal-title">
       <clr-icon *ngIf="mode == ViewMode.VIEW" shape="pencil" (click)="switchModeToEdit()">
       </clr-icon>

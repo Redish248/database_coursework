@@ -1,11 +1,12 @@
-import {Component, OnInit} from '@angular/core';
-import {ObjectsInfo} from "./Objects";
-import {ObjectsService} from "./objects.service";
+import { Component, OnInit } from '@angular/core'
+import { ObjectsInfo } from "./Objects"
+import { ObjectsService } from "./objects.service"
+import { Amount } from '../common_model'
 
 @Component({
   selector: 'app-objects',
   templateUrl: './objects.component.html',
-  styleUrls: ['./objects.component.css']
+  styleUrls: ['./objects.component.css', '../app.component.css']
 })
 export class ObjectsComponent implements OnInit {
 
@@ -58,7 +59,6 @@ export class ObjectsComponent implements OnInit {
         this.errorMessage = err
       }
     )
-
   }
 
   addObject() {
@@ -70,4 +70,9 @@ export class ObjectsComponent implements OnInit {
     this.viewObjectVal = true
   }
 
+  rowColor(amount: number): string {
+    if (amount < 15) return Amount.CRITICAL
+    if (amount > 15 && amount <= 30) return Amount.AVERAGE
+    else return Amount.ENOUGH
+  }
 }

@@ -1,8 +1,8 @@
-import {Injectable} from '@angular/core'
-import {AppConfigService} from '../app-config.service'
-import {HttpClient} from '@angular/common/http'
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {ObjectsInfo} from "./Objects";
+import { Injectable } from '@angular/core'
+import { AppConfigService } from '../app-config.service'
+import { HttpClient } from '@angular/common/http'
+import { FormBuilder, FormGroup, Validators } from "@angular/forms"
+import { ObjectsInfo } from "./Objects"
 
 @Injectable({
   providedIn: 'root'
@@ -18,7 +18,6 @@ export class ObjectsService {
     return `${this.configService.silverPawAppUrl}/objects`
   }
 
-
   getObjects() {
     return this.http.get<ObjectsInfo[]>(this.apiUrl + '/getAllObjects')
   }
@@ -30,7 +29,6 @@ export class ObjectsService {
       price: [0, Validators.required],
       amount: [0, Validators.required]
     })
-
   }
 
   createObjects(objects) {
@@ -45,6 +43,4 @@ export class ObjectsService {
   deleteObjects(uid: number) {
     return this.http.delete(`${this.apiUrl}/deleteObject/${uid}`)
   }
-
-
 }

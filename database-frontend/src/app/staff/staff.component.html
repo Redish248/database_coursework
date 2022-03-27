@@ -32,7 +32,7 @@
         Опыт работы
     </clr-dg-column>
     <clr-dg-column [clrDgField]="'firstWorkDate'">Первый рабочий день</clr-dg-column>
-    <clr-dg-column [clrDgField]="'salary'">
+    <clr-dg-column [clrDgField]="'salary'" *ngIf="hasAdminPermissions">
         <clr-dg-filter [clrDgFilter]="salaryFilter">
             <app-range-filter #salaryFilter [clrFilterValue]="'salary'"
                               [clrRangeValue]="salaryFilterParams">
