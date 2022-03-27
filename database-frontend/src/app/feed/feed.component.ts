@@ -17,6 +17,26 @@ export class FeedComponent implements OnInit {
   createNewFeed: boolean = false
   viewFeedVal: boolean = false
 
+  priceFilterRange = [
+    {min: 0, max: 100},
+    {min: 100, max: 200},
+    {min: 200, max: 500},
+    {min: 500, max: 1000},
+    {min: 1000, max: 1500},
+    {min: 1500, max: 2000},
+    {min: 2000, max: 10000}
+  ]
+
+  amountFilterRange = [
+    {min: 0, max: 5},
+    {min: 5, max: 10},
+    {min: 10, max: 15},
+    {min: 15, max: 20},
+    {min: 20, max: 50},
+    {min: 50, max: 100},
+    {min: 100, max: 1000}
+  ]
+
   constructor(private feedService: FeedService) {
   }
 
@@ -48,12 +68,6 @@ export class FeedComponent implements OnInit {
   viewFeed(feed: Feed) {
     this.selectedFeed = feed
     this.viewFeedVal = true
-  }
-
-  closeModalView() {
-    this.viewFeedVal = false;
-    this.selectedFeed = undefined;
-    this.getAllFeed()
   }
 
 }

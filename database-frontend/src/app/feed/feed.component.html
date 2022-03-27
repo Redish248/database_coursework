@@ -6,8 +6,23 @@
   <clr-dg-column [clrDgField]="'uid'">ID</clr-dg-column>
   <clr-dg-column [clrDgField]="'name'">Имя</clr-dg-column>
   <clr-dg-column [clrDgField]="'description'">Описание</clr-dg-column>
-  <clr-dg-column [clrDgField]="'price'">Цена</clr-dg-column>
-  <clr-dg-column [clrDgField]="'amount'">Количество</clr-dg-column>
+
+  <clr-dg-column [clrDgField]="'price'">
+    <clr-dg-filter [clrDgFilter]="priceFilter">
+      <app-range-filter #priceFilter [clrFilterValue]="'price'"
+                        [clrRangeValue]="priceFilterRange">
+      </app-range-filter>
+    </clr-dg-filter>
+    Цена
+  </clr-dg-column>
+  <clr-dg-column [clrDgField]="'amount'">
+    <clr-dg-filter [clrDgFilter]="amountFilter">
+      <app-range-filter #amountFilter [clrFilterValue]="'amount'"
+                        [clrRangeValue]="amountFilterRange">
+      </app-range-filter>
+    </clr-dg-filter>
+    Количество
+  </clr-dg-column>
 
   <clr-dg-row *clrDgItems="let next of feeds" (click)="viewFeed(next)">
     <clr-dg-cell>{{next.uid}}</clr-dg-cell>
@@ -33,6 +48,5 @@
 <app-view-feed *ngIf="viewFeedVal"
                         [feed]="selectedFeed"
                         [modalOpen]="viewFeedVal"
-                        (closeModal)="closeModalView()"
-                        (deleteFeedOnModal)="closeModalView()">
+                        (closeModal)="this.viewFeedVal = false; this.selectedFeed = undefined; this.getAllFeed()">
 </app-view-feed>

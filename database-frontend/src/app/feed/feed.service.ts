@@ -42,8 +42,8 @@ export class FeedService {
     return this.http.post<Feed>(`${this.apiUrl}` + '/updateFeed', JSON.stringify(feed), {headers: {'Content-Type': 'application/json'}})
   }
 
-  deleteFeed(uid) {
-    this.http.post(`${this.apiUrl}/deleteFeed/${uid}`, null).subscribe()
+  deleteFeed(uid: number) {
+    return this.http.delete(`${this.apiUrl}/deleteFeed/${uid}`)
   }
 
 

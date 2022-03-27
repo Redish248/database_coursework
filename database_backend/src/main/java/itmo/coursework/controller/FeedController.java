@@ -5,6 +5,7 @@ import itmo.coursework.service.FeedService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -33,16 +34,16 @@ public class FeedController {
         return ResponseEntity.status(HttpStatus.CREATED).body(feed);
     }
 
-    @PostMapping( "/deleteFeed/{uid}")
-    public @ResponseBody ResponseEntity deleteFeed(@PathVariable long uid) {
-        feedService.deleteFeed(uid);
-        return ResponseEntity.status(HttpStatus.OK).body("deleted");
-    }
-
     @PostMapping( "/updateFeed")
     public @ResponseBody ResponseEntity updateFeed(@RequestBody Feed feed) {
         Feed newFeed = feedService.updateFeed(feed);
         return ResponseEntity.status(HttpStatus.OK).body(newFeed);
+    }
+
+    @DeleteMapping( "/deleteFeed/{uid}")
+    public @ResponseBody ResponseEntity deleteFeed(@PathVariable long uid) {
+        feedService.deleteFeed(uid);
+        return ResponseEntity.status(HttpStatus.OK).body("deleted");
     }
 
 }

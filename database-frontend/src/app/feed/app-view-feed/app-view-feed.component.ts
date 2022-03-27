@@ -13,7 +13,6 @@ export class AppViewFeedComponent implements OnInit {
   @Input() modalOpen: boolean
   @Input() feed: Feed
   @Output() closeModal = new EventEmitter()
-  @Output() deleteFeedOnModal = new EventEmitter()
 
   feedForm: FormGroup
   errorMessage: string = undefined
@@ -57,6 +56,7 @@ export class AppViewFeedComponent implements OnInit {
       }
     )
     this.cancelEdit()
+    location.reload();
   }
 
   cancelEdit(){
@@ -70,8 +70,20 @@ export class AppViewFeedComponent implements OnInit {
   }
 
   deleteFeed() {
-    this.feedService.deleteFeed(this.feed.uid)
-    this.deleteFeedOnModal.emit();
+    this.loading = true
+    this.errorMessage = undefined
+    this.feedService.deleteFeed(this.feed.uid).subscribe(
+      _ => {
+        this.loading = false
+        this.modalOpen = false
+        this.closeModal.emit()
+      },
+      err => {
+        this.loading = false
+        this.errorMessage = err
+      }
+    )
+    location.reload();
   }
 
 }
