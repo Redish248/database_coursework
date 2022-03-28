@@ -3,6 +3,7 @@ import {FormGroup} from '@angular/forms'
 import {ViewMode} from '../../common_model'
 import {ObjectsInfo} from "../Objects";
 import {ObjectsService} from "../objects.service";
+import {AuthService} from "../../auth.service";
 
 @Component({
   selector: 'app-view-object',
@@ -20,7 +21,9 @@ export class AppViewObjectComponent implements OnInit {
   mode: ViewMode = ViewMode.VIEW
   loading: boolean = false
 
-  constructor(private objectsService: ObjectsService) {
+  hasAdminPermissions: boolean = true
+
+  constructor(private objectsService: ObjectsService, private authService: AuthService) {
     this.objectsForm = objectsService.buildObjectsForm()
   }
 
@@ -32,6 +35,7 @@ export class AppViewObjectComponent implements OnInit {
       amount: this.objectsInfo.amount
     })
     this.errorMessage = undefined
+    this.hasAdminPermissions = this.authService.hasAdminPermission()
     this.objectsForm.disable()
   }
 
