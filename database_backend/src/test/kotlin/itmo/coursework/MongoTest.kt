@@ -1,6 +1,10 @@
 package itmo.coursework
 
-import itmo.coursework.service.TestAnimalService
+import com.fasterxml.jackson.core.JsonProcessingException
+import io.mockk.InternalPlatformDsl.toStr
+import itmo.coursework.entity.animals.MongoAnimal
+import itmo.coursework.entity.animals.Passport
+import itmo.coursework.service.MongoAnimalService
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
@@ -10,12 +14,27 @@ import org.springframework.boot.test.context.SpringBootTest
 class MongoTest {
 
     @Autowired
-    private lateinit var animalService: TestAnimalService
+    private lateinit var animalService: MongoAnimalService
 
     @Test
     fun `mongo alive`() {
         val animals = animalService.findAll()
         println(animals)
         Assertions.assertTrue { animals.size > 0 }
+    }
+
+    @Test
+    @Throws(JsonProcessingException::class)
+    fun testSave() {
+        val passport = Passport()
+        passport.number = "1"
+        passport.officialName = "of name"
+        val animal = MongoAnimal()
+        animal.muid = "11"
+        animal.name = "Vasya"
+        animal.age = 11
+        animal.eyesColor = "green"
+        animal.passport = passport
+        animalService.createAnimal(animal)
     }
 }
