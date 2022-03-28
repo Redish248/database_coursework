@@ -1,5 +1,5 @@
 <clr-alert clrAlertType="danger" *ngIf="errorMessage">{{errorMessage}}</clr-alert>
-<clr-button-group class="btn-primary">
+<clr-button-group *ngIf="hasAdminPermissions" class="btn-primary">
     <clr-button (click)="addFeed()">Добавить корм</clr-button>
 </clr-button-group>
 <clr-datagrid>

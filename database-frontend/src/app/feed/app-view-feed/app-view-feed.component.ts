@@ -3,6 +3,7 @@ import {FormGroup} from '@angular/forms'
 import {ViewMode} from '../../common_model'
 import {Feed} from "../Feed";
 import {FeedService} from "../feed.service";
+import {AuthService} from "../../auth.service";
 
 @Component({
   selector: 'app-view-feed',
@@ -20,7 +21,9 @@ export class AppViewFeedComponent implements OnInit {
   mode: ViewMode = ViewMode.VIEW
   loading: boolean = false
 
-  constructor(private feedService: FeedService) {
+  hasAdminPermissions: boolean = true
+
+  constructor(private feedService: FeedService, private authService: AuthService) {
     this.feedForm = feedService.buildFeedForm()
   }
 
@@ -32,6 +35,7 @@ export class AppViewFeedComponent implements OnInit {
       amount: this.feed.amount
     })
     this.errorMessage = undefined
+    this.hasAdminPermissions = this.authService.hasAdminPermission()
     this.feedForm.disable()
   }
 

@@ -1,7 +1,7 @@
 <form clrForm [formGroup]="feedForm">
   <clr-modal [(clrModalOpen)]="modalOpen" (clrModalOpenChange)="closeModal.emit()">
     <h3 class="modal-title">
-      <clr-icon *ngIf="mode == ViewMode.VIEW" shape="pencil" (click)="switchModeToEdit()">
+      <clr-icon *ngIf="mode == ViewMode.VIEW && hasAdminPermissions" shape="pencil" (click)="switchModeToEdit()">
       </clr-icon>
       Корм
     </h3>
@@ -11,24 +11,24 @@
       <clr-input-container>
         <label>Название</label>
         <label *ngIf="mode == ViewMode.VIEW">{{feed.name}}</label>
-        <input *ngIf="mode == ViewMode.EDIT" clrInput formControlName="name" type="text">
+        <input *ngIf="mode == ViewMode.EDIT && hasAdminPermissions" clrInput formControlName="name" type="text">
       </clr-input-container>
       <clr-input-container>
         <label>Описание</label>
         <label *ngIf="mode == ViewMode.VIEW">{{feed.description}}</label>
-        <input *ngIf="mode == ViewMode.EDIT" clrInput formControlName="description" type="text">
+        <input *ngIf="mode == ViewMode.EDIT && hasAdminPermissions" clrInput formControlName="description" type="text">
       </clr-input-container>
       <clr-input-container>
         <label>Цена</label>
         <label *ngIf="mode == ViewMode.VIEW">{{feed.price}}</label>
-        <input *ngIf="mode == ViewMode.EDIT" clrInput formControlName="price" type="number">
+        <input *ngIf="mode == ViewMode.EDIT && hasAdminPermissions" clrInput formControlName="price" type="number">
       </clr-input-container>
       <clr-input-container>
         <label>Количество</label>
         <label *ngIf="mode == ViewMode.VIEW">{{feed.amount}}</label>
-        <input *ngIf="mode == ViewMode.EDIT" clrInput formControlName="amount" type="number">
+        <input *ngIf="mode == ViewMode.EDIT && hasAdminPermissions" clrInput formControlName="amount" type="number">
       </clr-input-container>
-      <button *ngIf="loading == false"
+      <button *ngIf="loading == false && hasAdminPermissions"
               type="button"
               class="btn btn-outline delete-button"
               (click)="deleteFeed()">
@@ -36,13 +36,13 @@
       </button>
     </div>
     <div class="modal-footer">
-      <button *ngIf="mode == ViewMode.EDIT && loading == false && feedForm.valid"
+      <button *ngIf="mode == ViewMode.EDIT && loading == false && feedForm.valid && hasAdminPermissions"
               type="button"
               class="btn btn-outline"
               (click)="update()">
         Обновить запись
       </button>
-      <button *ngIf="mode == ViewMode.EDIT && loading == false"
+      <button *ngIf="mode == ViewMode.EDIT && loading == false && hasAdminPermissions"
               type="button"
               class="btn btn-outline"
               (click)="cancelEdit()">

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core'
 import { Feed } from "./Feed"
 import { FeedService } from "./feed.service"
 import { Amount } from '../common_model'
+import {AuthService} from "../auth.service";
 
 @Component({
   selector: 'app-feed',
@@ -38,11 +39,14 @@ export class FeedComponent implements OnInit {
     {min: 100, max: 1000}
   ]
 
-  constructor(private feedService: FeedService) {
+  hasAdminPermissions: boolean = true
+
+  constructor(private feedService: FeedService, private authService: AuthService) {
   }
 
   ngOnInit(): void {
     this.getAllFeed()
+    this.hasAdminPermissions = this.authService.hasAdminPermission()
   }
 
   getAllFeed() {

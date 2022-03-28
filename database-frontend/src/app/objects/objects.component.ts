@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core'
 import { ObjectsInfo } from "./Objects"
 import { ObjectsService } from "./objects.service"
 import { Amount } from '../common_model'
+import {AuthService} from "../auth.service";
 
 @Component({
   selector: 'app-objects',
@@ -17,6 +18,8 @@ export class ObjectsComponent implements OnInit {
 
   createNewObject: boolean = false
   viewObjectVal: boolean = false
+
+  hasAdminPermissions: boolean = true
 
   priceFilterRange = [
     {min: 0, max: 100},
@@ -38,11 +41,12 @@ export class ObjectsComponent implements OnInit {
     {min: 100, max: 1000}
   ]
 
-  constructor(private objectsService: ObjectsService) {
+  constructor(private objectsService: ObjectsService, private authService: AuthService) {
   }
 
   ngOnInit(): void {
     this.getAllObjects()
+    this.hasAdminPermissions = this.authService.hasAdminPermission()
   }
 
   getAllObjects() {
