@@ -1,16 +1,15 @@
 package itmo.coursework.service;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import itmo.coursework.entity.animals.MongoAnimal;
 
 import java.util.List;
 
 public interface MongoAnimalService {
-    List<MongoAnimal> findAll();
+    List<MongoAnimal> findAllAnimals();
 
-    void createAnimal(MongoAnimal animal) throws JsonProcessingException;
+    MongoAnimal createAnimal(MongoAnimal animal);
 
-    void updateAnimal(MongoAnimal animal);
+    MongoAnimal updateAnimal(MongoAnimal animal);
 
     void deleteAnimal(int miuid);
 }

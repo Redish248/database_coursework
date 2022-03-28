@@ -1,7 +1,6 @@
 package itmo.coursework
 
 import com.fasterxml.jackson.core.JsonProcessingException
-import io.mockk.InternalPlatformDsl.toStr
 import itmo.coursework.entity.animals.MongoAnimal
 import itmo.coursework.entity.animals.Passport
 import itmo.coursework.service.MongoAnimalService
@@ -18,7 +17,7 @@ class MongoTest {
 
     @Test
     fun `mongo alive`() {
-        val animals = animalService.findAll()
+        val animals = animalService.findAllAnimals()
         println(animals)
         Assertions.assertTrue { animals.size > 0 }
     }

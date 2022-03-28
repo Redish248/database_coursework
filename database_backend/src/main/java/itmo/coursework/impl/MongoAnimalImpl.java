@@ -14,18 +14,18 @@ public class MongoAnimalImpl implements MongoAnimalService {
     private final MongoAnimalRepository mongoAnimalRepository;
 
     @Override
-    public List<MongoAnimal> findAll() {
+    public List<MongoAnimal> findAllAnimals() {
         return mongoAnimalRepository.findAll();
     }
 
     @Override
-    public void createAnimal(MongoAnimal animal) {
-        mongoAnimalRepository.save(animal);
+    public MongoAnimal createAnimal(MongoAnimal animal) {
+        return mongoAnimalRepository.save(animal);
     }
 
     @Override
-    public void updateAnimal(MongoAnimal animal) {
-
+    public MongoAnimal updateAnimal(MongoAnimal animal) {
+        return null;
     }
 
     @Override
