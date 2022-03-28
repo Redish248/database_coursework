@@ -29,11 +29,15 @@ class MongoTest {
         passport.number = "1"
         passport.officialName = "of name"
         val animal = MongoAnimal()
-        animal.muid = "11"
         animal.name = "Vasya"
         animal.age = 11
         animal.eyesColor = "green"
         animal.passport = passport
         animalService.createAnimal(animal)
+    }
+
+    @Test
+    fun testDelete() {
+        animalService.deleteAnimal(0)
     }
 }

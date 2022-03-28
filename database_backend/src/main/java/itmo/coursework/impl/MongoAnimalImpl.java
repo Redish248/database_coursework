@@ -30,7 +30,7 @@ public class MongoAnimalImpl implements MongoAnimalService {
 
     @Override
     public void deleteAnimal(int miuid) {
-       /* MongoAnimal animal = mongoAnimalRepository.findMongoAnimalByMuid(miuid);
-        mongoAnimalRepository.delete(animal);*/
+        MongoAnimal animal = mongoAnimalRepository.findMongoAnimalBy_id(miuid);
+        mongoAnimalRepository.delete(animal);
     }
 }

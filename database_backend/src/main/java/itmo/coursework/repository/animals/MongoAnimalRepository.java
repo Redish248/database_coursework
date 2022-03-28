@@ -10,7 +10,7 @@ import java.util.List;
 @Repository
 public interface MongoAnimalRepository extends MongoRepository<MongoAnimal, Long> {
 
-    MongoAnimal findMongoAnimalByMuid(int muid);
+    MongoAnimal findMongoAnimalBy_id(int id);
 
     @NotNull
     List<MongoAnimal> findAll();

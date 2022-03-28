@@ -8,13 +8,16 @@ import javax.persistence.*;
 import java.sql.Date;
 import java.util.List;
 
-//@Entity
 @Data
 @Document(collection = "mongo_animal")
 public class MongoAnimal {
     @Id
-    @Field(value = "muid")
-    private String muid;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Field(value = "_id")
+    private long _id;
+
+    //FIXME: это убрало одну из ошибок на delete, но((
+    private long id;
 
     @Field(value = "name")
     private String name;
