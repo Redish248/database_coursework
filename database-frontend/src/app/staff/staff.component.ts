@@ -48,8 +48,8 @@ export class StaffComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.hasAdminPermissions = this.authService.hasAdminPermission()
     this.getAllStaff()
+    this.hasAdminPermissions = this.authService.hasAdminPermission()
   }
 
   getAllStaff() {
@@ -66,7 +66,6 @@ export class StaffComponent implements OnInit {
           el.dateOfBirth = this.replaceDate(el.dateOfBirth)
           el.firstWorkDate = this.replaceDate(el.firstWorkDate)
         })
-        console.log("staff", this.staff)
       },
       err => {
         this.loading = false

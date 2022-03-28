@@ -25,8 +25,20 @@ export class CreateStaffAccountComponent implements OnInit {
     private staffService: StaffService,
     private formBuilder: FormBuilder
   ) {
+  }
+
+  ngOnInit(): void {
+    this.buildStaffForm()
+    this.errorMessage = undefined
+    this.staffService.getPositions().subscribe(
+      data => this.positions = data || [],
+      err => this.errorMessage = err
+    )
+  }
+
+  buildStaffForm() {
     this.staffForm = this.formBuilder.group({
-      newStaff: formBuilder.group({
+      newStaff: this.formBuilder.group({
         name: ['', Validators.required],
         surname: ['', Validators.required],
         patronymic: ['', Validators.required],
@@ -37,21 +49,13 @@ export class CreateStaffAccountComponent implements OnInit {
         dateOfBirth: ['', Validators.required],
         firstWorkDate: ['', Validators.required]
       }),
-      userInfo: formBuilder.group({
+      userInfo: this.formBuilder.group({
         nick: ['', Validators.required],
         email: ['@silverpaw.ru', Validators.required],
         password: ['', Validators.required],
         role: [Role.READER, Validators.required]
       })
     })
-  }
-
-  ngOnInit(): void {
-    this.errorMessage = undefined
-    this.staffService.getPositions().subscribe(
-      data => this.positions = data || [],
-      err => this.errorMessage = err
-    )
   }
 
   addNewStaff() {

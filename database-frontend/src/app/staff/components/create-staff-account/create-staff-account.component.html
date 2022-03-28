@@ -65,8 +65,8 @@
                 </clr-input-container>
                 <clr-select-container>
                     <label>Тип профиля</label>
-                    <select clrSelect formControlName="positionUid">
-                        <option *ngFor="let role of roles" [value]="role">{{role}}</option>
+                    <select clrSelect formControlName="role">
+                        <option *ngFor="let rol of roles" [value]="rol">{{rol}}</option>
                     </select>
                 </clr-select-container>
             </div>

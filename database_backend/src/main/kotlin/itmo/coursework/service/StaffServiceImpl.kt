@@ -22,7 +22,6 @@ class StaffServiceImpl(
 ) : StaffService {
 
     fun getStaff(user: Principal): List<Staff>{
-        println(user)
         return staffRepository.findAll()
     }
 
@@ -38,7 +37,6 @@ class StaffServiceImpl(
     }
 
     fun createNewStaffAccount(newStaffRequest: AddStaffAccountRequest) = with(newStaffRequest) {
-        println("create new staff $newStaffRequest")
         val newUser = userService.createUser(
             Users(
                 newStaff.name,
