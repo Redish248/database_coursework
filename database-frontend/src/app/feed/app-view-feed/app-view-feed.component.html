@@ -9,8 +9,8 @@
       <clr-alert clrAlertType="danger" *ngIf="errorMessage">{{errorMessage}}</clr-alert>
       <p>Информация о корме</p>
       <clr-input-container>
-        <label>Название</label>
-        <label *ngIf="mode == ViewMode.VIEW">{{feed.name}}</label>
+        <label style="width: 40%" >Название</label>
+        <label style="width: 50%" *ngIf="mode == ViewMode.VIEW">{{feed.name}}</label>
         <input *ngIf="mode == ViewMode.EDIT && hasAdminPermissions" clrInput formControlName="name" type="text">
       </clr-input-container>
       <clr-input-container>

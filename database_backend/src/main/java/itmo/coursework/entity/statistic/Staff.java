@@ -54,7 +54,7 @@ public class Staff {
     private Date firstWorkDate;
 
     @OneToOne
-    @JoinColumn(name = "users", referencedColumnName = "uid")
+    @JoinColumn(name = "user_uid", referencedColumnName = "uid")
     private Users user;
 
     public long getUid() {
@@ -95,6 +95,14 @@ public class Staff {
 
     public Date getFirstWorkDate() {
         return firstWorkDate;
+    }
+
+    public Users getUser() {
+        return user;
+    }
+
+    public void setUser(Users user) {
+        this.user = user;
     }
 
     public Staff() {

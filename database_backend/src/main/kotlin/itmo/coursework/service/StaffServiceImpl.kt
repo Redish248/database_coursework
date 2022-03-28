@@ -21,9 +21,9 @@ class StaffServiceImpl(
     private val userService: UserService
 ) : StaffService {
 
-    fun getStaff(user: Principal) {
+    fun getStaff(user: Principal): List<Staff>{
         println(user)
-        staffRepository.findAll()
+        return staffRepository.findAll()
     }
 
     override fun getStaff(): List<Staff> {
@@ -88,8 +88,9 @@ class StaffServiceImpl(
 
     fun deleteStaffAccount(uid: Long) {
         val staff = getStaffByUid(uid)
+        val userUid = staff.user.uid
         deleteStaff(uid)
-        userService.deleteUser(staff.uid)
+        userService.deleteUser(userUid)
     }
 
     override fun saveStaff(newStaff: Staff?) {
