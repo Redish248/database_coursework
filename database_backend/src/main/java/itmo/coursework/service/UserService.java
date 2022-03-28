@@ -17,7 +17,7 @@ public interface UserService {
 
     List<Users> getUsersByUserType(UserType userType);
 
-    void createUser(Users user);
+    Users createUser(Users user);
 
     UserType getUserTypeByUid(long uid);
 
@@ -25,4 +25,5 @@ public interface UserService {
 
     Users updateUser(Users user);
 
+    void deleteUser(Long uid);
 }

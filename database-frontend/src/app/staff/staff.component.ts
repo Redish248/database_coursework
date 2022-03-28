@@ -3,6 +3,7 @@ import { StaffService } from './staff.service'
 import { Staff } from './model/Staff'
 import { Gender } from '../common_model'
 import { DatePipe } from '@angular/common'
+import { AuthService } from '../auth.service'
 
 @Component({
   selector: 'app-staff',
@@ -43,11 +44,11 @@ export class StaffComponent implements OnInit {
     {min: 60000, max: 100000}
   ]
 
-  constructor(private staffService: StaffService, private datePipe: DatePipe) {
+  constructor(private staffService: StaffService, private datePipe: DatePipe, private authService: AuthService) {
   }
 
   ngOnInit(): void {
-    // todo: check permissions
+    this.hasAdminPermissions = this.authService.hasAdminPermission()
     this.getAllStaff()
   }
 

@@ -1,5 +1,7 @@
 package itmo.coursework.model
 
+import itmo.coursework.config.security.Role
+
 data class NewUser(
     val username: String,
     val surname: String,
@@ -7,5 +9,6 @@ data class NewUser(
     val password: String,
     val email: String,
     val dateOfBirth: String,
-    val gender: String
+    val gender: String,
+    val role: Role = Role.READER
 )

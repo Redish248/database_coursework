@@ -2,6 +2,7 @@ package itmo.coursework.controller;
 
 import itmo.coursework.entity.statistic.Users;
 import itmo.coursework.model.NewUser;
+import itmo.coursework.service.CreateUsersService;
 import itmo.coursework.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -22,7 +23,10 @@ import java.text.ParseException;
 public class UserController {
     private final UserService userService;
 
+    private final CreateUsersService createUsers;
+
     @GetMapping("/getUserByNick")
+
     public @ResponseBody
     ResponseEntity registerUser(@RequestParam String nick) {
         return ResponseEntity.status(HttpStatus.OK).body(userService.getUserByNick(nick));
@@ -34,4 +38,11 @@ public class UserController {
         Users user = userService.updateUser(newUser);
         return ResponseEntity.status(HttpStatus.OK).body(user);
     }
+
+    @PostMapping("/create")
+    public ResponseEntity createDefaultUsers() {
+        createUsers.createUsers();
+        return ResponseEntity.status(HttpStatus.OK).body("ok");
+    }
+
 }

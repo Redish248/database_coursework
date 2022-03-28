@@ -2,20 +2,23 @@ package itmo.coursework.service
 
 import itmo.coursework.entity.statistic.Position
 import itmo.coursework.entity.statistic.Staff
+import itmo.coursework.entity.statistic.Users
 import itmo.coursework.exception.PositionNotFoundException
 import itmo.coursework.exception.StaffNotFoundException
-import itmo.coursework.model.AddNewStaffRequest
+import itmo.coursework.model.AddStaffAccountRequest
 import itmo.coursework.model.UpdateStaffRequest
 import itmo.coursework.parseStringToSqlDate
 import itmo.coursework.repository.statistic.PositionRepository
 import itmo.coursework.repository.statistic.StaffRepository
+import org.springframework.security.crypto.bcrypt.BCrypt
 import org.springframework.stereotype.Service
 import java.security.Principal
 
 @Service
 class StaffServiceImpl(
     private val staffRepository: StaffRepository,
-    private val positionRepository: PositionRepository
+    private val positionRepository: PositionRepository,
+    private val userService: UserService
 ) : StaffService {
 
     fun getStaff(user: Principal) {
@@ -34,20 +37,33 @@ class StaffServiceImpl(
         return positionRepository.findAll()
     }
 
-    fun createNewStaffAccount(newStaffRequest: AddNewStaffRequest) = with(newStaffRequest) {
+    fun createNewStaffAccount(newStaffRequest: AddStaffAccountRequest) = with(newStaffRequest) {
         println("create new staff $newStaffRequest")
+        val newUser = userService.createUser(
+            Users(
+                newStaff.name,
+                newStaff.surname,
+                parseStringToSqlDate(newStaff.dateOfBirth),
+                newStaff.gender,
+                userInfo.nick,
+                userInfo.email,
+                BCrypt.hashpw(userInfo.password, BCrypt.gensalt()),
+                userService.getUserTypesByName(userInfo.role.name).first()
+            )
+        )
+
         saveStaff(
             Staff(
-                name,
-                surname,
-                patronymic,
-                parseStringToSqlDate(dateOfBirth),
-                gender,
-                getPositionByUid(positionUid),
-                salary,
-                experience,
-                parseStringToSqlDate(firstWorkDate)
-
+                newStaff.name,
+                newStaff.surname,
+                newStaff.patronymic,
+                parseStringToSqlDate(newStaff.dateOfBirth),
+                newStaff.gender,
+                getPositionByUid(newStaff.positionUid),
+                newStaff.salary,
+                newStaff.experience,
+                parseStringToSqlDate(newStaff.firstWorkDate),
+                newUser
             )
         )
     }
@@ -71,8 +87,9 @@ class StaffServiceImpl(
     }
 
     fun deleteStaffAccount(uid: Long) {
-        getStaffByUid(uid)
+        val staff = getStaffByUid(uid)
         deleteStaff(uid)
+        userService.deleteUser(staff.uid)
     }
 
     override fun saveStaff(newStaff: Staff?) {

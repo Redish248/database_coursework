@@ -12,3 +12,10 @@ export enum Amount {
   AVERAGE = "average_amount",
   ENOUGH = "enough_amount"
 }
+
+export enum Role {
+  ADMIN = "ADMIN",
+  MANAGER = "MANAGER",
+  READER = "READER"
+}
+

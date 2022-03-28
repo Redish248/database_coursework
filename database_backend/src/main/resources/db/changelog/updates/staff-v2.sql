@@ -1,0 +1,1 @@
+alter table staff add column user_uid bigint references users;

@@ -3,13 +3,14 @@ import { AppConfigService } from './app-config.service'
 import { HttpClient, HttpParams } from '@angular/common/http'
 import { map } from 'rxjs'
 import { Router } from '@angular/router'
-import { User } from "./login/User"
+import { Permission, User } from "./login/User"
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
   user: User = undefined
+  permissions: Permission[]
 
   constructor(private configService: AppConfigService,
               private http: HttpClient,
@@ -34,10 +35,15 @@ export class AuthService {
       observe: 'response'
     }).pipe(
       map((user) => {
-        console.log(user)
+        console.log('sign in user', user)
         AuthService.setLocalStorage(credentials.username, credentials.password)
-        this.user = {name: credentials.username}
-        return user
+        return this.http.get<Permission[]>(`${this.apiUrl}/databases/permissions`).subscribe(
+          permissions => {
+            this.permissions = permissions
+            this.user = {name: credentials.username}
+            return user
+          }
+        )
       })
     )
   }
@@ -51,6 +57,7 @@ export class AuthService {
   logout() {
     return this.http.post(`${this.apiUrl}/logout`, null).subscribe(
       _ => {
+        this.permissions = []
         this.user = undefined
         localStorage.removeItem("username")
         localStorage.removeItem("authData")
@@ -61,4 +68,11 @@ export class AuthService {
     )
   }
 
+  hasAdminPermission(): boolean {
+    return this.permissions.includes(Permission.ADMINISTRATION)
+  }
+
+  hasManagerPermission(): boolean {
+    return this.permissions.includes(Permission.MANAGE_ANIMALS)
+  }
 }

@@ -43,8 +43,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void createUser(Users user) {
-        userRepository.save(user);
+    public Users createUser(Users user) {
+        return userRepository.save(user);
     }
 
     @Override
@@ -65,6 +65,11 @@ public class UserServiceImpl implements UserService {
         Optional.ofNullable(user.getDateOfBirth()).ifPresent(oldUser::setDateOfBirth);
         Optional.ofNullable(user.getGender()).ifPresent(oldUser::setGender);
         return userRepository.save(oldUser);
+    }
+
+    @Override
+    public void deleteUser(Long uid) {
+        userRepository.delete(getUsersByUid(uid));
     }
 
 }

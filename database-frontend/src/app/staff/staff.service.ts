@@ -32,7 +32,6 @@ export class StaffService {
       dateOfBirth: ['', Validators.required],
       firstWorkDate: ['', Validators.required]
     })
-
   }
 
   getStaff() {

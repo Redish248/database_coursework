@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core'
-import { FormGroup } from '@angular/forms'
+import { FormBuilder, FormGroup, Validators } from '@angular/forms'
 import { StaffService } from '../../staff.service'
-import { Gender } from '../../../common_model'
+import { Gender, Role } from '../../../common_model'
 import { Position } from '../../model/Position'
 
 @Component({
@@ -19,9 +19,31 @@ export class CreateStaffAccountComponent implements OnInit {
   positions: Position[] = []
   loading: boolean = false
 
-  constructor(private staffService: StaffService
+  roles = Object.keys(Role)
+
+  constructor(
+    private staffService: StaffService,
+    private formBuilder: FormBuilder
   ) {
-    this.staffForm = staffService.buildStaffForm()
+    this.staffForm = this.formBuilder.group({
+      newStaff: formBuilder.group({
+        name: ['', Validators.required],
+        surname: ['', Validators.required],
+        patronymic: ['', Validators.required],
+        gender: [Gender.MALE, Validators.required],
+        positionUid: ['', Validators.required],
+        salary: [30000, Validators.required],
+        experience: [0, [Validators.required, Validators.min(0)]],
+        dateOfBirth: ['', Validators.required],
+        firstWorkDate: ['', Validators.required]
+      }),
+      userInfo: formBuilder.group({
+        nick: ['', Validators.required],
+        email: ['@silverpaw.ru', Validators.required],
+        password: ['', Validators.required],
+        role: [Role.READER, Validators.required]
+      })
+    })
   }
 
   ngOnInit(): void {
@@ -33,6 +55,7 @@ export class CreateStaffAccountComponent implements OnInit {
   }
 
   addNewStaff() {
+    console.log(this.staffForm.getRawValue())
     this.loading = true
     this.errorMessage = undefined
     this.staffService.addStaff(this.staffForm.getRawValue()).subscribe(

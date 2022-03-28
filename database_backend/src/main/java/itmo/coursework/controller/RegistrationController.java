@@ -1,16 +1,15 @@
 package itmo.coursework.controller;
 
-import itmo.coursework.entity.statistic.Users;
+import itmo.coursework.config.security.Role;
+import itmo.coursework.config.security.RolesPropertiesKt;
 import itmo.coursework.model.NewUser;
-import itmo.coursework.service.UserService;
+import itmo.coursework.service.RegistrationService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.crypto.bcrypt.BCrypt;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
-
-import static itmo.coursework.CommonUtilsKt.parseStringToSqlDate;
 
 @RestController
 @RequestMapping("/databases")
@@ -18,30 +17,22 @@ import static itmo.coursework.CommonUtilsKt.parseStringToSqlDate;
 @RequiredArgsConstructor
 public class RegistrationController {
 
-    private final UserService userService;
+    private final RegistrationService registrationService;
 
     @PostMapping("/signup")
     public @ResponseBody
     ResponseEntity registerUser(@RequestBody NewUser newUser) {
-        System.out.println(newUser.getNick());
-        Users user = new Users();
-        user.setName(newUser.getUsername());
-        user.setSurname(newUser.getSurname());
-        user.setEmail(newUser.getEmail());
-        user.setGender(newUser.getGender());
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(registrationService.registerNewUser(newUser));
+    }
 
-        //TODO: add user type
-        user.setUserType(userService.getUserTypeByUid(3));
-        user.setDateOfBirth(parseStringToSqlDate(newUser.getDateOfBirth()));
+    @GetMapping("/permissions")
+    public @ResponseBody
+    ResponseEntity tst() {
+        var role = SecurityContextHolder.getContext().getAuthentication().getAuthorities().stream().findFirst().get().getAuthority();
+        var permissions = RolesPropertiesKt.getRolesToPermissionsMap().get(Role.valueOf(role));
 
-        user.setNick(newUser.getNick());
-        user.setPassword(BCrypt.hashpw(newUser.getPassword(), BCrypt.gensalt()));
-
-        Users someUser = userService.getUserByNick(newUser.getNick());
-        if (someUser != null) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("User already exists");
-        }
-        userService.createUser(user);
-        return ResponseEntity.status(HttpStatus.OK).body(user);
+        return ResponseEntity.status(HttpStatus.OK).body(permissions);
     }
 }

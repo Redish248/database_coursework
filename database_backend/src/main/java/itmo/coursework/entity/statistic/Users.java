@@ -54,4 +54,19 @@ public class Users {
     @ManyToOne
     @JoinColumn(name = "user_type", referencedColumnName = "uid")
     private UserType userType;
+
+    public Users() {
+
+    }
+
+    public Users(String name, String surname, Date dateOfBirth, String gender, String nick, String email, String password, UserType userType) {
+        this.name = name;
+        this.surname = surname;
+        this.dateOfBirth = dateOfBirth;
+        this.gender = gender;
+        this.nick = nick;
+        this.email = email;
+        this.password = password;
+        this.userType = userType;
+    }
 }

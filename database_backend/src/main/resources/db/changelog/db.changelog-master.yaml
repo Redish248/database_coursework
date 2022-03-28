@@ -4,6 +4,4 @@ databaseChangeLog:
   - include:
       file: /db/changelog/updates/staff-v1.sql
   - include:
-      file: /db/changelog/updates/positions.sql
-#  - include:
-#      file: /db/changelog/updates/base_inserts.sql
+      file: /db/changelog/updates/staff-v2.sql

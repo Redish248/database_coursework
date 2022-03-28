@@ -1,11 +1,9 @@
 package itmo.coursework.controller
 
-import itmo.coursework.model.AddNewStaffRequest
+import itmo.coursework.model.AddStaffAccountRequest
 import itmo.coursework.model.UpdateStaffRequest
 import itmo.coursework.service.StaffServiceImpl
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration
 import org.springframework.http.HttpStatus
-import org.springframework.security.access.annotation.Secured
 import org.springframework.web.bind.annotation.*
 import java.security.Principal
 
@@ -21,7 +19,7 @@ class StaffController(private val staffService: StaffServiceImpl) {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    fun addNewStaffAccount(@RequestBody request: AddNewStaffRequest) = staffService.createNewStaffAccount(request)
+    fun addNewStaffAccount(@RequestBody request: AddStaffAccountRequest) = staffService.createNewStaffAccount(request)
 
     @PutMapping("{staffUid}")
     fun updateStaffAccount(@PathVariable staffUid: Long, @RequestBody request: UpdateStaffRequest) =

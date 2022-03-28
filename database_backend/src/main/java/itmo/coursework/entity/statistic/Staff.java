@@ -1,16 +1,9 @@
 package itmo.coursework.entity.statistic;
 
 import lombok.Data;
+import org.apache.catalina.User;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import java.sql.Date;
@@ -60,6 +53,10 @@ public class Staff {
     @Column(name = "first_work_date")
     private Date firstWorkDate;
 
+    @OneToOne
+    @JoinColumn(name = "users", referencedColumnName = "uid")
+    private Users user;
+
     public long getUid() {
         return uid;
     }
@@ -103,7 +100,7 @@ public class Staff {
     public Staff() {
     }
 
-    public Staff(String name, String surname, String patronymic, Date dateOfBirth, String gender, Position positionType, Integer salary, Integer experience, Date firstWorkDate) {
+    public Staff(String name, String surname, String patronymic, Date dateOfBirth, String gender, Position positionType, Integer salary, Integer experience, Date firstWorkDate, Users user) {
         this.name = name;
         this.surname = surname;
         this.patronymic = patronymic;
@@ -113,6 +110,7 @@ public class Staff {
         this.salary = salary;
         this.experience = experience;
         this.firstWorkDate = firstWorkDate;
+        this.user = user;
     }
 
     public Staff(long uid, String name, String surname, String patronymic, Date dateOfBirth, String gender, Position positionType, Integer salary, Integer experience, Date firstWorkDate) {

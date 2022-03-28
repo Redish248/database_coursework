@@ -5,6 +5,7 @@ import { StaffService } from '../../staff.service'
 import { Staff } from '../../model/Staff'
 import { Position } from '../../model/Position'
 import { DatePipe } from '@angular/common'
+import { AuthService } from '../../../auth.service'
 
 @Component({
   selector: 'app-view-staff-account',
@@ -27,7 +28,8 @@ export class ViewStaffAccountComponent implements OnInit {
 
   hasAdminPermissions: boolean = true
 
-  constructor(private staffService: StaffService, private datePipe: DatePipe) {
+  constructor(private staffService: StaffService, private datePipe: DatePipe, private authService: AuthService) {
+    this.hasAdminPermissions = authService.hasAdminPermission()
     this.staffForm = staffService.buildStaffForm()
   }
 
