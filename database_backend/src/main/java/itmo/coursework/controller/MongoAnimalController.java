@@ -1,7 +1,7 @@
 package itmo.coursework.controller;
 
 import itmo.coursework.entity.animals.MongoAnimal;
-import itmo.coursework.entity.statistic.Feed;
+import itmo.coursework.model.AddAnimalRequest;
 import itmo.coursework.service.MongoAnimalService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -23,27 +23,30 @@ import java.util.List;
 public class MongoAnimalController {
     private final MongoAnimalService mongoAnimalService;
 
-    @GetMapping( "/getAllMongoAnimals")
+    @GetMapping("/getAllMongoAnimals")
     public @ResponseBody
     ResponseEntity getAllMongoAnimal() {
         List<MongoAnimal> mongoAnimals = mongoAnimalService.findAllAnimals();
         return ResponseEntity.status(HttpStatus.OK).body(mongoAnimals);
     }
 
-    @PostMapping( "/createMongoAnimal")
-    public @ResponseBody ResponseEntity createMongoAnimal(@RequestBody MongoAnimal newAnimal) {
+    @PostMapping("/createMongoAnimal")
+    public @ResponseBody
+    ResponseEntity createMongoAnimal(@RequestBody AddAnimalRequest newAnimal) {
         MongoAnimal animal = mongoAnimalService.createAnimal(newAnimal);
         return ResponseEntity.status(HttpStatus.CREATED).body(animal);
     }
 
-    @PostMapping( "/updateMongoAnimal")
-    public @ResponseBody ResponseEntity updateMongoAnimal(@RequestBody MongoAnimal animal) {
+    @PostMapping("/updateMongoAnimal")
+    public @ResponseBody
+    ResponseEntity updateMongoAnimal(@RequestBody MongoAnimal animal) {
         MongoAnimal newAnimal = mongoAnimalService.updateAnimal(animal);
         return ResponseEntity.status(HttpStatus.OK).body(newAnimal);
     }
 
-    @DeleteMapping( "/deleteMongoAnimal/{uid}")
-    public @ResponseBody ResponseEntity deleteMongoAnimal(@PathVariable int uid) {
+    @DeleteMapping("/deleteMongoAnimal/{uid}")
+    public @ResponseBody
+    ResponseEntity deleteMongoAnimal(@PathVariable String uid) {
         mongoAnimalService.deleteAnimal(uid);
         return ResponseEntity.status(HttpStatus.OK).body("deleted");
     }

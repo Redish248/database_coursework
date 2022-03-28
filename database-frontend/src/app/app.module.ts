@@ -23,11 +23,13 @@ import { ProfileComponent } from "./profile/profile.component"
 import { CreateStaffAccountComponent } from './staff/components/create-staff-account/create-staff-account.component'
 import { ViewStaffAccountComponent } from './staff/components/view-staff-account/view-staff-account.component'
 import { DatePipe } from "@angular/common"
-import {AppViewFeedComponent} from "./feed/app-view-feed/app-view-feed.component";
-import {AppCreateFeedComponent} from "./feed/app-create-feed/app-create-feed.component";
-import {FilterModule} from "./helpers/filters/filter.module";
-import {AppCreateObjectsComponent} from "./objects/app-create-object/app-create-object.component";
-import {AppViewObjectComponent} from "./objects/app-view-object/app-view-object.component";
+import { AppViewFeedComponent } from "./feed/app-view-feed/app-view-feed.component"
+import { AppCreateFeedComponent } from "./feed/app-create-feed/app-create-feed.component"
+import { FilterModule } from "./helpers/filters/filter.module"
+import { AppCreateObjectsComponent } from "./objects/app-create-object/app-create-object.component"
+import { AppViewObjectComponent } from "./objects/app-view-object/app-view-object.component";
+import { CreateAnimalComponent } from './animals/create-animal/create-animal.component';
+import { ViewAnimalComponent } from './animals/view-animal/view-animal.component'
 
 const appRoutes: Routes = [
   {path: '', component: HomeComponent, canActivate: [AuthGuard]},
@@ -52,23 +54,26 @@ const appRoutes: Routes = [
     ObjectsComponent,
     StaffComponent,
     ProfileComponent,
+    AnimalsComponent,
     CreateStaffAccountComponent,
     ViewStaffAccountComponent,
     AppViewFeedComponent,
     AppCreateFeedComponent,
     AppCreateObjectsComponent,
-    AppViewObjectComponent
+    AppViewObjectComponent,
+    CreateAnimalComponent,
+    ViewAnimalComponent
   ],
-    imports: [
-        BrowserModule,
-        RouterModule.forRoot(appRoutes),
-        ClarityModule,
-        BrowserAnimationsModule,
-        FormsModule,
-        ReactiveFormsModule,
-        HttpClientModule,
-        FilterModule
-    ],
+  imports: [
+    BrowserModule,
+    RouterModule.forRoot(appRoutes),
+    ClarityModule,
+    BrowserAnimationsModule,
+    FormsModule,
+    ReactiveFormsModule,
+    HttpClientModule,
+    FilterModule
+  ],
   providers: [
     AuthGuard,
     {provide: HTTP_INTERCEPTORS, useClass: AuthBasicInterceptor, multi: true},

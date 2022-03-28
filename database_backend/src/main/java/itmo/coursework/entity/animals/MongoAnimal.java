@@ -12,12 +12,7 @@ import java.util.List;
 @Document(collection = "mongo_animal")
 public class MongoAnimal {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Field(value = "_id")
-    private long _id;
-
-    //FIXME: это убрало одну из ошибок на delete, но((
-    private long id;
+    private String id;
 
     @Field(value = "name")
     private String name;
@@ -53,7 +48,7 @@ public class MongoAnimal {
     private Passport passport;
 
     @Field(value = "new_owner")
-    private Owner newOwner;
+    private Owner newOwner; // current =)
 
     @Field(value = "previous_owner")
     private Owner previousOwner;

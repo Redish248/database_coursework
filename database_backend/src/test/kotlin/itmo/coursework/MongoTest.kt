@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
+import java.util.*
 
 @SpringBootTest
 class MongoTest {
@@ -33,11 +34,13 @@ class MongoTest {
         animal.age = 11
         animal.eyesColor = "green"
         animal.passport = passport
+        animal.id = UUID.randomUUID().toString()
         animalService.createAnimal(animal)
     }
 
     @Test
     fun testDelete() {
-        animalService.deleteAnimal(0)
+        // attention - diff uid every time
+        animalService.deleteAnimal("21c2c4e7-8e84-4d80-8d29-047916a79405")
     }
 }

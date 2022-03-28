@@ -8,9 +8,9 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface MongoAnimalRepository extends MongoRepository<MongoAnimal, Long> {
+public interface MongoAnimalRepository extends MongoRepository<MongoAnimal, String> {
 
-    MongoAnimal findMongoAnimalBy_id(int id);
+//    MongoAnimal findMongoAnimalBy_id(int id);
 
     @NotNull
     List<MongoAnimal> findAll();
