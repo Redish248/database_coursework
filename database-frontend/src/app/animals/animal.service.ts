@@ -44,11 +44,13 @@ export class AnimalService {
         address: ['', Validators.required]
       }),
       feed: this.formBuilder.array([this.feed]),
-      typicalIllnesses: this.formBuilder.array([this.characteristic]),
-      habits: this.formBuilder.array([this.characteristic]),
-      additionalInfo: this.formBuilder.array([this.characteristic]),
+      animalTypeInfo: this.formBuilder.group({
+        typicalIllnesses: this.formBuilder.array([this.characteristic]),
+        habits: this.formBuilder.array([this.characteristic]),
+        additionalInfo: this.formBuilder.array([this.characteristic])
+      }),
       additionalCharacteristics: this.formBuilder.array([this.characteristic])
-    })
+  })
   }
 
   get feed(): FormGroup {

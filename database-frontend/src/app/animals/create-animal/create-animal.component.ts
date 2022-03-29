@@ -72,7 +72,7 @@ export class CreateAnimalComponent implements OnInit {
   }
 
   getTypicalIllnesses(): FormArray {
-    return this.animalForm.get('typicalIllnesses') as FormArray
+    return this.animalForm.get('animalTypeInfo').get('typicalIllnesses') as FormArray
 
   }
 
@@ -86,7 +86,7 @@ export class CreateAnimalComponent implements OnInit {
   }
 
   getHabits(): FormArray {
-    return this.animalForm.get('habits') as FormArray
+    return this.animalForm.get('animalTypeInfo').get('habits') as FormArray
   }
 
   addHabit() {
@@ -99,7 +99,7 @@ export class CreateAnimalComponent implements OnInit {
   }
 
   getAdditionalInfo(): FormArray {
-    return this.animalForm.get('additionalInfo') as FormArray
+    return this.animalForm.get('animalTypeInfo').get('additionalInfo') as FormArray
   }
 
   addInfo() {
