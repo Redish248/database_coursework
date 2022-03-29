@@ -86,7 +86,7 @@
                 <p>Любимый корм</p>
                 <div *ngFor="let f of getFeedArr().controls; let i = index" [formGroupName]="i">
                     <p>корм</p>
-                    <button class="btn btn-outline-primary" (click)="deleteFeed(i)">(Х)</button>
+                    <button class="btn btn-info" (click)="deleteFeed(i)">(Х)</button>
                     <clr-select-container>
                         <label [for]="'feed'+i">название:</label>
                         <select clrSelect [id]="'feed'+i" formControlName="uid">
@@ -163,7 +163,7 @@
 
         <div formArrayName="additionalCharacteristics">
             Дополнительная информация
-            <div *ngFor="let info of getOtherCharacteristic().controls; let i= index " [formGroupName]="i">
+            <div *ngFor="let info of getOtherCharacteristic().controls; let i= index" [formGroupName]="i">
                 <clr-input-container>
                     <label [for]="'info'+i">Описание
                         <span>
@@ -182,8 +182,7 @@
 
 
         <div class="modal-footer">
-                        <button [disabled]="!animalForm.valid && loading == true"
-
+                        <button [disabled]="loading == true"
                     type="button"
                     class="btn btn-outline"
                     (click)="creatAnimal()">

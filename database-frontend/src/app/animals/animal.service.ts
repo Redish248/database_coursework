@@ -50,7 +50,7 @@ export class AnimalService {
         additionalInfo: this.formBuilder.array([this.characteristic])
       }),
       additionalCharacteristics: this.formBuilder.array([this.characteristic])
-  })
+    })
   }
 
   get feed(): FormGroup {
