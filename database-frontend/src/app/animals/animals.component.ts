@@ -44,6 +44,7 @@ export class AnimalsComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.getAnimals()
   }
 
   getAnimals() {

@@ -30,7 +30,7 @@ export class ProfileComponent implements OnInit {
   }
 
   dateInputShow(dateOld) {
-    return this.datepipe.transform(dateOld, 'MM/dd/yyyy')
+    return this.datepipe.transform(dateOld, 'dd.MM.yyyy')
   }
 
   enableEditMode() {
@@ -42,7 +42,6 @@ export class ProfileComponent implements OnInit {
   }
 
   saveChanges() {
-    console.log(this.newDate)
     this.profileService.updateUser(this.newName, this.newSurname, this.newGender, this.dateForBackend(this.newDate))
     this.editMode = false
   }
