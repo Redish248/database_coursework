@@ -9,7 +9,7 @@ export interface Animal {
   furColor: string
   eyesColor: string
   animalType: AnimalType
-  photo: [] // byte array
+  photo: string
   passport: Passport
   newOwner: Owner
   previousOwner: Owner

@@ -5,7 +5,7 @@ import { Feed } from '../../feed/Feed'
 import { FeedService } from '../../feed/feed.service'
 import { AnimalType } from '../model/Animal'
 import { Gender } from '../../common_model'
-import { forkJoin } from 'rxjs'
+import { forkJoin, retry } from 'rxjs'
 import { User } from '../model/User'
 
 @Component({
@@ -20,6 +20,7 @@ export class CreateAnimalComponent implements OnInit {
   animalForm: FormGroup
   errorMessage: string = undefined
   loading: boolean = false
+  unknownOwner: string = ''
 
   feed: Feed[] = []
   users: User[] = []
@@ -31,6 +32,7 @@ export class CreateAnimalComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.unknownOwner = ''
     this.getMetadata()
   }
 
@@ -54,14 +56,37 @@ export class CreateAnimalComponent implements OnInit {
       })
   }
 
+  private getName(uid) {
+    return this.users.find(el => el.uid == uid)
+  }
+
   creatAnimal() {
     let newAnimal = this.animalForm.getRawValue()
-    let owner: User = newAnimal.newOwner
-    newAnimal.newOwner.uid = owner.uid
-    newAnimal.newOwner.uid = owner.name
-
+    let uid = newAnimal.newOwner.uid
+    console.log(uid)
+    newAnimal.newOwner.fullName = uid ? this.getName(uid) : "незарегистрированный пользователь"
+    newAnimal.newOwner.uid = uid ? uid : -1
+    
     console.log("submit", newAnimal)
+    this.errorMessage = undefined
+    this.loading = true
+    this.animalService.createAnimal(newAnimal).subscribe(
+      _ => {
+        this.loading = false
+        this.modalOpened = false
+        this.unknownOwner = ''
+        this.modalClose.emit()
+      }, error => {
+        this.loading = false
+        this.errorMessage = error
+        this.unknownOwner = ''
+      }
+    )
+  }
 
+  get owner(): boolean {
+    let o = this.animalForm.getRawValue().newOwner.uid
+    return o == undefined || o == 'undefined'
   }
 
   get photo(): string {

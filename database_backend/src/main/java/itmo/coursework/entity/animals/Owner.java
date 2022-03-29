@@ -12,9 +12,6 @@ public class Owner {
     @Field(value = "full_name")
     private String fullName;
 
-    @Field(value = "surname")
-    private String surname;
-
     @Field(value = "phone")
     private String phone;
 

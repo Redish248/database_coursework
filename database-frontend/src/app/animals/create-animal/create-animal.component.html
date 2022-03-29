@@ -4,6 +4,7 @@
         <div class="modal-body">
             <clr-alert clrAlertType="danger" *ngIf="errorMessage">{{errorMessage}}</clr-alert>
             <p>Характеристики</p>
+            <hr>
             <clr-input-container>
                 <label>Имя</label>
                 <input clrInput formControlName="name" type="text">
@@ -42,10 +43,11 @@
             </clr-input-container>
             <clr-input-container>
                 <label>Цвет глаз</label>
-                <input clrInput formControlName="eyeColor" type="text">
+                <input clrInput formControlName="eyesColor" type="text">
             </clr-input-container>
             <div formGroupName="passport">
                 <p>Паспорт</p>
+                <hr>
                 <clr-input-container>
                     <label>Серия, номер</label>
                     <input clrInput formControlName="number" type="text">
@@ -59,15 +61,16 @@
                 <label>Ссылка</label>
                 <input clrInput formControlName="photo" type="text">
             </clr-input-container>
-
             <img *ngIf="photo" [src]="photo" id="photo">
+
             <div formGroupName="newOwner">
                 <p>Текущий владелец</p>
+                <hr>
                 <clr-select-container>
                     <label>Зарегистрирован в системе как:</label>
                     <select clrSelect formControlName="uid">
-                        <option [value]="-1">не зарегистрирован</option>
-                        <option *ngFor="let user of users" [value]="user">{{user.name}}</option>
+                        <option [value]="undefined">не зарегистрирован</option>
+                        <option *ngFor="let user of users" [value]="user.uid">{{user.name}}</option>
                     </select>
                 </clr-select-container>
                 <clr-input-container>
@@ -79,13 +82,15 @@
                     <input clrInput formControlName="email" type="email">
                 </clr-input-container>
                 <clr-input-container>
-                    <label>Имя</label>
+                    <label>Адресс</label>
                     <input clrInput formControlName="address" type="text">
                 </clr-input-container>
+
             </div>
 
             <div formArrayName="feed">
                 <p>Любимый корм</p>
+                <hr>
                 <div *ngFor="let f of getFeedArr().controls; let i = index" [formGroupName]="i">
                     <clr-select-container>
                         <label [for]="'feed'+i">{{i + 1}} название:
@@ -106,6 +111,7 @@
             <div formGroupName="animalTypeInfo">
                 <div formArrayName="typicalIllnesses">
                     <p>Заболевания</p>
+                    <hr>
                     <div *ngFor="let ti of getTypicalIllnesses().controls; let i = index" [formGroupName]="i">
                         <clr-input-container>
                             <label [for]="'ti'+i">{{i + 1}} Hазвание
@@ -125,6 +131,7 @@
 
                 <div formArrayName="habits">
                     <p>Привычки</p>
+                    <hr>
                     <div *ngFor="let h of getHabits().controls; let i = index" [formGroupName]="i">
                         <clr-input-container>
                             <label [for]="'h'+i">{{i + 1}} Описание
@@ -144,6 +151,7 @@
 
                 <div formArrayName="additionalInfo">
                     <p>Дополнительная информация</p>
+                    <hr>
                     <div *ngFor="let ai of getAdditionalInfo().controls; let i = index" [formGroupName]="i">
                         <clr-input-container>
                             <label [for]="'ai'+i">{{i + 1}} Описание
@@ -164,6 +172,8 @@
 
             <div formArrayName="additionalCharacteristics">
                 Дополнительная информация
+                <hr>
+                <hr>
                 <div *ngFor="let info of getOtherCharacteristic().controls; let i= index" [formGroupName]="i">
                     <clr-input-container>
                         <label [for]="'info'+i">{{i + 1}} Описание

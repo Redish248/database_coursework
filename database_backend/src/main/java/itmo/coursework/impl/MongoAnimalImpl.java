@@ -8,6 +8,8 @@ import itmo.coursework.service.MongoAnimalService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import static itmo.coursework.CommonUtilsKt.parseStringToSqlDate;
+
 import java.util.List;
 import java.util.UUID;
 
@@ -29,7 +31,7 @@ public class MongoAnimalImpl implements MongoAnimalService {
         animal.setGender(newAnimal.getGender());
         animal.setWeight(newAnimal.getWeight());
         animal.setAge(newAnimal.getAge());
-        animal.setDateOfArrival(newAnimal.getDateOfArrival());
+        animal.setDateOfArrival(parseStringToSqlDate(newAnimal.getDateOfArrival()));
         animal.setPlaceOfArrival(newAnimal.getPlaceOfArrival());
         animal.setPhoto(newAnimal.getPhoto());
         animal.setEyesColor(newAnimal.getEyesColor());

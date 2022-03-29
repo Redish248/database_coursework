@@ -30,7 +30,7 @@ export class AnimalService {
       placeOfArrival: ['', Validators.required],
       photo: ['', Validators.required],
       furColor: ['', Validators.required],
-      eyeColor: ['', Validators.required],
+      eyesColor: ['', Validators.required],
       passport: this.formBuilder.group({
         number: ['', Validators.required],
         officialName: ['', Validators.required]
@@ -38,7 +38,6 @@ export class AnimalService {
       newOwner: this.formBuilder.group({
         uid: ['', Validators.required],
         // fullName: '',
-        surname: ['', Validators.required],
         phone: ['', Validators.required],
         email: ['', Validators.required],
         address: ['', Validators.required]

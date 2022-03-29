@@ -36,7 +36,7 @@ public class MongoAnimal {
     private String placeOfArrival;
 
     @Field(value = "photo")
-    private byte[] photo;
+    private String photo;
 
     @Field(value = "fur_color")
     private String furColor;
