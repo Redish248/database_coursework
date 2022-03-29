@@ -3,6 +3,7 @@ package itmo.coursework.controller;
 import itmo.coursework.entity.animals.MongoAnimal;
 import itmo.coursework.model.AddAnimalRequest;
 import itmo.coursework.service.MongoAnimalService;
+import itmo.coursework.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,6 +23,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class MongoAnimalController {
     private final MongoAnimalService mongoAnimalService;
+    private final UserService userService;
 
     @GetMapping("/getAllMongoAnimals")
     public @ResponseBody
@@ -49,6 +51,14 @@ public class MongoAnimalController {
     ResponseEntity deleteMongoAnimal(@PathVariable String uid) {
         mongoAnimalService.deleteAnimal(uid);
         return ResponseEntity.status(HttpStatus.OK).body("deleted");
+    }
+
+    @GetMapping("/getSystemUsers")
+    public @ResponseBody
+    ResponseEntity getUsers() {
+        return ResponseEntity.status(HttpStatus.OK).body(
+                userService.getUsers()
+        );
     }
 
 }

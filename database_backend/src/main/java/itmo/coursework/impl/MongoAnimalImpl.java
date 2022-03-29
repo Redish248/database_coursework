@@ -36,7 +36,6 @@ public class MongoAnimalImpl implements MongoAnimalService {
         animal.setFurColor(newAnimal.getFurColor());
         animal.setPassport(newAnimal.getPassport());
         animal.setNewOwner(newAnimal.getNewOwner());
-        animal.setPreviousOwner(newAnimal.getPreviousOwner());
         animal.setFeed(newAnimal.getFeed());
         animal.setAnimalTypeInfo(newAnimal.getAnimalTypeInfo());
         animal.setAdditionalCharacteristics(newAnimal.getAdditionalCharacteristics());

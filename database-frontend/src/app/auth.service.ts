@@ -39,7 +39,7 @@ export class AuthService {
         AuthService.setLocalStorage(credentials.username, credentials.password)
         return this.http.get<Permission[]>(`${this.apiUrl}/databases/permissions`).subscribe(
           permissions => {
-            this.permissions = permissions
+            localStorage.setItem('perm', JSON.stringify(permissions))
             this.user = {name: credentials.username}
             return user
           }
@@ -69,10 +69,10 @@ export class AuthService {
   }
 
   hasAdminPermission(): boolean {
-    return this.permissions.includes(Permission.ADMINISTRATION)
+    return JSON.parse(localStorage.getItem('perm')).includes(Permission.ADMINISTRATION)
   }
 
   hasManagerPermission(): boolean {
-    return this.permissions.includes(Permission.MANAGE_ANIMALS)
+    return JSON.parse(localStorage.getItem('perm')).includes(Permission.MANAGE_ANIMALS)
   }
 }

@@ -2,12 +2,14 @@ package itmo.coursework.impl;
 
 import itmo.coursework.entity.statistic.UserType;
 import itmo.coursework.entity.statistic.Users;
+import itmo.coursework.model.MainUserInfo;
 import itmo.coursework.repository.statistic.UserTypeRepository;
 import itmo.coursework.repository.statistic.UsersRepository;
 import itmo.coursework.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -16,6 +18,17 @@ import java.util.Optional;
 public class UserServiceImpl implements UserService {
     private final UsersRepository userRepository;
     private final UserTypeRepository userTypeRepository;
+
+    @Override
+    public List<MainUserInfo> getUsers() {
+        List<MainUserInfo> users = new ArrayList<>();
+        userRepository.findAll().forEach(el -> users.add(new MainUserInfo(el.getUid(), getFullName(el.getName(), el.getSurname()))));
+        return users;
+    }
+
+    private String getFullName(String name, String surname) {
+        return surname + " " + name + " ";
+    }
 
     @Override
     public Users getUsersByUid(long uid) {

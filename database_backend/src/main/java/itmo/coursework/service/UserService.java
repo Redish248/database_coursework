@@ -2,10 +2,13 @@ package itmo.coursework.service;
 
 import itmo.coursework.entity.statistic.UserType;
 import itmo.coursework.entity.statistic.Users;
+import itmo.coursework.model.MainUserInfo;
 
 import java.util.List;
 
 public interface UserService {
+
+    List<MainUserInfo> getUsers();
 
     Users getUsersByUid(long uid);
 

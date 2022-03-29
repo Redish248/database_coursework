@@ -50,9 +50,6 @@ public class MongoAnimal {
     @Field(value = "new_owner")
     private Owner newOwner; // current =)
 
-    @Field(value = "previous_owner")
-    private Owner previousOwner;
-
     @Field(value = "feed")
     private List<Feed> feed;
 

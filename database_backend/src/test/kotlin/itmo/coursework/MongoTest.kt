@@ -1,14 +1,14 @@
 package itmo.coursework
 
 import com.fasterxml.jackson.core.JsonProcessingException
-import itmo.coursework.entity.animals.MongoAnimal
-import itmo.coursework.entity.animals.Passport
+import itmo.coursework.entity.animals.*
+import itmo.coursework.model.AddAnimalRequest
 import itmo.coursework.service.MongoAnimalService
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
-import java.util.*
+import java.sql.Date
 
 @SpringBootTest
 class MongoTest {
@@ -29,12 +29,23 @@ class MongoTest {
         val passport = Passport()
         passport.number = "1"
         passport.officialName = "of name"
-        val animal = MongoAnimal()
-        animal.name = "Vasya"
-        animal.age = 11
-        animal.eyesColor = "green"
-        animal.passport = passport
-        animal.id = UUID.randomUUID().toString()
+        val animal = AddAnimalRequest(
+            name = "Vasya",
+            age = 11,
+            eyesColor = "green",
+            passport = passport,
+            weight = 10,
+            animalType = "cat",
+            gender = "m",
+            dateOfArrival = Date.valueOf("2022.10.02"),
+            placeOfArrival = "",
+            photo = byteArrayOf(),
+            furColor = "",
+            newOwner = Owner(),
+            feed = emptyList(),
+            animalTypeInfo = AnimalTypeInfo(),
+            additionalCharacteristics = emptyList<Characteristic?>() as MutableList<Characteristic?>
+        )
         animalService.createAnimal(animal)
     }
 

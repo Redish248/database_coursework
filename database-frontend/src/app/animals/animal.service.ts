@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http'
 import { AppConfigService } from '../app-config.service'
 import { Animal } from './model/Animal'
 import { FormBuilder, FormGroup, Validators } from '@angular/forms'
+import { User } from './model/User'
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +16,7 @@ export class AnimalService {
   }
 
   private get apiUrl() {
-    return `${this.configService.silverPawAppUrl}/staff`
+    return `${this.configService.silverPawAppUrl}/mongo/animals`
   }
 
   buildForm(): FormGroup {
@@ -36,38 +37,28 @@ export class AnimalService {
       }),
       newOwner: this.formBuilder.group({
         uid: ['', Validators.required],
-        fullName: ['', Validators.required],
-        surname: ['', Validators.required],
-        phone: ['', Validators.required],
-        email: ['', Validators.required],
-        address: ['', Validators.required]
-      }),
-      previousOwner: this.formBuilder.group({
-        uid: ['', Validators.required],
-        fullName: ['', Validators.required],
+        // fullName: '',
         surname: ['', Validators.required],
         phone: ['', Validators.required],
         email: ['', Validators.required],
         address: ['', Validators.required]
       }),
       feed: this.formBuilder.array([this.feed]),
-      animalTypeInfo: this.formBuilder.group({
-        typicalIllnesses: this.formBuilder.array([this.characteristic]),
-        habits: this.formBuilder.array([this.characteristic]),
-        additionalInfo: this.formBuilder.array([this.characteristic])
-      }),
+      typicalIllnesses: this.formBuilder.array([this.characteristic]),
+      habits: this.formBuilder.array([this.characteristic]),
+      additionalInfo: this.formBuilder.array([this.characteristic]),
       additionalCharacteristics: this.formBuilder.array([this.characteristic])
     })
   }
 
-  private get feed(): FormGroup {
+  get feed(): FormGroup {
     return this.formBuilder.group({
       uid: ['', Validators.required],
       amountInGramm: ['', Validators.required],
     })
   }
 
-  private get characteristic(): FormGroup {
+  get characteristic(): FormGroup {
     return this.formBuilder.group({
         name: ['', Validators.required],
         description: ['', Validators.required]
@@ -89,5 +80,9 @@ export class AnimalService {
 
   deleteAnimal(animalId: string) {
     return this.http.delete(`${this.apiUrl}/deleteMongoAnimal/${animalId}`)
+  }
+
+  getUsers() {
+    return this.http.get<User[]>(`${this.apiUrl}/getSystemUsers`)
   }
 }

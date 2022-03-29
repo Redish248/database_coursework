@@ -1,1 +1,71 @@
-<p>animals works!</p>
+<clr-alert clrAlertType="danger" *ngIf="errorMessage">{{errorMessage}}</clr-alert>
+<clr-button-group class="btn-primary" *ngIf="hasManagerPermissions">
+    <clr-button (click)="addAnimal()">Добавить питомца</clr-button>
+</clr-button-group>
+
+<clr-datagrid>
+    <clr-dg-column [clrDgField]="'name'">Имя</clr-dg-column>
+    <clr-dg-column [clrDgField]="'gender'">
+        <clr-dg-filter [clrDgFilter]="genderFilter">
+            <app-select-filter #genderFilter [clrFilterValue]="'gender'"
+                               [clrSelectedValue]="Gender">
+
+            </app-select-filter>
+        </clr-dg-filter>
+        Пол
+    </clr-dg-column>
+    <clr-dg-column [clrDgField]="'weight'">
+        <clr-dg-filter [clrDgFilter]="weightFilter">
+            <app-range-filter #weightFilter [clrFilterValue]="'weight'"
+                              [clrRangeValue]="weightFilterRange">
+            </app-range-filter>
+        </clr-dg-filter>
+        Вес
+    </clr-dg-column>
+    <clr-dg-column [clrDgField]="'age'">
+        <clr-dg-filter [clrDgFilter]="ageFilter">
+            <app-range-filter #ageFilter [clrFilterValue]="'age'"
+                              [clrRangeValue]="ageFilterRange">
+            </app-range-filter>
+        </clr-dg-filter>
+        Возраст
+    </clr-dg-column>
+    <clr-dg-column [clrDgField]="'dateOfArrival'">Дата рождения</clr-dg-column>
+    <clr-dg-column [clrDgField]="'placeOfArrival'">Место рождения</clr-dg-column>
+    <clr-dg-column [clrDgField]="'furColor'">Цвет</clr-dg-column>
+    <clr-dg-column [clrDgField]="'eyesColor'">Цвет глаз</clr-dg-column>
+    <clr-dg-column [clrDgField]="'animalType'">
+        <clr-dg-filter [clrDgFilter]="animalType">
+            <app-select-filter #animalType [clrFilterValue]="'animalType'"
+                               [clrSelectedValue]="AnimalType">
+            </app-select-filter>
+        </clr-dg-filter>
+        Тип
+    </clr-dg-column>
+
+    <clr-dg-row *clrDgItems="let next of animals" [clrDgItem]="next" style="cursor: pointer;">
+        <clr-dg-cell>{{next.name}}</clr-dg-cell>
+        <clr-dg-cell>{{next.gender}}</clr-dg-cell>
+        <clr-dg-cell>{{next.weight}}</clr-dg-cell>
+        <clr-dg-cell>{{next.age}}</clr-dg-cell>
+        <clr-dg-cell>{{next.dateOfArrival}}</clr-dg-cell>
+        <clr-dg-cell>{{next.placeOfArrival}}</clr-dg-cell>
+        <clr-dg-cell>{{next.furColor}}</clr-dg-cell>
+        <clr-dg-cell>{{next.eyesColor}}</clr-dg-cell>
+        <clr-dg-cell>{{next.animalType}}</clr-dg-cell>
+    </clr-dg-row>
+
+    <clr-dg-footer>
+        <clr-dg-pagination #pagination [clrDgPageSize]="10">
+            <clr-dg-page-size [clrPageSizeOptions]="[5,10,20]">животных на страницу</clr-dg-page-size>
+            {{pagination.firstItem + 1}} - {{pagination.lastItem + 1}} of {{pagination.totalItems}} животных
+        </clr-dg-pagination>
+    </clr-dg-footer>
+</clr-datagrid>
+
+<app-create-animal *ngIf="createAnimal"
+                   [modalOpened]="createAnimal"
+                   (modalClose)="createAnimal=false; getAnimals();">
+
+</app-create-animal>
+

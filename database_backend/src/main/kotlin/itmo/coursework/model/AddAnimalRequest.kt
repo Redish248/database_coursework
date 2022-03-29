@@ -16,7 +16,6 @@ data class AddAnimalRequest(
     val eyesColor: String,
     val passport: Passport,
     val newOwner: Owner,
-    val previousOwner: Owner,
     val feed: List<Feed>,
     val animalTypeInfo: AnimalTypeInfo,
     var additionalCharacteristics: MutableList<Characteristic?>
