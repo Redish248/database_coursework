@@ -1,0 +1,9 @@
+.new-title {
+    border-top: 5px solid blueviolet;
+}
+
+#photo {
+    max-width: 400px;
+    max-height: 400px;
+
+}

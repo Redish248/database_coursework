@@ -55,7 +55,17 @@ export class CreateAnimalComponent implements OnInit {
   }
 
   creatAnimal() {
-    console.log("submit", this.animalForm.getRawValue())
+    let newAnimal = this.animalForm.getRawValue()
+    let owner: User = newAnimal.newOwner
+    newAnimal.newOwner.uid = owner.uid
+    newAnimal.newOwner.uid = owner.name
+
+    console.log("submit", newAnimal)
+
+  }
+
+  get photo(): string {
+    return this.animalForm.getRawValue().photo
   }
 
   getFeedArr(): FormArray {

@@ -56,16 +56,18 @@
                 </clr-input-container>
             </div>
             <clr-input-container>
-                <label>Фотография</label>
+                <label>Ссылка</label>
                 <input clrInput formControlName="photo" type="text">
             </clr-input-container>
+
+            <img *ngIf="photo" [src]="photo" id="photo">
             <div formGroupName="newOwner">
-                <p>Hастоящий владелец</p>
+                <p>Текущий владелец</p>
                 <clr-select-container>
                     <label>Зарегистрирован в системе как:</label>
                     <select clrSelect formControlName="uid">
                         <option [value]="-1">не зарегистрирован</option>
-                        <option *ngFor="let user of users" [value]="user.uid">{{user.name}}</option>
+                        <option *ngFor="let user of users" [value]="user">{{user.name}}</option>
                     </select>
                 </clr-select-container>
                 <clr-input-container>
@@ -85,10 +87,10 @@
             <div formArrayName="feed">
                 <p>Любимый корм</p>
                 <div *ngFor="let f of getFeedArr().controls; let i = index" [formGroupName]="i">
-                    <p>корм</p>
-                    <button class="btn btn-info" (click)="deleteFeed(i)">(Х)</button>
                     <clr-select-container>
-                        <label [for]="'feed'+i">название:</label>
+                        <label [for]="'feed'+i">{{i + 1}} название:
+                            <button class="btn btn-link" (click)="deleteFeed(i)">(Х)</button>
+                        </label>
                         <select clrSelect [id]="'feed'+i" formControlName="uid">
                             <option *ngFor="let feedType of feed" [value]="feedType.uid">{{feedType.name}}</option>
                         </select>
@@ -106,9 +108,9 @@
                     <p>Заболевания</p>
                     <div *ngFor="let ti of getTypicalIllnesses().controls; let i = index" [formGroupName]="i">
                         <clr-input-container>
-                            <label [for]="'ti'+i">Hазвание
+                            <label [for]="'ti'+i">{{i + 1}} Hазвание
                                 <span>
-                                    <button class="btn btn-info-outline" (click)="deleteTI(i)">(Х)</button>
+                                    <button class="btn btn-link" (click)="deleteTI(i)">(Х)</button>
                                 </span>
                             </label>
                             <input [id]="'ti'+i" clrInput formControlName="name" type="text">
@@ -125,9 +127,9 @@
                     <p>Привычки</p>
                     <div *ngFor="let h of getHabits().controls; let i = index" [formGroupName]="i">
                         <clr-input-container>
-                            <label [for]="'h'+i">Описание
+                            <label [for]="'h'+i">{{i + 1}} Описание
                                 <span>
-                                    <button class="btn btn-info-outline" (click)="deleteHabit(i)">(Х)</button>
+                                    <button class="btn btn-link" (click)="deleteHabit(i)">(Х)</button>
                                 </span>
                             </label>
                             <input [id]="'h'+i" clrInput formControlName="name" type="text">
@@ -144,9 +146,9 @@
                     <p>Дополнительная информация</p>
                     <div *ngFor="let ai of getAdditionalInfo().controls; let i = index" [formGroupName]="i">
                         <clr-input-container>
-                            <label [for]="'ai'+i">Описание
+                            <label [for]="'ai'+i">{{i + 1}} Описание
                                 <span>
-                                    <button class="btn btn-info-outline" (click)="deleteInfo(i)">(Х)</button>
+                                    <button class="btn btn-link" (click)="deleteInfo(i)">(Х)</button>
                                 </span>
                             </label>
                             <input [id]="'ai'+i" clrInput formControlName="name" type="text">
@@ -159,30 +161,31 @@
                     <button class="btn btn-info-outline" (click)="addInfo()">добавить</button>
                 </div>
             </div>
-        </div>
 
-        <div formArrayName="additionalCharacteristics">
-            Дополнительная информация
-            <div *ngFor="let info of getOtherCharacteristic().controls; let i= index" [formGroupName]="i">
-                <clr-input-container>
-                    <label [for]="'info'+i">Описание
-                        <span>
-                            <button class="btn btn-info-outline" (click)="deleteCharacteristic(i)">(Х)</button>
-                        </span>
-                    </label>
-                    <input [id]="'info'+i" clrInput formControlName="name" type="text">
-                </clr-input-container>
-                <clr-input-container>
-                    <label [for]="'info-desc'+i">Подробнее</label>
-                    <input [id]="'info-desc'+i" clrInput formControlName="description" type="text">
-                </clr-input-container>
+            <div formArrayName="additionalCharacteristics">
+                Дополнительная информация
+                <div *ngFor="let info of getOtherCharacteristic().controls; let i= index" [formGroupName]="i">
+                    <clr-input-container>
+                        <label [for]="'info'+i">{{i + 1}} Описание
+                            <span>
+                            <button class="btn btn-link" (click)="deleteCharacteristic(i)">(Х)</button>
+                            </span>
+                        </label>
+                        <input [id]="'info'+i" clrInput formControlName="name" type="text">
+                    </clr-input-container>
+                    <clr-input-container>
+                        <label [for]="'info-desc'+i">Подробнее</label>
+                        <input [id]="'info-desc'+i" clrInput formControlName="description" type="text">
+                    </clr-input-container>
+                </div>
+                <button class="btn btn-info-outline" (click)="addCharacteristic()">добавить</button>
             </div>
-            <button class="btn btn-info-outline" (click)="addCharacteristic()">добавить</button>
+
         </div>
 
 
         <div class="modal-footer">
-                        <button [disabled]="loading == true"
+            <button [disabled]="loading == true"
                     type="button"
                     class="btn btn-outline"
                     (click)="creatAnimal()">
